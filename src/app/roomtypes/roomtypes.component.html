@@ -1,0 +1,496 @@
+<div class="row"> 
+        <div class="col-sm-12">
+         <h6>Rates and Availability</h6>
+        </div>
+<div class="row" *ngIf="roomdetailsflg!=true">
+
+        <div class="col-sm-3" style="margin-top: 5%;margin-left: -2px;" *ngFor="let roomtype of getroomTypedetails">
+                <div class="card" (click)="standardRoom(roomtype);" [ngClass]="{'changeborderclr': basicFlag}">
+                    <img class="card-img-top hovercss" alt="Card image"
+                     src={{roomtype.srcfile}}
+                    style="width: 45%;margin-left: 62px; margin-top: 7px;height: 33%;border-radius: 50%;">
+                    <div class="card-body">
+                      <h6 class="card-title" style="text-align: center;margin-top: -10px;">{{roomtype.room_type}}</h6>
+                      <p class="card-text" style="text-align: center;margin-top: -12px;">Price :&nbsp;{{roomtype.standard_rate}}</p>
+                    </div>
+
+                    <div class="card-footer" style="margin-top: -18px;">
+                            <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                            </span> {{roomtype.facilitie1}}</p>
+                            <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                            </span>{{roomtype.facilitie2}}</p>
+                            <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                            </span>{{roomtype.facilitie3}}</p>
+                          </div>
+                  </div>
+            </div>
+
+
+
+    </div>
+
+    <div  *ngIf="roomdetailsflg==true">
+   
+        <div class="row">
+                <div class="col-sm-12 dropcss" style="margin-bottom: 20px;margin-top: -10px;">
+                       <label style="margin-left: 60em;">Back
+                           <span style="    border: 1px solid gray;padding: 3px 6px;
+                           background-color: white;cursor: pointer;">
+                           <i class="fa fa-reply hovercss" (click)="cleartemp();roomdetailsflg=false" aria-hidden="true"></i></span></label>
+                </div>
+            </div>
+      <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Grid">Grid</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Daterange">Date Range</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Restriction">Restriction</a></li>
+          </ul>
+          <div class="tab-content clearfix">
+            <div id="Grid" class="tab-pane container active" style="margin-top:10px;">
+
+
+        <div class="row dropdown" style="margin-bottom: 0px;">
+                <div class="col-sm-12" style="padding-left:820px;">
+                    <a style="color:blue;" class="dropdown-toggle"
+                    data-toggle="dropdown">What does each color mean?
+
+                        <div class="dropdown-menu">
+                                <a class=" yellowcss fa fa-square-o" style="padding-left: 5px;"> <span>&nbsp;&nbsp;Not Declared</span></a>
+                                <a class=" greencss fa fa-square-o"> <span>&nbsp;&nbsp;Declared</span></a>
+                                <a class=" redcss fa fa-square-o" style="padding-right: 5px;"> <span>&nbsp;&nbsp;Sold out</span></a>
+                              </div>
+
+
+                    </a>
+                </div>
+            </div>
+
+    <div class="row">
+
+           <div class="col-sm-3">
+               <font>From</font>
+           </div>
+           <div class="col-sm-3">
+                <font>To</font>
+            </div>
+
+       </div>
+
+       <div class="row" >
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
+                           name="dp" [(ngModel)]="fromdate" [minDate]="fromMinDate" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
+                      style="border-radius: 0px;">
+                        <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                      </button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
+                           name="dp" [(ngModel)]="todate" [minDate]="fromdate" ngbDatepicker #d1="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button"
+                      style="border-radius: 0px;">
+                        <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                      </button>
+                    </div>
+                  </div>
+             </div>
+
+
+                 <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary" (click)="getperioddays(setperiod)"
+                        style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Set Period</button>
+                    </div>
+
+
+        </div>
+
+
+        <div class="row" style="margin-top: 15PX;" [hidden]="!showlabelname">
+                <div class="col-sm-12" style="padding-left:810px;">
+                        <a >Price shown on calender are in <b>$</b></a>
+                </div>
+            </div>
+
+
+        <div class="row" style="margin-top: 20px;" [hidden]="!showlabelname">
+                <div class="col-sm-12" style="padding-left: 997px;">
+                    <button (click)="preveviousColumns()" [disabled]="!prevflag" [ngClass]="{disabling:!prevflag}"
+                    style="background-color:white;color: black;"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
+                    <button (click)="nextColumns()"  [disabled]="!nextflag" [ngClass]="{disabling:!nextflag}"
+                    style="background-color: white;color: black;"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+                </div>
+            </div><br>
+
+
+<div [hidden]="!showlabelname" class="row">
+
+        <div class="row" style="margin-top: 20px">
+                <div class="col-sm-12" style="margin-left: 30px;border: 1px solid gray;
+                width: 1000px;height: 40px;padding-top: 7px;background-color: #337ab7;color:white;">
+                   <h6>{{labelforroom}}</h6>
+                </div>
+            </div>
+
+
+<div class="row" [hidden]="!showlabelname">
+    <div class="col-sm-12" style="margin-left: 15px;">
+        <table class="" style="margin-bottom: 20px;">
+                <thead >
+
+                        <tr style="border-left: 1px solid gray;">
+                                <label style="font-weight: 500;width: 9em;vertical-align: sub;"></label>
+                                <th *ngFor="let list of countdates | slice:start:end; let i=index;"  [colSpan]="list.col">{{list.Month}}</th>
+                      </tr>
+                </thead>
+                <tbody>
+                        <tr style="border-left: 1px solid gray;">
+                                <label style="font-weight: 500;width: 9em;vertical-align: sub;"></label>
+                                          <td *ngFor="let lt of countdates | slice:start:end; let i=index;">{{lt.Day}}</td>
+                          </tr>
+                  <tr style="border-left: 1px solid gray;">
+                        <label style="font-weight: 500;width: 9em;vertical-align: sub;"></label>
+                           <td *ngFor="let lt of countdates | slice:start:end; let i=index;">{{lt.Date}}</td>
+                  </tr>
+                    <tr>
+                         <td style="border: 1px solid gray;background-color:white;" >   <label style="font-weight: 400;width: 9em;vertical-align: sub;" >Room Status </label>
+                            </td>
+
+                            <td *ngFor="let lt of countdates | slice:start:end; let i=index;"
+                            style="border: 1px solid gray; height: 36px; box-shadow: 0 0px 1px 0px rgb(155, 155, 33)!important;
+                            border-radius: 0%;"
+                            [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow' , 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}">
+                                </td>
+                    </tr>
+                     <tr>
+                     <td style="border: 1px solid gray;background-color:white;" ><label style="font-weight: 400;width: 9em;vertical-align: sub;"  >Room to Sell &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-edit"
+                        data-toggle="modal" data-target="#myModal" (click)="callmodalroomsell()"></i></label>
+                   </td>
+
+                     <td *ngFor="let lt of countdates | slice:start:end; let i=index;"
+                     style="border: 1px solid gray;width: 63px;background-color: rgb(223, 221, 221)">
+                                     <input type="text" [(ngModel)]="lt.Available_Room_Count"
+                                    (change)="editsellroom($event,i,lt.Available_Room_Count)"
+                                    style="width: 50px;height: 30px;text-align:center; margin-left: 5px;
+                                    border-radius: 40%;">
+                                </td>
+
+                    </tr>
+                    <tr class="facss">
+                           <td style="border: 1px solid gray;background-color:white;color: blue;" > <span class="fa fa-chevron-down" (click)="standardrate()"><label style="font-weight: 400;width: 9em;vertical-align: sub;font-family: sans-serif; font-size: 14px;"  >Standard Price&nbsp;&nbsp;
+                               <i class="fa fa-edit"  ></i></label></span>
+                            </td>
+
+                                <td *ngFor="let lt of countdates | slice:start:end; let i=index;"
+                                style="border: 1px solid gray; height: 36px; box-shadow: 0 0px 1px 0px rgb(155, 155, 33)!important;
+                            border-radius: 0%;"
+                            [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow', 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}">
+                                </td>
+                    </tr>
+                    <tr [hidden]="!hideedit">
+                            <td style="border: 1px solid gray;background-color:white;" >
+                                <label class="editlink" style="font-weight: 400;width: 9em;vertical-align: sub;" >
+                                    <a  data-toggle="modal" data-target="#myModal" (click)="clickeditbasicpricebut()">Edit Basic Price </a></label>
+                                </td>
+
+                                <td *ngFor="let lt of countdates | slice:start:end; let j=index;"
+                                style="border: 1px solid gray;">
+                                    <input type="text" [(ngModel)]="lt.Price"
+                                    (change)="editbasciprice($event,j,lt.Price)"
+                                    style="width: 60px;height: 36px;padding: 3px;">
+                                </td>
+                    </tr>
+
+
+                 </tbody>
+           </table>
+           </div>
+
+
+
+
+    </div>
+    </div>
+
+    <div class="row" [hidden]="!showlabelname" style="margin-bottom: 20px;">
+      <div class="col-sm-10" ></div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary"
+        (click)="saveRoomNoandRate()" style="width: 60%;margin-left: 30px;">Save</button>
+      </div>
+   </div>
+
+ </div>
+
+           <!-- Tab date range -->
+           <div id="Daterange" class="tab-pane container fade" style="margin-top:10px;">
+            <br>
+                <div class="row">
+
+                        <div class="col-sm-4">
+                            <font>From</font>
+                        </div>
+                        <div class="col-sm-4">
+                             <font>To</font>
+                         </div>
+                </div>         
+                <div class="row" >
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
+                                       name="dp" >
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
+                                  style="border-radius: 0px;">
+                                    <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                  </button>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
+                                       name="dp"  >
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button"
+                                  style="border-radius: 0px;">
+                                    <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                  </button>
+                                </div>
+                              </div>
+                         </div>
+                       
+                         <div class="col-sm-4">
+                                <button type="button" class="btn btn-primary" 
+                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Set Period</button>
+                            </div>   
+                 </div>
+                 <br>
+                 <br>
+                <div class="row">
+                  <div class="col-1">
+                    <label class="form-check-label">Sun</label>
+                    <input type="checkbox" class="form-check-input" value="">
+                  </div>
+                   <div class="col-1">
+                    <label class="form-check-label">Mon</label>
+                   </div>
+                    <div class="col-1">
+                    <label class="form-check-label">Tue</label>
+                   </div>
+                   <div class="col-1">
+                    <label class="form-check-label">Wed</label>
+                   </div>
+                  <div class="col-1">
+                    <label class="form-check-label">Thur</label>
+                  </div>
+                   <div  class="col-1">
+                    <label class="form-check-label">Fri</label>
+                  </div>
+                   <div class="col-1">
+                    <label class="form-check-label">Sat</label>
+                  </div>  
+
+                </div>    
+                      
+                <br>
+                    <div class="row">
+                     <div class="col-sm-4">
+                       <font>From</font>
+                     </div>
+                     <div class="col-sm-4">
+                            <font>From</font>
+                          </div>
+                    </div> 
+                 <div class="row">
+                     <div class="col-sm-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                        </div>
+
+                     </div>
+                     <div class="col-sm-4">
+                            <div class="input-group">
+                                    <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                                </div>
+                          </div>
+                     <div class="col-sm-4">
+                         <button type="button" class="btn btn-info"
+                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Save</button>
+                         </div>      
+                    </div>     
+        </div>
+
+        <!-- Restriction details -->
+        <div id="Restriction" class="tab-pane container fade" style="margin-top:10px;">
+        <br>
+        <div class="row">
+         <div class="col-sm-3">
+             <font>Minimum stay</font>
+         </div>
+         <div class="col-sm-3">
+             <font>Maximum stay</font>
+         </div>
+         <div class="col-sm-3">
+             <font>Arrival</font>
+         </div>
+         <div class="col-sm-3">
+             <font>Departure</font>
+         </div>         
+        </div>
+
+        <div class="row">
+         <div class="col-sm-3">
+                <div class="input-group">
+                     <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                </div>    
+         </div>
+         <div class="col-sm-3">
+                <div class="input-group">
+                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                </div>        
+         </div>
+         <div class="col-sm-3">
+                <div class="input-group">
+                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                </div>
+         </div>
+         <div class="col-sm-3">
+                <div class="input-group">
+                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                </div>
+         </div>         
+        </div>
+<br><br>
+        <div class="row">
+          <div class="col-sm-9"></div>
+          <div class="col-sm-3">
+                <button type="button" class="btn btn-info"
+                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Save</button>              
+          </div>  
+        </div>    
+         </div>
+         <!-- restriction End -->
+   </div>
+    
+     </div>
+
+
+    <!-- modal for edit sell room  -->
+
+
+  <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content" style="width: 110%;left: -65px;top: 35px;">
+
+            <!-- Modal Header -->
+            <div class="modal-header" style="height: 50px;background-color:#007bff;">
+              <h5 class="modal-title" style="padding-left: 180px;color: white; margin-top: -9px;">Room to Sell</h5>
+              <button type="button" class="close" data-dismiss="modal"
+              style="margin-top: -24px;color: white;">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" >
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Start Date</label>
+                    </div>
+                    <div class="col-sm-6">
+                            <label>End Date</label>
+                        </div>
+                </div>
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input class="" placeholder="yyyy-mm-dd"  style="border:1px solid gray;padding-left:15px;max-width: 10em;"
+                                           name="dp" [(ngModel)]="popfromdate" ngbDatepicker #d3="ngbDatepicker">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary" (click)="d3.toggle()" type="button"
+                                      style="border-radius: 0px;">
+                                        <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                      </button>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input class="" placeholder="yyyy-mm-dd"  style="border:1px solid gray;padding-left:15px;max-width: 10em;"
+                                           name="dp" [(ngModel)]="poptodate" ngbDatepicker #d4="ngbDatepicker">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary" (click)="d4.toggle()" type="button"
+                                      style="border-radius: 0px;">
+                                        <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                      </button>
+                                    </div>
+                                  </div>
+                             </div>
+                             </div>
+                           <br>
+
+                             <div class="row" style="margin-top: 15px;">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: 500;">{{labelforroom}}</label>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                          <input type="number" [(ngModel)]="sellroomorbasicrate">
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                            <p>{{labelundrinfo}}</p>
+                                    </div>
+                                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer" style="height: 56px;">
+              <button type="button" class="btn "[hidden]="!sellmodalsavebut"
+              (click)="savesellroom()" data-dismiss="modal">Save Changes</button>
+
+              <button type="button" class="btn" [hidden]="!editsavebut"
+              (click)="saveeditbasicprice()" data-dismiss="modal">Save Changes</button>
+
+              <button type="button" class="btn  btn-light" data-dismiss="modal">Cancel</button>
+            </div>
+
+
+            <!-- <div class="modal-footer" style="height: 43px;padding: 15px;">
+                    <div class="row">
+                        <div class="col-sm-6" style="width: 30em;height: 42px;
+                        background-color: #3b3bb7;margin-left: 0px;color: white;
+                        padding-left: 77px;padding-top: 8px;border: 1px solid #3b3bb7;cursor: pointer;"
+                        [hidden]="!sellmodalsavebut"   (click)="savesellroom()" data-dismiss="modal">
+                         <label style="cursor: pointer;">Save Changes</label>
+                        </div>
+
+                        <div class="col-sm-6" style="width: 30em;height: 42px;
+                        background-color: #3b3bb7;margin-left: 0px;color: white;
+                        padding-left: 77px;padding-top: 8px;border: 1px solid #3b3bb7;cursor: pointer;"
+                        [hidden]="!editsavebut" (click)="saveeditbasicprice()"  data-dismiss="modal">
+                         <label style="cursor: pointer;">Save Changes</label>
+                        </div>
+
+                        <div class="col-sm-6" style="    width: 30em;height: 42px;
+                        background-color: #9e3bb7; margin-left: 1px; color: white;
+                        padding-left: 110px;
+                        padding-top: 8px;
+                        border: 1px solid #9e3bb7;
+                        margin: 0px;cursor: pointer;" data-dismiss="modal">
+                              <label style="cursor: pointer;">Cancel</label>
+                          </div>
+                    </div>
+                  </div> -->
+
+          </div>
+        </div>
+      </div>
+
+
+

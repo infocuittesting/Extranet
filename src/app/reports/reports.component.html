@@ -1,0 +1,72 @@
+
+  <div class="container">
+    
+    <div class="row" style="margin-top: -11px;">
+      <div class="col-md-3">
+        <div class="form-group-addon">
+            <b>Startdate</b> 
+          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          <input type="date" class="form-control" id="Startdate" name="Startdate"placeholder="Startdate" style="height: 32px;" [(ngModel)]="start_date">
+        </div>
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+            <b>Enddate</b>
+            <input type="date" class="form-control" id="Startdate" name="endtdate" style="height: 32px;" [(ngModel)]="end_date">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-success" style="width:100%;margin-top: 21px;height: 34px;" (click)="fetchrecord(start_date,end_date)">Getdetails</button>
+        </div>
+       </div> 
+     
+      
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+        <div class="card" style="width: 531px; height: 303px; margin-left: -13px;">
+            <div>
+               <b style="margin-left: 10px;">User Count</b> </div>
+            
+      <div id="chartdivid" style="width: 113%;height:230px;margin-left: -18px;"></div>
+    </div>
+  </div>
+
+   
+
+     <div class="col-md-6">
+        <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
+            <div><b style="margin-left: 10px;">Channel Count</b></div>
+      <div id="chartdivid1" style="width: 113%;height:230px;margin-left: -18px;"></div>
+    </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+          <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
+              <div><b style="margin-left: 10px;">Room Occupancy</b></div>
+                  <div id="chartdiv2" style="width: 113%; height:230px;"></div>
+      </div>
+      </div>
+    <!-- <div id="chartdiv2" style="width: 113%; height:230px;"></div> -->
+    <div class="col-md-6">
+        <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
+            <div><b style="margin-left: 10px;">Booking vs Confirmation</b></div>
+                <div id="chartdiv3" style="width: 113%; height:230px;"></div>
+    </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+          <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
+              <div><b style="margin-left: 10px;">Language</b></div>
+                  <div id="chartdiv4" style="width: 113%; height:230px;"></div>
+      </div>
+      </div>
+      <div class="col-md-6">
+          <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
+              <div><b style="margin-left: 10px;">Sms</b></div>
+                  <div id="chartdiv5" style="width: 113%; height:230px;"></div>
+      </div>
+      </div>
+  </div>

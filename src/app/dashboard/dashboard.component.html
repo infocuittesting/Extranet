@@ -1,0 +1,179 @@
+
+<div class="row">
+
+    <div class="col-sm-12">
+      <h6 >Dashboard</h6>
+    </div>
+    </div>
+<div class="row " style="margin-top: 0px;">
+    <div class="col-sm-3 carsstyle hovercss" style="padding-left: 40px;"
+    *ngFor="let roomcount of getroomdetails">
+        <div class="card "  [ngClass]="{'changeborderclr': basicFlag}">
+            <div class="card-body" >
+                   <div class="row" style="margin-top: -18px;">
+                        <div class="col-sm-6" style="padding-top: 10px;margin-left: -10px;padding-left: 6px;">
+                            <h2 style="font-size: 39px;font-weight:700;">{{roomcount.available_count}}</h2>
+                        </div>
+                        <div class="col-sm-6 " style="margin-left: -8px;">
+                               <i class="fa fa-hotel"></i>
+                            </div>
+                   </div>
+                   <div class="row roomcss" style="margin-top: 5px;margin-bottom:5px;">
+                                <label style="font-weight: 600;">{{roomcount.room_type}}</label>
+                   </div>
+            </div>
+            <div class="card-footer" style="background-color: rgba(0,0,0,0.1) !important;
+            margin-top: -30px;padding: 0px;">
+                <label style="color: white;margin-left: 36px;">More Info &nbsp;
+                    <i class="fa fa-arrow-circle-right hovercss" ></i></label>
+            </div>
+          </div>
+    </div>
+ </div>
+
+    <div class="row" cardheadstyle style="margin-top: 5px;">
+
+     <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header" style="background-color: #337ab7;color:white;">
+           <i class="fa fa-bell fa-fw"></i>Notifications </div>
+        <div class="card-body" style="height: 20em;">
+                <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i>New Comment
+                            <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-twitter fa-fw"></i>3 New Followers
+                            <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item" >
+                            <i class="fa fa-envelope fa-fw"></i>Message Sent
+                            <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-tasks fa-fw"></i>New Task
+                            <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-upload fa-fw"></i>Server Rebooted
+                            <span class="pull-right text-muted small"><em>11:32 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-bolt fa-fw"></i>Server Crashed!
+                            <span class="pull-right text-muted small"><em>11:13 AM</em>
+                            </span>
+                        </a>
+                        <a></a>
+                    </div>
+        </div>
+        <div >
+            <button type="button" class="btn btn-light btn-lg btn-block"
+            style="background-color: #dedede;width: 92%;margin-left: 11px;margin-bottom: 10px;
+            height: 38px;padding-top: 4px;font-size: 18px;">
+                View all alerts
+            </button>
+        </div>
+      </div>
+     </div>
+
+
+     <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header" style="background-color: #337ab7;color:white;">
+            <i class="fa fa-bar-chart-o fa-fw"></i>Available Room </div>
+        <div class="card-body" style="height: 20em;">
+           <br>
+              <div id="chartdiv"  style="width: 113%;height:230px;margin-left: -18px;"></div>
+        </div>
+        <div >
+            <button type="button" class="btn btn-light btn-lg btn-block"
+            style="background-color: #dedede;width: 92%;margin-left: 11px;margin-bottom: 10px;
+            height: 38px;padding-top: 4px;font-size: 18px;">
+                View Details
+            </button>
+        </div>
+      </div>
+     </div>
+
+     <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header" style="background-color: #337ab7;color:white;">
+            <i class="fa fa-comments fa-fw"></i> Chat</div>
+        <div class="card-body" style="height: 20em;overflow: auto;">
+            <li class="left clearfix">
+
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <strong class="primary-font">Perumal</strong>
+                        <small class="pull-right text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i>12 mins ago
+                        </small>
+                    </div>
+                    <p>
+                        Hi,.....
+                    </p>
+                </div>
+            </li>
+
+            <li class="right clearfix">
+
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <small class=" text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i>13 mins ago</small>
+                        <strong class="pull-right primary-font">Dhasarathan</strong>
+                    </div>
+                    <p>
+                        Hi,....
+                    </p>
+                </div>
+            </li>
+            <li class="left clearfix">
+
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <strong class="primary-font">Perumal</strong>
+                        <small class="pull-right text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i>12 mins ago
+                        </small>
+                    </div>
+                    <p>
+                        How are you..?
+                    </p>
+                </div>
+            </li>
+
+            <li class="right clearfix">
+
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <small class=" text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i>13 mins ago</small>
+                        <strong class="pull-right primary-font">Dhasarathan</strong>
+                    </div>
+                    <p>
+                       Fine ,. You.?
+                    </p>
+                </div>
+            </li>
+
+
+        </div>
+        <div class="card-footer">
+            <input type="text" placeholder="Type your text" size="25">
+            <span>
+                <button class="btn btn-primary btn-sm"  style="vertical-align: baseline;">
+                    Send
+                </button>
+            </span>
+        </div>
+      </div>
+     </div>
+
+    </div>

@@ -1,0 +1,273 @@
+<div class="container-fluid">
+  <br>
+  <br>
+  <br>
+  <div class="row"  [ngClass]="{logincss:register!=true}">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4" style="background-color:#2196f3;box-shadow:1px 1px 8px 1px #868282;padding: 0px 0px 0px 35px;">
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <div class="row">
+        <div clas="col-sm-5"></div>
+        <div class="col-sm-6">
+          <img class="card-img-top hovercss" src="assets/images/logo.png" alt="Card image" style="width: 65%;margin-left: 65%;">
+        </div>
+        <div clas="col-sm-1"></div>
+      </div>
+
+
+
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-12">
+          <h2 style="padding-left: 73px;color: white;font-family: -webkit-pictograph;">EXTRANET IVR</h2>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-sm-4" *ngIf="register!=true" style="background-color:white;box-shadow: 1px 1px 8px 1px #868282;padding: 0px 0px 0px 35px;">
+
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Login</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h6>Email ID</h6>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -10px;">
+          <div class="col-sm-12">
+            <input class="form-control" id="contactemail"  #contactemail="ngModel"
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            (change)="emailvalidate(contactemail)"
+             type="text" [(ngModel)]="login.username" required />
+          </div>
+        </div>
+        <div class="md-errors-spacer" [hidden]="contactemail.valid || contactemail.untouched">
+          <div  *ngIf="contactemail.errors && contactemail.errors.required" style="color: red;margin-left: 50px;">
+              Email is required
+          </div>
+          <div  *ngIf="contactemail.errors && contactemail.errors.pattern" style="color: red;margin-left: 50px;">
+              Email is invalid
+          </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="login.username">
+        </div>
+      </div> -->
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <h6>Password</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input class="form-control" type="password" [(ngModel)]="login.password">
+        </div>
+      </div>
+
+      <!-- <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <h6>Business ID</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="login.businessid">
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <h6>Hotel Name</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="login.hotelname">
+        </div>
+      </div> -->
+      <div class="row" style="margin-top: 40px;font-weight: 600;" [hidden]="!userPasswrdFailure">
+        <div class="col-sm-8"></div>
+       <label style="color: red;margin-left: 20px;">Please enter correct username/password</label>
+      </div>
+      <div class="row" *ngIf="loginFieldErrorFlag">
+        <label style="margin-left: 130px;font-weight: 600;color: red;margin-top: 10px;">Enter all fields</label>
+        </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-deep-purple"  [disabled]="emailvali"
+          (click)="logindetails(login)" style="width: 265%;border-radius: 0%;">Login</button>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <label>Don't have account ? Sign Up
+            <a style="cursor: pointer;color: blue;" (click)="register=true;loginFieldErrorFlag=false;regFillMantatory=false;">here</a>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- sign up page -->
+
+
+
+
+    <div class="col-sm-4" *ngIf="register==true" style="background-color:white;box-shadow: 1px 1px 1px 1px #868282;padding: 0px 0px 0px 35px;">
+
+      <br>
+      <br>
+      <div class="row" style="margin-top: -30px;">
+        <div class="col-sm-12">
+          <h2>Create Account</h2>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-12">
+          <h6>User Name</h6>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -10px;">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="regis.username">
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <h6>Password</h6>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -10px;">
+        <div class="col-sm-12">
+          <input class="form-control" type="password" [(ngModel)]="regis.password">
+        </div>
+      </div>
+
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <h6>Email</h6>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -10px;">
+        <div class="col-sm-12">
+          <input class="form-control" id="contactemail"  #contactemail="ngModel"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          (change)="emailvalidate(contactemail)"
+           type="text" [(ngModel)]="regis.email" required />
+        </div>
+      </div>
+      <div class="md-errors-spacer" [hidden]="contactemail.valid || contactemail.untouched">
+        <div  *ngIf="contactemail.errors && contactemail.errors.required" style="color: red;margin-left: 50px;">
+            Email is required
+        </div>
+        <div  *ngIf="contactemail.errors && contactemail.errors.pattern" style="color: red;margin-left: 50px;">
+            Email is invalid
+        </div>
+    </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <h6>Mobile Number</h6>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -10px;">
+        <div class="col-sm-12">
+          <input class="form-control" type="number" [(ngModel)]="regis.mobileNo">
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+          <h6>Hotel Name</h6>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -10px;">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="regis.hotelname">
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px;" *ngIf="regFillMantatory">
+        <label style="margin-left: 130px;font-weight: 600;color: red;">Enter all fields</label>
+        </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-deep-purple" (click)="registerdetails(regis)" 
+          [disabled]="emailvali"
+          style="width: 265%;border-radius: 0%;">Sign Up </button>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-md-12">
+          <label>Already have an account?
+            <a style="cursor: pointer;color: blue;" (click)="register=false;loginFieldErrorFlag=false;regFillMantatory=false;" >Sign in</a>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-sm-2"></div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+ <!-- The Modal -->
+ <div class="modal" id="myModal"> 
+  <div class="modal-dialog">
+    <div class="modal-content" style="top: 150px;border-radius: 1px;">
+    
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color: #1a3d5c;color: white;border-radius: 1px;height: 50px;
+      padding-top: 10px;">
+        <h6 class="modal-title">Business ID</h6>
+        <button type="button" class="close" data-dismiss="modal" style="color: white; height: 40px;
+        margin-top: -2px;padding-top: 2px;">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        Please Note your Business ID " {{message}} "
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer" style="height: 50px;">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color: #1a3d5c;
+        border: 1px solid #1a3d5c;   "> Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
