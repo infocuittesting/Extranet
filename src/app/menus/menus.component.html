@@ -83,6 +83,16 @@
                 style="padding-left: 102px;"></span>                    
           </li>
 
+          <li  (click)="reservation()" style="margin-bottom: 20px;cursor: pointer;height: 42px;
+          padding-top: 10px;" 
+          [ngClass]="{'backgrouncolor': reservationarrowflag}">
+                &nbsp;&nbsp;&nbsp;<i class="fa fa-calendar-check-o fontsize"></i>&nbsp;&nbsp;Reservation
+                <span class="fa fa-angle-right" [hidden]="!reservationarrowflag"
+                style="padding-left: 95px;"></span>   
+                <span class="fa fa-angle-down" [hidden]="reservationarrowflag" 
+                style="padding-left:  95px;"></span>                   
+            </li>
+
           <li  (click)="ratesAvailtab()" style="margin-bottom: 20px;cursor: pointer;height: 42px;
           padding-top: 10px;" 
           [ngClass]="{'backgrouncolor': ratesavailarrowflag}">
@@ -132,11 +142,11 @@
           <li style="margin-bottom: 20px;cursor: pointer;height: 42px;
           padding-top: 10px;" (click)="Reports()"
           [ngClass]="{'backgrouncolor': reportsarrowflag}">
-                &nbsp;&nbsp;&nbsp;<i class="fa fa-certificate"></i>&nbsp;&nbsp;Reports
+                &nbsp;&nbsp;&nbsp;<i class="fa fa-line-chart"></i>&nbsp;&nbsp;Reports
                 <span class="fa fa-angle-right" [hidden]="!reportsarrowflag" 
-                style="padding-left: 76px;"></span> 
+                style="padding-left: 125px;"></span> 
                 <span class="fa fa-angle-down" [hidden]="reportsarrowflag" 
-                style="padding-left: 76px;"></span>    
+                style="padding-left: 125px;"></span>    
           </li>        
         </ul>  
   </nav> 

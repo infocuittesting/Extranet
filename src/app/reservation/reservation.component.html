@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-12">
+      <h6>Reservation</h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <font> Arrival</font>
+  </div>
+  <div class="col-md-3">
+    <font> Departure</font>
+  </div>
+  <div class="col-md-3">
+    <font> Cofirmation Number</font>
+  </div>
+  <div class="col-md-3">
+    <font> Room Types</font>
+  </div>
+</div>  
+<div class="row">
+    <div class="col-md-3">
+      <input placeholder="DD-MM-YYYY" type="date" class="" name="" id="" [(ngModel)]="arriv" >
+    </div>
+    <div class="col-md-3">
+        <input placeholder="DD-MM-YYYY" type="date" class="" name="" id="" [(ngModel)]="depart">
+    </div>
+    <div class="col-md-3">
+        <input class="" name="" id="">
+    </div>
+    <div class="col-md-3">
+        <input class="" name="" id="" [(ngModel)]="room">
+    </div>
+</div>
+<br><br><br>
+<div class="row" >
+  <div class="col-md-12">
+<table class="table table-bordered table-hover fixtab">
+  <thead style="background-color:#337ab7;color: white">
+    <tr>
+      <th> Arrival</th>
+      <th> Departure</th>
+      <th> Cofirmation No</th>
+      <th> Room Type</th>
+      <th> Adult</th>
+      <th> Child</th>
+      <th> Policy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detail of hello|filterdata: arriv :'customer_arrival_date'|filterdata: depart :'customer_depature_date'|filterdata: room :'customer_room_type'">
+      <td>{{detail.customer_arrival_date}} </td>
+      <td>{{detail.customer_depature_date}} </td>
+      <td>{{detail.customer_confirmation_number}}</td>
+      <td>{{detail.customer_room_type}} </td>
+      <td>{{detail.customer_adult}} </td>
+      <td>{{detail.customer_child}} </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

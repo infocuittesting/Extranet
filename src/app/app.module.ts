@@ -49,6 +49,8 @@ import { PrmotionsService } from "../app/promotions/promotions.service";
 import { CancellationpaymentService } from "../app/cancellationpayment/cancellationpayment.service";
 import { StatisticsService } from "../app/statistics/statistics.service";
 import { ReportsComponent } from './reports/reports.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { FilterdataPipe } from './filterdata.pipe';
 
 export const appRoutes: Routes = [
   { path: 'appcom', component: AppComponent },
@@ -58,6 +60,10 @@ export const appRoutes: Routes = [
     children: [{
       path: 'dashboard',
       component: DashboardComponent
+    },
+    {
+      path:'reservation',
+      component:ReservationComponent
     },
     {
       path: 'promotions',
@@ -100,7 +106,9 @@ export const appRoutes: Routes = [
     CancellationpaymentComponent,
     RoomtypesComponent,
     ConfigurationComponent,
-    ReportsComponent
+    ReportsComponent,
+    ReservationComponent,
+    FilterdataPipe
   ],
   imports: [
     BrowserModule,

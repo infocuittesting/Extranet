@@ -2,6 +2,7 @@
         <div class="col-sm-12">
          <h6>Rates and Availability</h6>
         </div>
+ </div>       
 <div class="row" *ngIf="roomdetailsflg!=true">
 
         <div class="col-sm-3" style="margin-top: 5%;margin-left: -2px;" *ngFor="let roomtype of getroomTypedetails">
@@ -66,17 +67,17 @@
 
     <div class="row">
 
-           <div class="col-sm-3">
+           <div class="col-sm-4">
                <font>From</font>
            </div>
-           <div class="col-sm-3">
+           <div class="col-sm-4">
                 <font>To</font>
             </div>
 
        </div>
 
        <div class="row" >
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="input-group">
                     <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
                            name="dp" [(ngModel)]="fromdate" [minDate]="fromMinDate" ngbDatepicker #d="ngbDatepicker">
@@ -88,7 +89,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="input-group">
                     <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
                            name="dp" [(ngModel)]="todate" [minDate]="fromdate" ngbDatepicker #d1="ngbDatepicker">
@@ -102,7 +103,7 @@
              </div>
 
 
-                 <div class="col-sm-3">
+                 <div class="col-sm-4">
                         <button type="button" class="btn btn-primary" (click)="getperioddays(setperiod)"
                         style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Set Period</button>
                     </div>
@@ -264,47 +265,42 @@
                                 </div>
                               </div>
                          </div>
-                       
-                         <div class="col-sm-4">
-                                <button type="button" class="btn btn-primary" 
-                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Set Period</button>
-                            </div>   
+  
                  </div>
                  <br>
                  <br>
                 <div class="row">
                   <div class="col-1">
-                    <label class="form-check-label">Sun</label>
-                    <input type="checkbox" class="form-check-input" value="">
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"> Sun</label>
                   </div>
                    <div class="col-1">
-                    <label class="form-check-label">Mon</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);">Mon</label>
                    </div>
                     <div class="col-1">
-                    <label class="form-check-label">Tue</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);">Tue</label>
                    </div>
                    <div class="col-1">
-                    <label class="form-check-label">Wed</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-top:30px;transform: scale(0.7);">Wed</label>
                    </div>
                   <div class="col-1">
-                    <label class="form-check-label">Thur</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-top:30px;transform: scale(0.7);">Thur</label>
                   </div>
                    <div  class="col-1">
-                    <label class="form-check-label">Fri</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -25px;margin-top:30px;transform: scale(0.7);">Fri</label>
                   </div>
                    <div class="col-1">
-                    <label class="form-check-label">Sat</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -25px;margin-top:30px;transform: scale(0.7);">Sat</label>
                   </div>  
 
                 </div>    
                       
-                <br>
+                <br> <br>
                     <div class="row">
                      <div class="col-sm-4">
-                       <font>From</font>
+                       <font>Room To Sell</font>
                      </div>
                      <div class="col-sm-4">
-                            <font>From</font>
+                            <font>Price</font>
                           </div>
                     </div> 
                  <div class="row">
@@ -357,12 +353,12 @@
          </div>
          <div class="col-sm-3">
                 <div class="input-group">
-                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                        <input  placeholder="dd-mm-yyyy" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
                 </div>
          </div>
          <div class="col-sm-3">
                 <div class="input-group">
-                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                        <input  placeholder="dd-mm-yyyy" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
                 </div>
          </div>         
         </div>

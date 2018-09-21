@@ -16,6 +16,7 @@ export class MenusComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute ,public session: SessionStorageService) { }
 
   public dasharrowflag = true;
+  public reservationarrowflag = false;
   public ratesavailarrowflag = false;
   public promotionsarrowflag = false;
   public policyarrowflag = false;
@@ -31,20 +32,35 @@ export class MenusComponent implements OnInit {
   dashboardtab() {
     this.router.navigate(['dashboard'], { relativeTo: this.route });
     this.dasharrowflag = true;
+    this.reservationarrowflag = false;
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = false;
     this.policyarrowflag = false;
     this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
+    this.reportsarrowflag =false;
+  }
+  reservation() {
+    this.router.navigate(['reservation'], { relativeTo: this.route });
+    this.dasharrowflag = false;
+    this.reservationarrowflag = true;
+    this.ratesavailarrowflag = false;
+    this.promotionsarrowflag = false;
+    this.policyarrowflag = false;
+    this.staticsarrowflag = false;
+    this.configurationsarrowflag = false;
+    this.reportsarrowflag =false;
   }
   ratesAvailtab() {
     this.router.navigate(['roomtypes'], { relativeTo: this.route });
     this.dasharrowflag = false;
+    this.reservationarrowflag = false;
     this.ratesavailarrowflag = true;
     this.promotionsarrowflag = false;
     this.policyarrowflag = false;
     this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
+    this.reportsarrowflag =false;
   }
   promotionstab() {
     this.router.navigate(['promotions'], { relativeTo: this.route });
@@ -54,6 +70,7 @@ export class MenusComponent implements OnInit {
     this.policyarrowflag = false;
     this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
+    this.reportsarrowflag =false;
   }
 
   statisticstab() {
@@ -64,6 +81,7 @@ export class MenusComponent implements OnInit {
     this.policyarrowflag = false;
     this.staticsarrowflag = true;
     this.configurationsarrowflag = false;
+    this.reportsarrowflag =false;
   }
 
   cancellationtab() {
@@ -74,6 +92,7 @@ export class MenusComponent implements OnInit {
     this.policyarrowflag = true;
     this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
+    this.reportsarrowflag =false;
   }
 
   // configuration
@@ -85,6 +104,7 @@ export class MenusComponent implements OnInit {
     this.policyarrowflag = false;
     this.staticsarrowflag = false;
     this.configurationsarrowflag = true;
+    this.reportsarrowflag =false;
   }
   //reports
   Reports() {
@@ -93,10 +113,10 @@ export class MenusComponent implements OnInit {
     this.dasharrowflag = false;
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = false;
-    this.policyarrowflag = true;
+    this.policyarrowflag = false;
     this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
-    
+    this.reportsarrowflag =true;
   }
 
   // sign out function
