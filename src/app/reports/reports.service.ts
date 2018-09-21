@@ -71,6 +71,26 @@ Sms(params): Observable<object[]> {
   //.catch(this.handleErrorObservable);
 }
 
+countryreservation(params): Observable<object[]> {
+  const headers = new Headers({ 'Content-Type': 'application/json' })
+  const options = new RequestOptions({ headers: headers });
+  //let body = { "userKey": dashbrddata };
+
+  return this.http.post('https://ivrinfocuit.herokuapp.com/GetCountryreservation', params , options)
+    .map(this.extractData)
+  //.catch(this.handleErrorObservable);
+}
+
+yearreservation(): Observable<object[]> {
+  const headers = new Headers({ 'Content-Type': 'application/json' })
+  const options = new RequestOptions({ headers: headers });
+  //let body = { "userKey": dashbrddata };
+
+  return this.http.post('https://ivrinfocuit.herokuapp.com/GetYearbyyeareservationcount',   options)
+    .map(this.extractData)
+  //.catch(this.handleErrorObservable);
+}
+
 
   private extractData(res: Response) {
     //alert('hai20')
