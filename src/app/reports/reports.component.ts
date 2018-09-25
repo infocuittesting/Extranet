@@ -131,8 +131,8 @@ fetchrecord(start_date,end_date){
           'valueField': 'value',
           'labelRadius': 5,
 
-          'radius': '42%',
-          'innerRadius': '60%',
+          'radius': '39%',
+          'innerRadius': '50%',
           'labelText': '[[title]]',
           'export': {
             "legend": {
