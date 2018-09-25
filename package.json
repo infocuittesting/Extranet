@@ -28,6 +28,7 @@
     "angular-prompt": "^1.2.0",
     "angular-web-storage": "^2.0.0",
     "angular-webstorage-service": "^1.0.2",
+    "angular2-social-login": "^3.1.1",
     "bootstrap": "^4.0.0",
     "bootswatch": "^4.0.0",
     "chart.js": "^2.7.2",
@@ -40,6 +41,7 @@
     "ngx-webstorage": "^2.0.1",
     "node.js": "0.0.0",
     "rxjs": "^5.4.2",
+    "social-share-ng2": "^0.3.1",
     "util": "^0.11.0",
     "zone.js": "^0.8.19"
   },

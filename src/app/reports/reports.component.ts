@@ -408,10 +408,10 @@ console.log("startdate",statsParms)
        
         doc.text("Booking Reservation", 10, 10)
         doc.autoTable( columns, this.rows, { startY: 20 });
-      //  doc.autoTable( columns, let sample = () => 
-      //  {
-      //     this.fun1();
-      //  }, { startY: 20 });
+      //  doc.autoTable( columns,  logBar = () => {
+      //  console.log("Bar's value is: ");}
+      //  , { startY: 20 }
+      // );
         doc.save('usercount.pdf')
     
       });

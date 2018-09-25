@@ -39,8 +39,9 @@ import FusionCharts from 'fusioncharts/core';
 import Column2D from 'fusioncharts/viz/column2d';
 // Include Below Snippet
 FusionChartsModule.fcRoot(FusionCharts, );
+// import { SocialShareModule } from 'social-share-ng2';
 // import { AmChartsModule } from "@amcharts/amcharts3-angular";
-
+import { Angular2SocialLoginModule} from "angular2-social-login";
 // services\
 import { CommonService } from './common.service';
 import { LoginregService } from '../app/loginreg/loginreg.service';
@@ -94,7 +95,9 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
+let socialloginproviders = {
 
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,6 +124,7 @@ export const appRoutes: Routes = [
     Ng2Webstorage,
     ChartsModule,
     FusionChartsModule
+    
 
   ],
   providers: [CommonService, LoginregService,RoomTypeService,PrmotionsService,DatePipe, 

@@ -36,6 +36,8 @@ export class RoomtypesComponent implements OnInit {
   NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   fromdate: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   fromMinDate: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
+  rangefrom: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
+  rangefromMin: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   ngOnInit() {
 
     this.dateFormate.format(this.fromdate);
@@ -258,20 +260,20 @@ export class RoomtypesComponent implements OnInit {
 
     });
   }
-  daterangedetails(user){
-    console.log("daterange details",user)
+  daterangedetails(rangefrom,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,price){
+    console.log("daterange details",rangefrom,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,price)
     // days checkbox input
-    if(user.sun == true)
-    {
-      user.sun =1;
-    }else{
-      user.sun =0;
-    }
+    // if(user.sun == true)
+    // {
+    //   user.sun =1;
+    // }else{
+    //   user.sun =0;
+    // }
     let params = {
       "st_date":"2018-09-20",
       "ed_date":"2018-10-01",
       "days":{
-        "sun":user.sun,
+        "sun":0,
         "mon":0,
         "tue":0,
         "wed":0,

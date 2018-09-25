@@ -244,7 +244,7 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
-                                       name="dp" >
+                                       name="dp" [(ngModel)]="rangefrom" [minDate]="rangefromMin" ngbDatepicker #d="ngbDatepicker" >
                                 <div class="input-group-append">
                                   <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
                                   style="border-radius: 0px;">
@@ -256,7 +256,7 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
-                                       name="dp"  >
+                                       name="dp" [(ngModel)]="todate" [minDate]="rangefrom" ngbDatepicker #d1="ngbDatepicker" >
                                 <div class="input-group-append">
                                   <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button"
                                   style="border-radius: 0px;">
@@ -317,7 +317,7 @@
                           </div>
                      <div class="col-sm-4">
                          <button type="button" class="btn btn-info"
-                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails()">Save</button>
+                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,price)">Save</button>
                          </div>      
                     </div>     
         </div>
