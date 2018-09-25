@@ -406,13 +406,13 @@ console.log("startdate",statsParms)
         }
         let doc = new jsPDF('p', 'pt');
        
-      //   doc.text("Booking Reservation", 10, 10)
-      //   doc.autoTable( columns, this.rows, { startY: 20 });
+        doc.text("Booking Reservation", 10, 10)
+        doc.autoTable( columns, this.rows, { startY: 20 });
       //  doc.autoTable( columns, let sample = () => 
       //  {
       //     this.fun1();
       //  }, { startY: 20 });
-      //   doc.save('usercount.pdf')
+        doc.save('usercount.pdf')
     
       });
       
