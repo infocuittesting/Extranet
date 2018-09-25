@@ -271,25 +271,25 @@
                  <br>
                 <div class="row">
                   <div class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"> Sun</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="sun"> Sun</label>
                   </div>
                    <div class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);">Mon</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="mon">Mon</label>
                    </div>
                     <div class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);">Tue</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="tue">Tue</label>
                    </div>
                    <div class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-top:30px;transform: scale(0.7);">Wed</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-top:30px;transform: scale(0.7);"[(ngModel)]="wed">Wed</label>
                    </div>
                   <div class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-top:30px;transform: scale(0.7);">Thur</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-top:30px;transform: scale(0.7);"[(ngModel)]="thur">Thur</label>
                   </div>
                    <div  class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -25px;margin-top:30px;transform: scale(0.7);">Fri</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -25px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="fri">Fri</label>
                   </div>
                    <div class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -25px;margin-top:30px;transform: scale(0.7);">Sat</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -25px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="sat">Sat</label>
                   </div>  
 
                 </div>    
@@ -306,18 +306,18 @@
                  <div class="row">
                      <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                            <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="roomtosell">
                         </div>
 
                      </div>
                      <div class="col-sm-4">
                             <div class="input-group">
-                                    <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                                    <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="price">
                                 </div>
                           </div>
                      <div class="col-sm-4">
                          <button type="button" class="btn btn-info"
-                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Save</button>
+                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails()">Save</button>
                          </div>      
                     </div>     
         </div>

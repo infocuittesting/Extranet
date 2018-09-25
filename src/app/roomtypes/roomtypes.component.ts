@@ -258,4 +258,29 @@ export class RoomtypesComponent implements OnInit {
 
     });
   }
+  daterangedetails(user){
+    console.log("daterange details",user)
+    // days checkbox input
+    if(user.sun == true)
+    {
+      user.sun =1;
+    }else{
+      user.sun =0;
+    }
+    let params = {
+      "st_date":"2018-09-20",
+      "ed_date":"2018-10-01",
+      "days":{
+        "sun":user.sun,
+        "mon":0,
+        "tue":0,
+        "wed":0,
+        "thu":0,
+        "fri":1,
+        "sat":1
+      },
+      "room_to_sell":5,
+      "price":100.0
+    }
+  }
 }
