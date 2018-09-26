@@ -260,29 +260,98 @@ export class RoomtypesComponent implements OnInit {
 
     });
   }
-  daterangedetails(rangefrom,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,price){
-    console.log("daterange details",rangefrom,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,price)
+  public sunday:number;
+  public  monday:number;
+  public tuesday:number;
+  public wednesday:number;
+  public thursday:number;
+  public friday:number;
+  public saturday:number;
+  public from:any;
+  public to:any;
+  public price:number;
+  public sell:number;
+  daterangedetails(getdate,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice){
+    console.log("daterange details",getdate,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice)
     // days checkbox input
-    // if(user.sun == true)
-    // {
-    //   user.sun =1;
-    // }else{
-    //   user.sun =0;
-    // }
-    let params = {
-      "st_date":"2018-09-20",
-      "ed_date":"2018-10-01",
-      "days":{
-        "sun":0,
-        "mon":0,
-        "tue":0,
-        "wed":0,
-        "thu":0,
-        "fri":1,
-        "sat":1
-      },
-      "room_to_sell":5,
-      "price":100.0
+  this.price = rangeprice;
+  this.sell = roomtosell;
+    if(sun == true)
+    {
+      this.sunday = 1;
+      // console.log("checkif", this.sunday)
+    }else{
+      this.sunday = 0;
+      // console.log("checkelse", this.sunday)
     }
+    if(mon == true){
+      this.monday = 1;
+    }
+    else{
+      this.monday = 0;
+    }
+    if(tue == true){
+      this.tuesday = 1;
+    }
+    else{
+      this.tuesday = 0;
+    }
+    if(wed == true){
+      this.wednesday = 1;
+    }
+    else{
+      this.wednesday = 0;
+    }
+    if(thur == true){
+      this.thursday = 1;
+    }
+    else{
+      this.thursday = 0;
+    }
+    if(fri == true){
+      this.friday = 1;
+    }
+    else{
+      this.friday = 0;
+    }
+    if(sat == true){
+      this.saturday = 1;
+    }
+    else{
+      this.saturday = 0;
+    }
+    
+
+    console.log("details", this.sunday,this.monday,this.rangefrom.year+'-'+this.rangefrom.month+'-'+this.rangefrom.day,this.todate.year+'-'+this.todate.month+'-'+this.todate.day,)
+    console.log("dayscount",this.monday,this.tuesday,this.sunday, this.thursday )
+    this.from = this.rangefrom.year+'-'+this.rangefrom.month+'-'+this.rangefrom.day
+    this.to = this.todate.year+'-'+this.todate.month+'-'+this.todate.day
+    let params = {
+      "business_id":"8991897773",
+      "st_date":this.from.toString(),
+      "ed_date":this.to.toString(),
+
+      "room_type":this.labelforroom,
+      "days":{
+        "sun":this.sunday,
+        "mon":this.monday,
+        "tue":this.tuesday,
+        "wed":this.wednesday,
+        "thu":this.thursday,
+        "fri":this.friday,
+        "sat":this.saturday
+      },
+      "room_to_sell":Number(this.sell),
+      "price":Number(this.price)
+    }
+    console.log("input********************",params)
+    this.roomTypeService.daterangecount(params)
+    
+    .subscribe((resp: any) => {
+      if (resp.ServiceStatus == 'Success') {
+        alert("resp.ServiceStatus "+resp.ServiceStatus);
+      }
+
+    });
   }
 }

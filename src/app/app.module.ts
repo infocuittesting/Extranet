@@ -97,6 +97,11 @@ export const appRoutes: Routes = [
 
 let socialloginproviders = {
 
+"facebook":{
+  "clientID":"170065467203111",
+  "apiVersion":"v3.1"
+}
+
 };
 @NgModule({
   declarations: [
@@ -123,7 +128,8 @@ let socialloginproviders = {
     AmChartsModule,
     Ng2Webstorage,
     ChartsModule,
-    FusionChartsModule
+    FusionChartsModule,
+    Angular2SocialLoginModule
     
 
   ],

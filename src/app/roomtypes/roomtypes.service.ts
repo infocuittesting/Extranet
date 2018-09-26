@@ -48,6 +48,16 @@ export class RoomTypeService {
     //.catch(this.handleErrorObservable);
   }
 
+daterangecount(params): Observable<object[]> {
+    console.log("service is came",params)
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    //let body = { "userKey": dashbrddata };
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/daterange', params, options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
 
   private extractData(res: Response) {
     //alert('hai20')

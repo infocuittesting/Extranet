@@ -271,7 +271,7 @@
                  <br>
                 <div class="row">
                   <div class="col-1">
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="sun"> Sun</label>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="sund"> Sun</label>
                   </div>
                    <div class="col-1">
                     <label class="form-check-label"><input type="checkbox" class="form-check-input" value="" style="margin-left: -22px;margin-top:30px;transform: scale(0.7);"[(ngModel)]="mon">Mon</label>
@@ -306,18 +306,18 @@
                  <div class="row">
                      <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="roomtosell">
+                            <input type="text" class="form-control" name="roomto_sell" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="roomtosell">
                         </div>
 
                      </div>
                      <div class="col-sm-4">
                             <div class="input-group">
-                                    <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="price">
+                                    <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
                                 </div>
                           </div>
                      <div class="col-sm-4">
                          <button type="button" class="btn btn-info"
-                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,price)">Save</button>
+                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sund,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice)">Save</button>
                          </div>      
                     </div>     
         </div>
