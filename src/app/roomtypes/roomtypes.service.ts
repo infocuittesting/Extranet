@@ -59,6 +59,17 @@ daterangecount(params): Observable<object[]> {
     //.catch(this.handleErrorObservable);
   }
 
+  restriction(params): Observable<object[]> {
+    console.log("service is came",params)
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    //let body = { "userKey": dashbrddata };
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/restriction', params, options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
+
   private extractData(res: Response) {
     //alert('hai20')
     console.log('res========---====' + res);

@@ -102,3 +102,8 @@ border-radius: 0px !important;
     color: green;
     background-color: green;
 }
+/* toggle button */
+.ui-switch.checked {
+     background-color: green;
+    /* frame when enabled */
+  }

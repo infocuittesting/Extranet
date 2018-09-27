@@ -42,6 +42,7 @@ FusionChartsModule.fcRoot(FusionCharts, );
 // import { SocialShareModule } from 'social-share-ng2';
 // import { AmChartsModule } from "@amcharts/amcharts3-angular";
 import { Angular2SocialLoginModule} from "angular2-social-login";
+import { UiSwitchModule } from 'ngx-toggle-switch';
 // services\
 import { CommonService } from './common.service';
 import { LoginregService } from '../app/loginreg/loginreg.service';
@@ -129,7 +130,8 @@ let socialloginproviders = {
     Ng2Webstorage,
     ChartsModule,
     FusionChartsModule,
-    Angular2SocialLoginModule
+    Angular2SocialLoginModule,
+    UiSwitchModule
     
 
   ],
