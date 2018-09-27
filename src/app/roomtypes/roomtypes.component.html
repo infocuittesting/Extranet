@@ -80,9 +80,9 @@
             <div class="col-sm-4">
                 <div class="input-group">
                     <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
-                           name="dp" [(ngModel)]="fromdate" [minDate]="fromMinDate" ngbDatepicker #d="ngbDatepicker">
+                           name="dp" [(ngModel)]="fromdate" [minDate]="fromMinDate" ngbDatepicker #g="ngbDatepicker">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
+                      <button class="btn btn-outline-secondary" (click)="g.toggle()" type="button"
                       style="border-radius: 0px;">
                         <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                       </button>
@@ -92,9 +92,9 @@
             <div class="col-sm-4">
                 <div class="input-group">
                     <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
-                           name="dp" [(ngModel)]="todate" [minDate]="fromdate" ngbDatepicker #d1="ngbDatepicker">
+                           name="dp" [(ngModel)]="todate3" [minDate]="fromdate" ngbDatepicker #g1="ngbDatepicker">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button"
+                      <button class="btn btn-outline-secondary" (click)="g1.toggle()" type="button"
                       style="border-radius: 0px;">
                         <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                       </button>
@@ -160,12 +160,20 @@
                   </tr>
                     <tr>
                          <td style="border: 1px solid gray;background-color:white;" >   <label style="font-weight: 400;width: 9em;vertical-align: sub;" >Room Status </label>
+                          <!-- <button type="button" class="btn btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <div class="handle"></div> -->
+                          <!-- </button> -->
+                          <!-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                          </a> -->
+                          <!-- <ui-switch defaultBgColor="red" labelOn="Yes" labelOff="No"></ui-switch> -->
                             </td>
 
-                            <td *ngFor="let lt of countdates | slice:start:end; let i=index;"
+                            <td  *ngFor="let lt of countdates | slice:start:end; let i=index;"
                             style="border: 1px solid gray; height: 36px; box-shadow: 0 0px 1px 0px rgb(155, 155, 33)!important;
                             border-radius: 0%;"
                             [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow' , 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}">
+                            <ui-switch labelOn="Yes" labelOff="No" ></ui-switch>
                                 </td>
                     </tr>
                      <tr>
@@ -244,9 +252,9 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
-                                       name="dp" [(ngModel)]="rangefrom" [minDate]="rangefromMin" ngbDatepicker #d="ngbDatepicker" >
+                                       name="dp" [(ngModel)]="rangefrom" [minDate]="rangefromMin" ngbDatepicker #dr="ngbDatepicker" >
                                 <div class="input-group-append">
-                                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
+                                  <button class="btn btn-outline-secondary" (click)="dr.toggle()" type="button"
                                   style="border-radius: 0px;">
                                     <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                                   </button>
@@ -256,9 +264,9 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
-                                       name="dp" [(ngModel)]="todate" [minDate]="rangefrom" ngbDatepicker #d1="ngbDatepicker" >
+                                       name="dp" [(ngModel)]="todate2" [minDate]="rangefrom" ngbDatepicker #dr1="ngbDatepicker" >
                                 <div class="input-group-append">
-                                  <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button"
+                                  <button class="btn btn-outline-secondary" (click)="dr1.toggle()" type="button"
                                   style="border-radius: 0px;">
                                     <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                                   </button>
@@ -343,23 +351,37 @@
         <div class="row">
          <div class="col-sm-3">
                 <div class="input-group">
-                     <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                     <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="mini_stay">
                 </div>    
          </div>
          <div class="col-sm-3">
                 <div class="input-group">
-                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="max_stay">
                 </div>        
          </div>
          <div class="col-sm-3">
-                <div class="input-group">
-                        <input  placeholder="dd-mm-yyyy" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+            <div class="input-group">
+                <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
+                       name="dp" [(ngModel)]="restricefrom" [minDate]="restricefromMin" ngbDatepicker #d="ngbDatepicker" >
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
+                  style="border-radius: 0px;">
+                    <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                  </button>
                 </div>
+              </div>
          </div>
          <div class="col-sm-3">
-                <div class="input-group">
-                        <input  placeholder="dd-mm-yyyy" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;">
+            <div class="input-group">
+                <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
+                       name="dp" [(ngModel)]="todate1" [minDate]="restricefrom" ngbDatepicker #d1="ngbDatepicker" >
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button"
+                  style="border-radius: 0px;">
+                    <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                  </button>
                 </div>
+              </div>
          </div>         
         </div>
 <br><br>
@@ -367,7 +389,7 @@
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
                 <button type="button" class="btn btn-info"
-                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;">Save</button>              
+                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="restrcitdeatils(mini_stay,max_stay,restricefrom,retrictto)">Save</button>              
           </div>  
         </div>    
          </div>

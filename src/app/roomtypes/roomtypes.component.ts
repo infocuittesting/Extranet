@@ -12,7 +12,7 @@ import { NgClass,DatePipe  } from '@angular/common';
 import { RoomTypeService } from "./roomtypes.service";
 import { SessionStorageService } from "ngx-webstorage";
 import $ from 'jquery';
-
+import { UiSwitchModule } from 'ngx-toggle-switch';
 declare var jquery:any;
 declare var $ :any;
 
@@ -38,6 +38,8 @@ export class RoomtypesComponent implements OnInit {
   fromMinDate: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   rangefrom: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   rangefromMin: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
+  restricefrom: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
+  restricefromMin: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   ngOnInit() {
 
     this.dateFormate.format(this.fromdate);
@@ -86,6 +88,7 @@ export class RoomtypesComponent implements OnInit {
       this.roomName=flag.room_name;
   }
   todate:any;
+  retrictto:any;
   // get period count \
   setperiod=[];
   public dataa = [];
@@ -98,13 +101,16 @@ export class RoomtypesComponent implements OnInit {
   public showlabelname = false;
   getdatedetails=[];
   parms:{};
+  todate3:any;
+  todate2:any;
+  todate1:any;
   getperioddays(getdate) {
 
     if(getdate.period==null){
     this.parms={
       "business_id":this.session.retrieve("business_id"),
       "from_date":this.fromdate.year+'-'+this.fromdate.month+'-'+this.fromdate.day,
-      "to_date":this.todate.year+'-'+this.todate.month+'-'+this.todate.day,
+      "to_date":this.todate3.year+'-'+this.todate3.month+'-'+this.todate3.day,
       "room_type":this.labelforroom,
       "room_name":this.roomName
       }
@@ -212,16 +218,26 @@ export class RoomtypesComponent implements OnInit {
   }
 
   // edit basic price based on index
+  toggleon = true;
   indexvalprice: number;
   editbasciprice(event, index, model) {
     this.indexvalprice = 0;
+    
     if (this.start == (14 * this.clountnextprev)) {
       this.indexvalprice = index + (14 * this.clountnextprev);
       this.countdates[this.indexvalprice].Price = model;
       this.countdates[this.indexvalprice].Room_Status = 'Declared';
+      // this.toggleon=true;
     } else {
       this.countdates[index].Price = model;
       this.countdates[index].Room_Status = 'Declared';
+      // this.toggleon=false;
+    }
+  }
+  tooglebutton(index){
+    if (this.countdates[index].Room_Status == 'Declared')
+    {
+      
     }
   }
 
@@ -260,6 +276,7 @@ export class RoomtypesComponent implements OnInit {
 
     });
   }
+  // date range
   public sunday:number;
   public  monday:number;
   public tuesday:number;
@@ -322,12 +339,12 @@ export class RoomtypesComponent implements OnInit {
     }
     
 
-    console.log("details", this.sunday,this.monday,this.rangefrom.year+'-'+this.rangefrom.month+'-'+this.rangefrom.day,this.todate.year+'-'+this.todate.month+'-'+this.todate.day,)
+    // console.log("details", this.sunday,this.monday,this.rangefrom.year+'-'+this.rangefrom.month+'-'+this.rangefrom.day,this.todate.year+'-'+this.todate.month+'-'+this.todate.day,)
     console.log("dayscount",this.monday,this.tuesday,this.sunday, this.thursday )
     this.from = this.rangefrom.year+'-'+this.rangefrom.month+'-'+this.rangefrom.day
-    this.to = this.todate.year+'-'+this.todate.month+'-'+this.todate.day
+    this.to = this.todate2.year+'-'+this.todate2.month+'-'+this.todate2.day
     let params = {
-      "business_id":"8991897773",
+      "business_id":this.session.retrieve("business_id"),
       "st_date":this.from.toString(),
       "ed_date":this.to.toString(),
 
@@ -346,6 +363,28 @@ export class RoomtypesComponent implements OnInit {
     }
     console.log("input********************",params)
     this.roomTypeService.daterangecount(params)
+    
+    .subscribe((resp: any) => {
+      if (resp.ServiceStatus == 'Success') {
+        alert("resp.ServiceStatus "+resp.ServiceStatus);
+      }
+
+    });
+  }
+  restrcitdeatils(mini_stay,max_stay,getdate,todate1){
+    console.log("restrictdetails",mini_stay,max_stay,getdate,todate1)
+    let body = {
+       
+        "business_id": this.session.retrieve("business_id"),
+          "room_type": this.labelforroom,
+          "min_stay":mini_stay,
+          "max_stay":max_stay,
+          "close_arrival":this.restricefrom.year+'-'+this.restricefrom.month+'-'+this.restricefrom.day,
+          "close_departure":this.todate1.year+'-'+this.todate1.month+'-'+this.todate1.day
+      
+    }
+    console.log("params details",body)
+    this.roomTypeService.restriction(body)
     
     .subscribe((resp: any) => {
       if (resp.ServiceStatus == 'Success') {
