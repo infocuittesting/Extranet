@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
-
+import { SessionStorageService } from "ngx-webstorage";
 @Injectable()
 export class RoomTypeService {
 
   constructor(
-    private http: Http
+    private http: Http,public session: SessionStorageService
   ) { }
 
   //registration details
@@ -70,6 +70,16 @@ daterangecount(params): Observable<object[]> {
     //.catch(this.handleErrorObservable);
   }
 
+  selectrestriction(): Observable<object[]> {
+    console.log("service is cam")
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    let body = { "business_id":this.session.retrieve("business_id") };
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/select_restriction',body, options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
   private extractData(res: Response) {
     //alert('hai20')
     console.log('res========---====' + res);
