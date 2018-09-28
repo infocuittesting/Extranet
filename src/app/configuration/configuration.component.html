@@ -1,4 +1,17 @@
+<div class="row"> 
+  <div class="col-sm-12">
+   <h6>Configuration</h6>
+  </div>
+</div>  
 <div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Grid">Room Plan</a></li>
+      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Daterange">Rate Plan</a></li>
+    </ul>
+  </div>
+</div>
+<!-- <div class="row">
   <div class="col-11"></div>
   <div class="col-1">
     <span>
@@ -9,8 +22,8 @@
       [ngClass]="{disabling:showMore!=false}" (click)="showMoreBut()"></i>
     </span>
   </div>
-</div>
-<div class="row" >
+</div> -->
+ <!-- <div class="row" > 
     <div class="col-sm-12">
             <table class="table table-bordered tableBodyScroll">
                     <thead style="background-color: #337ab7;color: white;">
@@ -89,15 +102,15 @@
                     </tbody>
                   </table>
     </div>
-</div>
+</div> -->
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-5"></div>
   <div class="col-2">
     <button class="btn btn-primary " style="width: 75%;" (click)="saveroomDetails()">Save</button>
   </div>
   <div class="col-5"></div>
-</div>
+</div> -->
 
 
 
@@ -130,4 +143,43 @@
       
     </div>
   </div>
+</div>
+
+
+<div class="tab-content clearfix">
+<div id="Grid" class="tab-pane container active" style="margin-top:10px;">
+<div class="row" >
+  <div class="col-md-3"  *ngFor="let room of roomdetails ">
+    <div class="card">
+      <div class="card-body">
+          <h6 class="card-title" style="text-align: center;margin-top: -10px;">{{room.room_type}}</h6>
+          <p class="card-text" style="text-align: center;margin-top: -12px;">Price :&nbsp;{{room.standard_rate}}</p>
+
+      </div>
+      <div class="card-footer">
+        <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+        </span> {{room.facilitie1}}</p>
+        <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+        </span>{{room.facilitie2}}</p>
+        <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+        </span>{{room.facilitie3}}</p>
+      </div>
+    </div>
+  </div><br>
+    <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+
+      </div>
+      <div class="card-footer">
+
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+
+</div>
+<div id="Daterange" class="tab-pane container fade" style="margin-top:10px;">
+</div>  
 </div>
