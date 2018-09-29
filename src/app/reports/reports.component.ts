@@ -156,6 +156,9 @@ this.charts.push( this.chart );
           'type': 'pie',
           'theme': 'light',
           'hideCredits':true,
+          "titles": [{
+            "text": "Year Reservation"
+          }],
           'dataProvider':this.chartDatas,
           'export': {
             "enabled": true,
@@ -238,6 +241,9 @@ fetchrecord(start_date,end_date){
           'type': 'pie',
           'theme': 'light',
           'hideCredits':true,
+          "titles": [{
+            "text": "Booking Reservation"
+          }],
           'dataProvider':this.chartDatas,
           'titleField': 'title',
           'valueField': 'value',
@@ -272,6 +278,9 @@ fetchrecord(start_date,end_date){
           'type': 'pie',
           'theme': 'light',
           'hideCredits':true,
+          "titles": [{
+            "text": "Channels"
+          }],
           'dataProvider':this.chartDatas,
           'titleField': 'title',
           'valueField': 'value',
@@ -307,6 +316,9 @@ fetchrecord(start_date,end_date){
             'type': 'pie',
             'theme': 'light',
             'hideCredits':true,
+            "titles": [{
+              "text": "Occupancy"
+            }],
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
@@ -342,6 +354,9 @@ fetchrecord(start_date,end_date){
             'type': 'pie',
             'theme': 'light',
             'hideCredits':true,
+            "titles": [{
+              "text": "Booking vs Confirmation"
+            }],
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
@@ -378,6 +393,9 @@ fetchrecord(start_date,end_date){
             'type': 'pie',
             'theme': 'light',
             'hideCredits':true,
+            "titles": [{
+              "text": "Language"
+            }],
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
@@ -413,6 +431,9 @@ fetchrecord(start_date,end_date){
             'type': 'pie',
             'theme': 'light',
             'hideCredits':true,
+            "titles": [{
+              "text": "Booking vs Delivery"
+            }],
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
@@ -448,6 +469,9 @@ fetchrecord(start_date,end_date){
             'type': 'pie',
             'theme': 'light',
             'hideCredits':true,
+            "titles": [{
+              "text": "Countries"
+            }],
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
@@ -672,18 +696,19 @@ selectdropdown(roomtype){
  exportChart() {
    // iterate through all of the charts and prepare their images for export
    var images = [];
-  var pending = this.AmCharts.charts.length;
+  var pending = this.charts.length;
   console.log("pending**************",pending)
-  for ( var i = 0; i < this.AmCharts.charts.length; i++ ) {
-    var chart = this.AmCharts.charts[ i ];
+  for ( var i = 0; i < this.charts.length; i++ ) {
+    var chart = this.charts[ i ];
     console.log("its came&&&&&&&&&&&&&&",chart)
-    chart["export"].toJPG( {}, function() {
+    chart.export.capture( {}, function() {
       this.toJPG( {
         multiplier: 2
       }, function( data ) {
         images.push( {
           "image": data,
           "fit": [ 523.28, 769.89 ]
+          
         } );
         pending--;
         if ( pending === 0 ) {
@@ -691,7 +716,7 @@ selectdropdown(roomtype){
           chart.export.toPDF( {
             content: images
           }, function( data ) {
-            this.download( data, "application/pdf", " .pdf" );
+            this.download( data, "application/pdf", "downloadreport.pdf" );
           } );
         }
       } );
@@ -777,13 +802,13 @@ downloadReport(){
               // ADD IMAGE
               content.push({
                   "image": data,
-                  "fit": [523.28, 769.89] // A4 Dimensions less 20px because of the page margins
+                  "fit": [ 523.28, 769.89 ] // A4 Dimensions less 20px because of the page margins
               });
 
               // ADD TABLE
               content.push({
                   layout: 'headerLineOnly',
-                  margin: [0, 20, 0, 0], // [left, top, right, bottom]
+                  margin: [0, 5, 0, 0], // [left, top, right, bottom]
                   table: {
                       headerRows: 1,
                       widths: columnWidths,
