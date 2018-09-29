@@ -412,6 +412,12 @@ this.setper = false
   public toggleValue:any;
 public open:any;
 public toggdate;
+tog=false
+
+
+
+ 
+   
   toggleClicked(){
     // this.toggle_on = toggleValue
     console.log("toggelevalue",)
@@ -424,6 +430,7 @@ public toggdate;
     }
     else{
       this.open = 0
+      this.tog=true
       console.log("set toggle value",this.open)
     }
    return this.open

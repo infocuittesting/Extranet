@@ -71,6 +71,13 @@ this.chart = this.AmCharts.makeChart('chart10', {
   'hideCredits':true,
 "type": "serial",
 'titleField': ['Standard Room'],
+"titles": [{
+  "text": "Year Reservation",
+  "bold": true,
+  "align": "middle"
+  
+}],
+
 "dataProvider": this.staticdetails,
 "valueAxes": [{
     //"unit": "%",
@@ -157,7 +164,9 @@ this.charts.push( this.chart );
           'theme': 'light',
           'hideCredits':true,
           "titles": [{
-            "text": "Year Reservation"
+            "text": "Year Reservation",
+            "bold": true,
+            
           }],
           'dataProvider':this.chartDatas,
           'export': {
@@ -783,6 +792,7 @@ downloadReport(){
       var chart = this.charts[i];
       var content = [];
       chart.export.capture({}, function () {
+        
           var dataArray = this.toArray({
               withHeader: true
           });
@@ -797,8 +807,8 @@ downloadReport(){
           }
 
           // GENERATE IMAGE
-          this.toJPG({}, function (data) {
-
+          this.toJPG({  multiplier: 2}, function (data) {
+           
               // ADD IMAGE
               content.push({
                   "image": data,
