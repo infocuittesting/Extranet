@@ -11,110 +11,6 @@
     </ul>
   </div>
 </div>
-<!-- <div class="row">
-  <div class="col-11"></div>
-  <div class="col-1">
-    <span>
-      <i class="fa fa-chevron-circle-left fa-2x" aria-hidden="true" style="cursor: pointer"
-      [ngClass]="{disabling:showMore!=true}" (click)="showLessBut()"></i>
-
-      <i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true" style="cursor: pointer"
-      [ngClass]="{disabling:showMore!=false}" (click)="showMoreBut()"></i>
-    </span>
-  </div>
-</div> -->
- <!-- <div class="row" > 
-    <div class="col-sm-12">
-            <table class="table table-bordered tableBodyScroll">
-                    <thead style="background-color: #337ab7;color: white;">
-                      <tr>
-                        <th>Id</th>
-                        <th>Room Name</th>
-                        <th>Room Code</th>
-                        <th  *ngIf="showMore!=true">Room Type</th>
-                        <th *ngIf="showMore!=true">Price</th>
-                        <th *ngIf="showMore!=true">Total Room</th>
-
-                        <th *ngIf="showMore==true">Facilite 1</th>
-                        <th *ngIf="showMore==true">Facilite 2</th>
-                        <th *ngIf="showMore==true">Facilite 3</th>
-                        <th width=10% ></th>
-                      </tr>
-                    </thead>
-                    <tbody >
-                        <tr>
-                            <td><input style="width: 75%;height: 35px;" type="text" [(ngModel)]="add.id" /></td>
-                            <td><input style="width: 100%;height: 35px;" type="text" [(ngModel)]="add.room_name" /></td>
-                            <td><input style="width: 75%;height: 35px;"  type="text" [(ngModel)]="add.room_code" /></td>
-                            <td  *ngIf="showMore!=true"><input style="width: 100%;height: 35px;"  type="text" [(ngModel)]="add.room_type" /></td>
-                            <td *ngIf="showMore!=true"><input style="width: 75%;height: 35px;"  type="text" [(ngModel)]="add.standard_rate" /></td>
-                            <td  *ngIf="showMore!=true"><input style="width: 75%;height: 35px;"  type="text" [(ngModel)]="add.totel_room" /></td>
-
-                            <td  *ngIf="showMore==true"><textarea style="width: 100%;height: 65px;" [(ngModel)]="add.facilitie1" ></textarea></td>
-                            <td  *ngIf="showMore==true"><textarea style="width: 100%;height: 65px;" [(ngModel)]="add.facilitie2" ></textarea></td>
-                            <td *ngIf="showMore==true"><textarea style="width: 100%;height: 65px;" [(ngModel)]="add.facilitie3" ></textarea></td>
-                            <td style="width: 86px;"><span>
-                              <i style="padding-left: 34px;cursor: pointer;" (click)="addRows(add)"
-                              class="fa fa-plus-circle" aria-hidden="true"></i>
-                           </span></td>
-
-                           </tr>
-                      <tr *ngFor="let room of roomdetails ; let i=index;">
-
-                          <td ><label *ngIf="room.editFlag==false">{{room.id}}</label>
-                            <input type="text"  style="width:75%;height:35px;" *ngIf="room.editFlag==true" [(ngModel)]="room.id"></td>
-
-                       <td ><label *ngIf="room.editFlag==false">{{room.room_name}}</label>
-                      <input type="text"  style="width: 100%;height: 35px;" *ngIf="room.editFlag==true" [(ngModel)]="room.room_name"></td>
-
-                       <td><label *ngIf="room.editFlag==false">{{room.room_code}}</label>
-                        <input type="text"  style="width: 75%;height: 35px;" *ngIf="room.editFlag==true" [(ngModel)]="room.room_code"></td>
-
-                       <td  *ngIf="showMore!=true"><label *ngIf="room.editFlag==false">{{room.room_type}}</label>
-                        <input type="text"  style="width: 100%;height: 35px;" *ngIf="room.editFlag==true" [(ngModel)]="room.room_type"></td>
-
-                       <td *ngIf="showMore!=true"><label *ngIf="room.editFlag==false">{{room.standard_rate}}</label>
-                        <input type="number"  style="width: 75%;height: 35px;" *ngIf="room.editFlag==true" [(ngModel)]="room.standard_rate"></td>
-
-                       <td *ngIf="showMore!=true"><label *ngIf="room.editFlag==false">{{room.totel_room}}</label>
-                        <input type="text" style="width: 100%;height: 65px;" *ngIf="room.editFlag==true" [(ngModel)]="room.totel_room"/></td>
-
-                        <td *ngIf="showMore==true"><label *ngIf="room.editFlag==false">{{room.facilitie1}}</label>
-                          <textarea style="width: 100%;height: 65px;" *ngIf="room.editFlag==true" [(ngModel)]="room.facilitie1"></textarea></td>
-
-                          <td *ngIf="showMore==true"><label *ngIf="room.editFlag==false">{{room.facilitie2}}</label>
-                            <textarea style="width: 100%;height: 65px;" *ngIf="room.editFlag==true" [(ngModel)]="room.facilitie2"></textarea></td>
-
-                            <td *ngIf="showMore==true" data-toggle="popover" data-placement="top" title="Hooray!"><label *ngIf="room.editFlag==false">{{room.facilitie3}}</label>
-                              <textarea style="width: 100%;height: 65px;"
-                               *ngIf="room.editFlag==true" [(ngModel)]="room.facilitie3"></textarea></td>
-
-                       <td style="width: 86px;"><span><i style="cursor: pointer;" class="fa fa-trash" aria-hidden="true"
-                        (click)="deleterows(i)"></i> &nbsp;&nbsp;&nbsp;
-                        <i  style="cursor: pointer;"  *ngIf="room.editFlag==false" class="fa fa-pencil" aria-hidden="true"
-                        (click)="editrows(i)"></i>
-                        <i  style="cursor: pointer;" *ngIf="room.editFlag!=false" class="fa fa-check" aria-hidden="true"
-                        (click)="saveButton(i)"></i>
-                      </span></td>
-
-                      </tr>
-
-                    </tbody>
-                  </table>
-    </div>
-</div> -->
-
-<!-- <div class="row">
-  <div class="col-5"></div>
-  <div class="col-2">
-    <button class="btn btn-primary " style="width: 75%;" (click)="saveroomDetails()">Save</button>
-  </div>
-  <div class="col-5"></div>
-</div> -->
-
-
-
-
 
 
  <!-- The Modal -->
@@ -167,12 +63,17 @@
     </div>
   </div><br>
     <div class="col-md-3">
-    <div class="card">
-      <div class="card-body">
+    <div class="card"  data-toggle="modal" data-target="#roomplan">
+        <i class="fa fa-plus fa-7x text-center"
+       style="font-size:70px;margin-top: 20px;"></i>
 
+      <div class="card-body">
+        <h6 style="text-align:center">Room Name</h6>
       </div>
       <div class="card-footer">
-
+      <p style="text-align:center">Room Configuration</p>
+      <p style="text-align:center"> Bar Facilities</p>
+      <p style="text-align:center">Room Facilities</p>
       </div>
     </div>
   </div>
@@ -183,3 +84,143 @@
 <div id="Daterange" class="tab-pane container fade" style="margin-top:10px;">
 </div>  
 </div>
+
+
+
+     <!-- Room plan start-->
+     <div class="modal fade" id="roomplan" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content" style="width:158%;margin-left:-35%;">
+            <div class="modal-header">
+              <h4 style="margin-left:40%;"> Room Plan</h4>
+              <button type="button" class="close" style="margin-right:5px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <font>Room Name</font>
+                </div>
+                <div class="col-md-3">
+                  <font> Room Size </font>
+                </div>
+                <div class="col-md-3">
+                 <font>Max Adults </font> 
+                </div>
+                <div class="col-md-3">
+                  <font>Max Child </font>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.room_name">
+              </div>
+              <div class="col-md-3">
+                <select class="form-control" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.room_size_id">
+                <option *ngFor="let list of room" [ngValue] = "list.room_size_id"> {{list.room_size_id}}</option> 
+              </select>
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.max_adults">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.max_child">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <font>Bedding</font>
+              </div>
+              <div class="col-md-3">
+                <font>Bed Size </font>
+              </div>
+              <div class="col-md-3">
+               <font>Max Extrabed</font> 
+              </div>
+              <div class="col-md-3">
+                <font>Room Amenities </font>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="plan.bedding_options_id">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.bed_size_id">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.maximum_extrabed_id">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.room_amenities_id">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <font>Photos</font>
+              </div>
+              <div class="col-md-3">
+                <font>Rate Plan </font>
+              </div>
+              <div class="col-md-3">
+               <font> Inculsion</font> 
+              </div>
+              <div class="col-md-3">
+                <font>Important Information</font>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.upload_photos">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.rate_plan_id">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.inculsions_id">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.important_information">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <font> Advance Booking</font>
+              </div>
+              <div class="col-md-3">
+                <font> Prepayment </font>
+              </div>
+              <div class="col-md-3">
+                <font>Cancellation</font>
+              </div>
+              <div class="col-md-3">
+                <font>Smoking</font>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="plan.advance_booking_window">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="plan.prepayment_policy">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.cancellation_policy">
+              </div>
+              <div class="col-md-3">
+                <input type="checkbox" name="" id="" style=" width:30px; height:30px;margin-top: 5px;margin-left: 10px;" [(ngModel)]="plan.smoking">
+              </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" click="insertroom(plan)" data-dismiss="modal"><b>Save</b></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Close</b></button>
+  
+            </div>
+          </div>
+          
+        </div>
+      </div> 
+      <!-- Room Plan End --> 

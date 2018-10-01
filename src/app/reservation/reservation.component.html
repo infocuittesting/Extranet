@@ -4,59 +4,227 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <font> Arrival</font>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <font> Departure</font>
   </div>
-  <div class="col-md-3">
-    <font> Cofirmation Number</font>
+  <div class="col-md-4">
+    <font> Search</font>
   </div>
-  <div class="col-md-3">
-    <font> Room Types</font>
-  </div>
+
 </div>  
 <div class="row">
-    <div class="col-md-3">
-      <input placeholder="DD-MM-YYYY" type="date" class="" name="" id="" [(ngModel)]="arriv" >
+    <div class="col-md-4">
+        <div class="input-group">
+      <input placeholder="DD-MM-YYYY"  class="" style="border: 1px solid gray;padding-left:15px;max-width: 10em; " name="" id="" [(ngModel)]="arriv"  ngbDatepicker #g="ngbDatepicker" >
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="g.toggle()" type="button"
+        style="border-radius: 0px;">
+          <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+        </button>
+      </div>
+      </div>
     </div>
-    <div class="col-md-3">
-        <input placeholder="DD-MM-YYYY" type="date" class="" name="" id="" [(ngModel)]="depart">
+    <div class="col-md-4">
+        <div class="input-group">
+        <input placeholder="DD-MM-YYYY" class="" style="border: 1px solid gray;padding-left:15px;max-width: 10em; " name="" id="" [(ngModel)]="depart" ngbDatepicker #d="ngbDatepicker" >
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
+            style="border-radius: 0px;">
+              <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+            </button>
+          </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <input class="" name="" id="">
-    </div>
-    <div class="col-md-3">
-        <input class="" name="" id="" [(ngModel)]="room">
+    <div class="col-md-4">
+        <input class="" name="" id="" [(ngModel)]="room" style="border: 1px solid gray; height: 2.4em; max-width: 12.2em; ">
     </div>
 </div>
 <br><br><br>
 <div class="row" >
   <div class="col-md-12">
-<table class="table table-bordered table-hover fixtab">
+<table class="table table-bordered  fixtab">
   <thead style="background-color:#337ab7;color: white">
     <tr>
-      <th> Arrival</th>
-      <th> Departure</th>
-      <th> Cofirmation No</th>
-      <th> Room Type</th>
-      <th> Adult</th>
-      <th> Child</th>
+      <th style="width:50px">Seq</th>
+      <th style="width:140px"> Arrival</th>
+      <th style="width:140px"> Departure</th>
+      <th style="width:160px"> Cofirmation No</th>
+      <th style="width:140px"> Room Type</th>
+      <th style="width:140px"> Adult</th>
+      <th style="width:140px"> Child</th>
       <th> Policy</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let detail of hello|filterdata: arriv :'customer_arrival_date'|filterdata: depart :'customer_depature_date'|filterdata: room :'customer_room_type'">
-      <td>{{detail.customer_arrival_date}} </td>
-      <td>{{detail.customer_depature_date}} </td>
-      <td>{{detail.customer_confirmation_number}}</td>
-      <td>{{detail.customer_room_type}} </td>
-      <td>{{detail.customer_adult}} </td>
-      <td>{{detail.customer_child}} </td>
-      <td></td>
+    <tr *ngFor="let detail of hello|filterdata: room;let i = index" (click)="selectMembersEdit(detail,i)"
+    [ngClass]="{'backGroundColor':i==selectindex}">
+      <td style="width:50px">{{i+1}}</td>
+      <td style="width:140px">{{detail.customer_arrival_date}} </td>
+      <td style="width:140px">{{detail.customer_depature_date}} </td>
+      <td style="width:160px">{{detail.customer_confirmation_number}}</td>
+      <td style="width:140px">{{detail.customer_room_type}} </td>
+      <td style="width:140px">{{detail.customer_adult}} </td>
+      <td style="width:140px">{{detail.customer_child}} </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="text-right">
+      <button type="button" class="bnt btn-success" style="width:150px" data-toggle="modal" data-target="#alert1">Ok</button>
+    </div>
+  </div>
+</div>
+
+
+     <!-- Alert start-->
+     <div class="modal fade" id="alert1" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content" style="width:180%;margin-left:-40%;">
+            <div class="modal-header">
+              <h4 style="margin-left:40%;"> Reservation</h4>
+              <button type="button" class="close" style="margin-right:5px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <font>Confirmation No</font>
+                </div>
+                <div class="col-md-3">
+                  <font> Arrival </font>
+                </div>
+                <div class="col-md-3">
+                 <font>Booking Status </font> 
+                </div>
+                <div class="col-md-3">
+                  <font>Booked Date  </font>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Confirmation">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Arrival">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Status">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Booked">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <font>Adults</font>
+              </div>
+              <div class="col-md-3">
+                <font> Departure </font>
+              </div>
+              <div class="col-md-3">
+               <font> Credit Card</font> 
+              </div>
+              <div class="col-md-3">
+                <font>Expiry Date </font>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="adults">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Departure">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="creditcard">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Expdate">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <font>Child</font>
+              </div>
+              <div class="col-md-3">
+                <font>Contry Code </font>
+              </div>
+              <div class="col-md-3">
+               <font> Mobile</font> 
+              </div>
+              <div class="col-md-3">
+                <font>Language</font>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="child">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="country">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Mobile">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Language">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <font> Channel</font>
+              </div>
+              <div class="col-md-3">
+                <font> Number of Room</font>
+              </div>
+              <div class="col-md-3">
+                <font>Room Type</font>
+              </div>
+              <div class="col-md-3">
+                <font>Room Rate</font>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="channel">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="Roomno">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Roomtype">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="rate">
+              </div>
+            </div>
+            <br><br>
+            <div class="row">
+              <div class="col-md-3">
+                <button type="button" class="btn btn-lg"  style="border-radius: 50%;" >Pickup_Drop</button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-lg"  style="border-radius: 50%;" >Modification</button>                
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-lg"  style="border-radius: 50%;" >SMS</button>
+              </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" style="padding-left:5px;"data-dismiss="modal"><b>Close</b><span class="glyphicon glyphicon-remove" style="padding-left:5px;"></span></button>  
+            </div>
+          </div>
+          
+        </div>
+      </div> 
+      <!-- Alert End --> 

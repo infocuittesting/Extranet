@@ -1,6 +1,6 @@
 .fixtab tbody {
     display:block;
-    height:300px;
+    height:270px;
     overflow:auto;
     
 }
@@ -9,6 +9,14 @@
     width:100%;
     table-layout:fixed;
 }
-.fixtab thead {
-    width: calc( 100% - 1em )
+
+.backgroundcolor{
+    background-color: aqua;
+}
+
+.backgroundcolorgreenchange{
+    background-color: green;
+}
+.backgroundcolorredchange{
+    background-color: red;
 }
