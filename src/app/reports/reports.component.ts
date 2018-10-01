@@ -31,7 +31,7 @@ export class ReportsComponent implements OnInit {
   LineChart = [];
   public getyear=[];
   staticdetails = [];
-
+public showline = [];
 public charts = [];
   ngOnInit() {
     let statsParms={
@@ -72,11 +72,19 @@ this.chart = this.AmCharts.makeChart('chart10', {
 "type": "serial",
 'titleField': ['Standard Room'],
 "titles": [{
-  "text": "Year Reservation",
+  "text": "Room Statistics",
   "bold": true,
   "align": "middle"
   
 }],
+"marginTop": 25,
+"legend": {
+  "horizontalGap": 10,
+  "maxColumns": 1,
+  "position": "right",
+  "marginRight": 80,
+  "autoMargins": false
+},
 
 "dataProvider": this.staticdetails,
 "valueAxes": [{
@@ -164,10 +172,19 @@ this.charts.push( this.chart );
           'theme': 'light',
           'hideCredits':true,
           "titles": [{
-            "text": "Year Reservation",
+            "text": "Year view Reservation",
             "bold": true,
+            "align":"center"
             
           }],
+          "marginTop": 25,
+          "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "marginRight": 80,
+            "autoMargins": false
+          },
           'dataProvider':this.chartDatas,
           'export': {
             "enabled": true,
@@ -178,7 +195,7 @@ this.charts.push( this.chart );
           'valueField': 'value',
           'labelRadius': 5,
   
-          'radius': '42%',
+          'radius': '40%',
           'innerRadius': '60%',
           'labelText': '[[title]]',
          
@@ -194,33 +211,111 @@ this.charts.push( this.chart );
           this.getyear = resp.Returnvalue;
           console.log("get year",this.getyear)
       });
-      // this.LineChart = new Chart('linechart',{
-      //  type:'line',
-      //  data:{
-      //    labels:["jan","Feb","march","april","may","june","july","august","september","october","november","december"],
-      //    datasets:[{
-      //      label:"Number of items sold in months",
-      //      data:[],
-      //      fill:false,
-      //      lineTension:0.2,
-      //      borderColor:"red",
-      //      borderwidth:1
-      //    }],
-      //    options:{
-      //      title:{
-      //        text:"Line Chart",
-      //        display:true
-      //      },
-      //      scales:{
-      //        yAxes:[{
-      //          ticks:{
-      //            beginAtZero:true
-      //          }
-      //        }]
-      //      }
-      //    }
-      //   }
-      // })
+      console.log("its")
+      this.chart = this.AmCharts.makeChart('chartdiv', {
+        "type": "serial",
+        "theme": "light",
+        "marginRight": 80,
+        "dataProvider": [{
+            "lineColor": "#b7e021",
+            "date": "2012-01-01",
+            "duration": 408
+        }, {
+            "date": "2012-01-02",
+            "duration": 482
+        }, {
+            "date": "2012-01-03",
+            "duration": 562
+        }, {
+            "date": "2012-01-04",
+            "duration": 379
+        }, {
+            "lineColor": "#fbd51a",
+            "date": "2012-01-05",
+            "duration": 501
+        }, {
+            "date": "2012-01-06",
+            "duration": 443
+        }, {
+            "date": "2012-01-07",
+            "duration": 405
+        }, {
+            "date": "2012-01-08",
+            "duration": 309,
+            "lineColor": "#2498d2"
+        }, {
+            "date": "2012-01-09",
+            "duration": 287
+        }, {
+            "date": "2012-01-10",
+            "duration": 485
+        }, {
+            "date": "2012-01-11",
+            "duration": 890
+        }, {
+            "date": "2012-01-12",
+            "duration": 810
+        }],
+        "balloon": {
+            "cornerRadius": 6,
+            "horizontalPadding": 15,
+            "verticalPadding": 10
+        },
+        "valueAxes": [{
+            "duration": "mm",
+            "durationUnits": {
+                "hh": "h ",
+                "mm": "min"
+            },
+            "axisAlpha": 0
+        }],
+        "graphs": [{
+            "bullet": "square",
+            "bulletBorderAlpha": 1,
+            "bulletBorderThickness": 1,
+            "fillAlphas": 0.3,
+            "fillColorsField": "lineColor",
+            "legendValueText": "[[value]]",
+            "lineColorField": "lineColor",
+            "title": "duration",
+            "valueField": "duration"
+        }],
+        "chartScrollbar": {
+    
+        },
+        "chartCursor": {
+            "categoryBalloonDateFormat": "YYYY MMM DD",
+            "cursorAlpha": 0,
+            "fullWidth": true
+        },
+        "dataDateFormat": "YYYY-MM-DD",
+        "categoryField": "date",
+        "categoryAxis": {
+            "dateFormats": [{
+                "period": "DD",
+                "format": "DD"
+            }, {
+                "period": "WW",
+                "format": "MMM DD"
+            }, {
+                "period": "MM",
+                "format": "MMM"
+            }, {
+                "period": "YYYY",
+                "format": "YYYY"
+            }],
+            "parseDates": true,
+            "autoGridCount": false,
+            "axisColor": "#555555",
+            "gridAlpha": 0,
+            "gridCount": 50
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+    
+    
       
 }
 fetchrecord(start_date,end_date){
@@ -251,8 +346,17 @@ fetchrecord(start_date,end_date){
           'theme': 'light',
           'hideCredits':true,
           "titles": [{
-            "text": "Booking Reservation"
+            "text": "Booking details",
+            "align":"center"
           }],
+          "marginTop": 25,
+          "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "marginRight": 80,
+            "autoMargins": false
+          },
           'dataProvider':this.chartDatas,
           'titleField': 'title',
           'valueField': 'value',
@@ -288,14 +392,23 @@ fetchrecord(start_date,end_date){
           'theme': 'light',
           'hideCredits':true,
           "titles": [{
-            "text": "Channels"
+            "text": "Channels reservation",
+            "align":"center"
           }],
+          "marginTop": 25,
+          "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "marginRight": 80,
+            "autoMargins": false
+          },
           'dataProvider':this.chartDatas,
           'titleField': 'title',
           'valueField': 'value',
           'labelRadius': 5,
 
-          'radius': '42%',
+          'radius': '40%',
           'innerRadius': '0%',
           'labelText': '[[title]]',
           'export': {
@@ -326,14 +439,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Occupancy"
+              "text": "Room types",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '0%',
             'labelText': '[[title]]',
             'export': {
@@ -364,14 +486,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Booking vs Confirmation"
+              "text": "Booking vs Confirmation",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '60%',
             'labelText': '[[title]]',
             'export': {
@@ -403,14 +534,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Language"
+              "text": "Language",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '60%',
             'labelText': '[[title]]',
             'export': {
@@ -441,14 +581,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Booking vs Delivery"
+              "text": "Booking vs Delivery",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '0%',
             'labelText': '[[title]]',
             'export': {
@@ -479,14 +628,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Countries"
+              "text": "Countries",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '0%',
             'labelText': '[[title]]',
             'export': {
@@ -498,6 +656,125 @@ fetchrecord(start_date,end_date){
           });
           this.charts.push( this.chart );
       });
+      this.ReportsService.monthreservation(statsParms)
+      .subscribe((resp: any) => {   
+        this.monthdetails = resp.Returnvalue;
+        // this.cancelcount = resp.cancelcount;
+        // this.modifycount = resp.Totalbookingcount;
+        console.log("month is came",this.monthdetails);
+        // this.chartDatas=[];
+        this.month_name = [];
+        this.month_val = [];
+        this.showline = [];
+        for(var i=0;i<this.monthdetails.length;i++){
+          this.month_name.push(this.monthdetails[i].title)
+      this.month_val.push(this.monthdetails[i].value)
+        }
+        console.log("month,value",this.showline)
+        this.chart = this.AmCharts.makeChart("chart15", {
+          "type": "serial",
+    "theme": "light",
+    "marginRight": 80,
+    "dataProvider": [{
+        "lineColor": "#b7e021",
+        "date": "2012-01-01",
+        "duration": 408
+    }, {
+        "date": "2012-01-02",
+        "duration": 482
+    }, {
+        "date": "2012-01-03",
+        "duration": 562
+    }, {
+        "date": "2012-01-04",
+        "duration": 379
+    }, {
+        "lineColor": "#fbd51a",
+        "date": "2012-01-05",
+        "duration": 501
+    }, {
+        "date": "2012-01-06",
+        "duration": 443
+    }, {
+        "date": "2012-01-07",
+        "duration": 405
+    }, {
+        "date": "2012-01-08",
+        "duration": 309,
+        "lineColor": "#2498d2"
+    }, {
+        "date": "2012-01-09",
+        "duration": 287
+    }, {
+        "date": "2012-01-10",
+        "duration": 485
+    }, {
+        "date": "2012-01-11",
+        "duration": 890
+    }, {
+        "date": "2012-01-12",
+        "duration": 810
+    }],
+    "balloon": {
+        "cornerRadius": 6,
+        "horizontalPadding": 15,
+        "verticalPadding": 10
+    },
+    "valueAxes": [{
+        "duration": "mm",
+        "durationUnits": {
+            "hh": "h ",
+            "mm": "min"
+        },
+        "axisAlpha": 0
+    }],
+    "graphs": [{
+        "bullet": "square",
+        "bulletBorderAlpha": 1,
+        "bulletBorderThickness": 1,
+        "fillAlphas": 0.3,
+        "fillColorsField": "lineColor",
+        "legendValueText": "[[value]]",
+        "lineColorField": "lineColor",
+        "title": "duration",
+        "valueField": "duration"
+    }],
+    "chartScrollbar": {
+
+    },
+    "chartCursor": {
+        "categoryBalloonDateFormat": "YYYY MMM DD",
+        "cursorAlpha": 0,
+        "fullWidth": true
+    },
+    "dataDateFormat": "YYYY-MM-DD",
+    "categoryField": "date",
+    "categoryAxis": {
+        "dateFormats": [{
+            "period": "DD",
+            "format": "DD"
+        }, {
+            "period": "WW",
+            "format": "MMM DD"
+        }, {
+            "period": "MM",
+            "format": "MMM"
+        }, {
+            "period": "YYYY",
+            "format": "YYYY"
+        }],
+        "parseDates": true,
+        "autoGridCount": false,
+        "axisColor": "#555555",
+        "gridAlpha": 0,
+        "gridCount": 50
+    },
+    "export": {
+        "enabled": true
+    }
+});
+      
+});
 }
 // User count report in pdf file
 public usercount = [];

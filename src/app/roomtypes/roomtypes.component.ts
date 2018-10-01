@@ -125,7 +125,8 @@ this.setper = false
       "from_date":this.fromdate.year+'-'+this.fromdate.month+'-'+this.fromdate.day,
       "to_date":this.todate3.year+'-'+this.todate3.month+'-'+this.todate3.day,
       "room_type":this.labelforroom,
-      "room_name":this.roomName
+      "room_name":this.roomName,
+      
       }
     }else{
       this.parms={
@@ -221,7 +222,7 @@ this.setper = false
   standardrate() {
     this.hideedit = true;
   }
-
+ 
   // click edit basci button startcallmodalroomsell
   public editsavebut = false;
   clickeditbasicpricebut() {
@@ -412,26 +413,30 @@ this.setper = false
   public toggleValue:any;
 public open:any;
 public toggdate;
-tog=false
+tog:boolean = false;
 
-
+public togdate;
 
  
    
-  toggleClicked(){
+  toggleClicked(lt){
     // this.toggle_on = toggleValue
-    console.log("toggelevalue",)
+    console.log("all value is",lt)
+    console.log("toggelevalue",lt.room_open)
     this.toggleValue = true
-    console.log('the toggle has been clicked! ' + this.toggleValue);
-    if (this.toggleValue == true){
-       this.open = 1
+    this.togdate = lt.date;
+    console.log("get date",this.togdate)
+    // console.log('the toggle has been clicked! ' + this.toggleValue);
+    if (lt.room_open == true ){
+        this.open = 1
+       this.tog = false
       //  this.toggdate = this.fromdate.year+'-'+this.fromdate.month+'-'+this.fromdate.day,
-       console.log("set toggle value",this.open)
+       console.log("set toggle value",lt.room_open ,this.tog )
     }
     else{
-      this.open = 0
+     this.open = 0
       this.tog=true
-      console.log("set toggle value",this.open)
+      console.log("else set toggle value",lt.room_open ,this.tog )
     }
    return this.open
   }
