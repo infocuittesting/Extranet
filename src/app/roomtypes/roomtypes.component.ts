@@ -40,11 +40,18 @@ export class RoomtypesComponent implements OnInit {
   rangefromMin: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   restricefrom: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   restricefromMin: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
+  setper = true;
+  selectrestr = [];
   ngOnInit() {
-
+   this.roomTypeService.selectrestriction()
+.subscribe((resp: any) => {
+  this.selectrestr = resp.Result;
+  // this.todate4=this.selectrestr.house_close;
+  console.log("select restriction",this.selectrestr)
+});
     this.dateFormate.format(this.fromdate);
     this.dateFormate.format(this.fromdate);
-
+this.setper = false
     let roomParms={
       "business_id":this.session.retrieve("business_id")
     }
@@ -104,8 +111,14 @@ export class RoomtypesComponent implements OnInit {
   todate3:any;
   todate2:any;
   todate1:any;
+  todate4:any;
   getperioddays(getdate) {
-
+  //  if (getdate.period !=null){
+  //    this.setper = false
+  //  }
+  //  else{
+  //    this.setper = true
+  //  }
     if(getdate.period==null){
     this.parms={
       "business_id":this.session.retrieve("business_id"),
@@ -122,7 +135,7 @@ export class RoomtypesComponent implements OnInit {
         "room_name":this.roomName
         }
     }
-
+      console.log("getdatedaetails#####################",this.parms)
       this.roomTypeService.getdateDetails(this.parms)
       .subscribe((resp: any) => {
         if (resp.ServiceStatus == 'Success') {
@@ -262,6 +275,8 @@ export class RoomtypesComponent implements OnInit {
   //save room count and rates
 
   saveRoomNoandRate(){
+ console.log("openvalue*****************",this.open)
+ console.log("arrayvalue",this.countdates)
     let parmsroom={
       "business_id":this.session.retrieve("business_id"),
        "room_type":this.labelforroom,
@@ -371,16 +386,17 @@ export class RoomtypesComponent implements OnInit {
 
     });
   }
-  restrcitdeatils(mini_stay,max_stay,getdate,todate1){
-    console.log("restrictdetails",mini_stay,max_stay,getdate,todate1)
+  restrcitdeatils(user){
+    console.log("restrictdetails",user)
     let body = {
        
         "business_id": this.session.retrieve("business_id"),
-          "room_type": this.labelforroom,
-          "min_stay":mini_stay,
-          "max_stay":max_stay,
-          "close_arrival":this.restricefrom.year+'-'+this.restricefrom.month+'-'+this.restricefrom.day,
-          "close_departure":this.todate1.year+'-'+this.todate1.month+'-'+this.todate1.day
+          // "room_type": this.labelforroom,
+          "min_stay":Number(user.min_stay),
+          "max_stay":Number(user.max_stay),
+          "close_arrival":user.close_arrival,
+          "close_departure":user.close_departure,
+          "house_close":user.house_close
       
     }
     console.log("params details",body)
@@ -393,4 +409,32 @@ export class RoomtypesComponent implements OnInit {
 
     });
   }
+  public toggleValue:any;
+public open:any;
+public toggdate;
+tog=false
+
+
+
+ 
+   
+  toggleClicked(){
+    // this.toggle_on = toggleValue
+    console.log("toggelevalue",)
+    this.toggleValue = true
+    console.log('the toggle has been clicked! ' + this.toggleValue);
+    if (this.toggleValue == true){
+       this.open = 1
+      //  this.toggdate = this.fromdate.year+'-'+this.fromdate.month+'-'+this.fromdate.day,
+       console.log("set toggle value",this.open)
+    }
+    else{
+      this.open = 0
+      this.tog=true
+      console.log("set toggle value",this.open)
+    }
+   return this.open
+  }
+ 
+
 }

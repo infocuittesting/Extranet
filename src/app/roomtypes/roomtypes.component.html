@@ -159,7 +159,7 @@
                            <td *ngFor="let lt of countdates | slice:start:end; let i=index;">{{lt.Date}}</td>
                   </tr>
                     <tr>
-                         <td style="border: 1px solid gray;background-color:white;" >   <label style="font-weight: 400;width: 9em;vertical-align: sub;" >Room Status </label>
+                         <td style="border: 1px solid gray;background-color:white;" >   <label style="font-weight: 400;width: 9em;vertical-align: sub;" >Open or Close</label>
                           <!-- <button type="button" class="btn btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
                             <div class="handle"></div> -->
                           <!-- </button> -->
@@ -173,20 +173,24 @@
                             style="border: 1px solid gray; height: 36px; box-shadow: 0 0px 1px 0px rgb(155, 155, 33)!important;
                             border-radius: 0%;"
                             [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow' , 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}">
-                            <ui-switch labelOn="Yes" labelOff="No" ></ui-switch>
+                            <ui-switch labelOn="YES" labelOff="NO" [(ngModel)] = "lt.room_open"  (click)="toggleClicked()" ></ui-switch>
                                 </td>
                     </tr>
                      <tr>
-                     <td style="border: 1px solid gray;background-color:white;" ><label style="font-weight: 400;width: 9em;vertical-align: sub;"  >Room to Sell &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-edit"
-                        data-toggle="modal" data-target="#myModal" (click)="callmodalroomsell()"></i></label>
+                     <td style="border: 1px solid gray;background-color:white;" ><label style="font-weight: 400;width: 9em;vertical-align: sub;" >Room to Sell &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-edit"
+                        data-toggle="modal" data-target="#myModal" (click)="callmodalroomsell()"  ></i></label>
                    </td>
 
                      <td *ngFor="let lt of countdates | slice:start:end; let i=index;"
                      style="border: 1px solid gray;width: 63px;background-color: rgb(223, 221, 221)">
-                                     <input type="text" [(ngModel)]="lt.Available_Room_Count"
+                     <!-- <div class="input-group" style="padding-left:40px;" [class.has-error]="roomno.dirty && roomno.invalid"> -->
+
+                                     <input type="text"  [(ngModel)]="lt.Available_Room_Count" 
                                     (change)="editsellroom($event,i,lt.Available_Room_Count)"
                                     style="width: 50px;height: 30px;text-align:center; margin-left: 5px;
                                     border-radius: 40%;">
+                                    <!-- <div *ngIf="roomno.dirty && !roomno.valid  && roomno.errors.pattern" ngClass="{ 'has-error' : !roomno.valid && submitAttempt }"></div> -->
+
                                 </td>
 
                     </tr>
@@ -251,7 +255,7 @@
                 <div class="row" >
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
+                                <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
                                        name="dp" [(ngModel)]="rangefrom" [minDate]="rangefromMin" ngbDatepicker #dr="ngbDatepicker" >
                                 <div class="input-group-append">
                                   <button class="btn btn-outline-secondary" (click)="dr.toggle()" type="button"
@@ -327,13 +331,33 @@
                          <button type="button" class="btn btn-info"
                                 style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sund,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice)">Save</button>
                          </div>      
-                    </div>     
+                    </div>  
+                    <br> 
+         <div class="row">
+           <div class="col-md-8">
+             <table class="table table-bordered">
+               <thead style="background-color:#337ab7;color: white">
+                 <tr>
+                 <th>Index</th>
+                 <th>Room Type</th>
+                </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td> <input type='checkbox' id='chk_"+i+"' /></td>
+                   <td>Standard Room</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>             
         </div>
 
         <!-- Restriction details -->
         <div id="Restriction" class="tab-pane container fade" style="margin-top:10px;">
         <br>
         <div class="row">
+        
          <div class="col-sm-3">
              <font>Minimum stay</font>
          </div>
@@ -341,58 +365,60 @@
              <font>Maximum stay</font>
          </div>
          <div class="col-sm-3">
-             <font>Arrival</font>
+             <font>Close Date for Arrival</font>
          </div>
          <div class="col-sm-3">
-             <font>Departure</font>
-         </div>         
+             <font>Close Date for Departure</font>
+         </div> 
+             
         </div>
-
-        <div class="row">
+       <div *ngFor = "let user of selectrestr">
+        <div class="row">        
          <div class="col-sm-3">
                 <div class="input-group">
-                     <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="mini_stay">
+                     <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="user.min_stay">
                 </div>    
          </div>
          <div class="col-sm-3">
                 <div class="input-group">
-                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="max_stay">
+                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="user.max_stay">
                 </div>        
          </div>
          <div class="col-sm-3">
             <div class="input-group">
-                <input class="" placeholder="dd-mm-yyyy"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
-                       name="dp" [(ngModel)]="restricefrom" [minDate]="restricefromMin" ngbDatepicker #d="ngbDatepicker" >
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
-                  style="border-radius: 0px;">
-                    <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                  </button>
-                </div>
+                <input class="" placeholder="dd-mm-yyyy" type="date"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
+                       name="dp" [(ngModel)]="user.close_arrival" >
               </div>
          </div>
          <div class="col-sm-3">
             <div class="input-group">
-                <input class="" placeholder="dd-mm-yyyy" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
-                       name="dp" [(ngModel)]="todate1" [minDate]="restricefrom" ngbDatepicker #d1="ngbDatepicker" >
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button"
-                  style="border-radius: 0px;">
-                    <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                  </button>
-                </div>
+                <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
+                       name="dp" [(ngModel)]="user.close_departure" >
               </div>
-         </div>         
+         </div>                  
         </div>
-<br><br>
+<div class="row">
+    <div class="col-sm-3">
+        <font>House close</font>
+    </div> 
+    <div class="col-md-9">
+    </div>
+</div>
         <div class="row">
-          <div class="col-sm-9"></div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
+                           name="dp" [(ngModel)]="user.house_close" >
+                  </div>
+             </div>
+          <div class="col-md-6"></div>
           <div class="col-sm-3">
                 <button type="button" class="btn btn-info"
-                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="restrcitdeatils(mini_stay,max_stay,restricefrom,retrictto)">Save</button>              
+                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="restrcitdeatils(user)">Save</button>              
           </div>  
         </div>    
          </div>
+        </div>
          <!-- restriction End -->
    </div>
     

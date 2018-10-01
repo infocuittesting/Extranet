@@ -31,6 +31,7 @@ export class StatisticsComponent implements OnInit {
     let statsParms={
       "business_id":this.session.retrieve("business_id")
     }
+    console.log("business id is came",this.session.retrieve("business_id"))
       this.statisticsService.statisticsDetails(statsParms)
         .subscribe((resp: any) => {
           if (resp.ServiceStatus == 'Success') {
