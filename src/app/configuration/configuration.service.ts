@@ -26,67 +26,135 @@ export class ConfigurationService {
 
     }
 
+    /**----------------------------------------------------------------
+     |InsertRoom Start
+     |Business_id should be passed from login credentials(should check)
+     |rate_plan_id should have to hardcode right now
+     ------------------------------------------------------------------*/
+    insertRoomDetails(insertDet: any): Observable<object[]> {
 
-     // insert room details
-     inserRoomDetails(insertDet: any): Observable<object[]> {
-
-      const headers = new Headers({ 'Content-Type': 'application/json' });
-      const options = new RequestOptions({ headers: headers });
-    let body = {
-        "room_id":insertDet.room_id,
-        "room_name":insertDet.room_name,
-        "max_adults":insertDet.max_adults,
-        "max_child":insertDet.max_child,
-        "room_size_id":insertDet.room_size_id,
-        "size_of_room":insertDet.size_of_room,
-        "bedding_option_id":insertDet.bedding_option_id,
-        "bed_option":insertDet.bed_option,
-        "extrabed_id":insertDet.extrabed_id,
-        "extrabed":insertDet.extrabed,
-        "bed_size_id":insertDet.bed_size_id,
-        "bed_size":insertDet.bed_size,
-        "upload_photos":insertDet.upload_photos,
-        "amenitie_id":insertDet.amenitie_id,
-        "amenitie":insertDet.amenitie,
-        "smoking":insertDet.smoking,
-        "rate_plan_id":insertDet.rate_plan_id,
-        "advance_booking_window":insertDet.advance_booking_window,
-        "prepayment_policy":insertDet.prepayment_policy,
-        "cancellation_policy":insertDet.cancellation_policy,
-        "inclusion_id":insertDet.inclusion_id,
-        "inclusion":insertDet.inclusion,
-        "important_information":insertDet.important_information
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        let body = {
+            "business_id":insertDet.business_id,
+            "room_name":insertDet.room_name,
+            "max_adults":parseInt(insertDet.max_adults),
+            "max_child":parseInt(insertDet.max_child),
+            "room_size_id":insertDet.room_size_id,
+            "bedding_options_id":insertDet.bedding_option_id,
+            "maximum_extrabed_id":insertDet.extrabed_id,
+            "bed_size_id":insertDet.bed_size_id,
+            "upload_photos":insertDet.upload_photos,
+            "room_amenities_id":insertDet.amenitie_id,
+            "smoking":insertDet.smoking,
+            "rate_plan_id":1,
+            "advance_booking_window":insertDet.advance_booking_window,
+            "prepayment_policy":insertDet.prepayment_policy,
+            "cancellation_policy":insertDet.cancellation_policy,
+            "inculsions_id":insertDet.inclusion_id,
+            "important_information":insertDet.important_information
         }
 
-      return this.http.post('https://ivrinfocuit.herokuapp.com/insert_configuration', body, options)
-          .map(this.extractData);
-
-  }
-
-  //get room details
-       // insert room details
-       getRoomDetails(): Observable<object[]> {
-
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        const options = new RequestOptions({ headers: headers });
-
-  
-        return this.http.post('https://ivrinfocuit.herokuapp.com/select_configuration',options)
+        return this.http.post('https://ivrinfocuit.herokuapp.com/insert_configuration', body, options)
             .map(this.extractData);
-  
+
     }
-  //get room details
-       // insert room details
-       getRoom(): Observable<object[]> {
+    /**----------------------------------------------------------------
+     |InsertRoom End
+     |
+     ------------------------------------------------------------------*/
+
+    //get room details
+    // insert room details
+    getRoomDetails(): Observable<object[]> {
 
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
 
-  
-        return this.http.post('https://ivrinfocuit.herokuapp.com/SelectRoomsizeConfiguration',options)
+
+        return this.http.post('https://ivrinfocuit.herokuapp.com/select_configuration', options)
             .map(this.extractData);
-  
-    }    
+
+    }
+    //get room details
+    /**----------------------------------------------------------------
+     |Room Size Select Start
+     ------------------------------------------------------------------*/
+    getRoom(): Observable<object[]> {
+
+        return this.http.get('https://ivrinfocuit.herokuapp.com/SelectRoomsizeConfiguration')
+            .map(this.extractData);
+    }
+    /**-----------------------------------------------------------
+    |Room Size Select Ends
+    ------------------------------------------------------------------*/
+
+
+
+    /**----------------------------------------------------------------
+    |Bedding Select Start
+    ------------------------------------------------------------------*/
+    getBedding(): Observable<object[]> {
+
+        return this.http.get('https://ivrinfocuit.herokuapp.com/SelectBeddingoptionsConfiguration')
+            .map(this.extractData);
+    }
+    /**-----------------------------------------------------------
+    |Bedding Select Ends
+    ------------------------------------------------------------------*/
+
+
+
+    /**----------------------------------------------------------------
+    |BeddingSize Select Start
+    ------------------------------------------------------------------*/
+    getBeddingSize(): Observable<object[]> {
+
+        return this.http.get('https://ivrinfocuit.herokuapp.com/SelectBedsizeConfiguration')
+            .map(this.extractData);
+    }
+    /**-----------------------------------------------------------
+    |BeddingSize Select Ends
+    ------------------------------------------------------------------*/
+
+    /**----------------------------------------------------------------
+    |ExtraBed Select Start
+    ------------------------------------------------------------------*/
+    getExtraBed(): Observable<object[]> {
+
+        return this.http.get('https://ivrinfocuit.herokuapp.com/SelectExtrabed')
+            .map(this.extractData);
+    }
+    /**-----------------------------------------------------------
+    |ExtraBed Select Ends
+    ------------------------------------------------------------------*/
+
+    /**----------------------------------------------------------------
+    |RoomAmenities Select Start
+    ------------------------------------------------------------------*/
+    getRoomAmenities(): Observable<object[]> {
+        return this.http.get('https://ivrinfocuit.herokuapp.com/SelectRoomamenitieConfiguration')
+            .map(this.extractData);
+    }
+    /**-----------------------------------------------------------
+    |RoomAmenities Select Ends
+    ------------------------------------------------------------------*/
+
+    
+    /**----------------------------------------------------------------
+    |Inclusion Select Start
+    ------------------------------------------------------------------*/
+    getInclusion(): Observable<object[]> {
+        return this.http.get('https://ivrinfocuit.herokuapp.com/SelectInclusionsConfiguration')
+            .map(this.extractData);
+    }
+    /**-----------------------------------------------------------
+    |Inclusion Select Ends
+    ------------------------------------------------------------------*/
+
+
+
+
     private extractData(res: Response) {
         const body = res.json();
         return body;

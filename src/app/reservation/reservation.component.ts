@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { Route } from "@angular/router";
 import {ReservationService} from './reservation.service';
 import { NgbDateCustomParserFormatter} from "../customdateformat";
 import { NgbModule,NgbDateStruct } from '@ng-bootstrap/ng-bootstrap'; 
@@ -13,7 +15,7 @@ const now = new Date();
 })
 export class ReservationComponent implements OnInit {
   public hello=[];
-  constructor(private ReservationService:ReservationService,private dateFormate:NgbDateCustomParserFormatter) { }
+  constructor(private ReservationService:ReservationService,private dateFormate:NgbDateCustomParserFormatter,private route:Router) { }
 
   NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   arriv: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
@@ -44,6 +46,8 @@ export class ReservationComponent implements OnInit {
     rate;
     Status;
     pickup;
+    modification;
+    sms;
     selectindex;
   selectMembersEdit(details,index){
     console.log(details)  
@@ -65,12 +69,12 @@ export class ReservationComponent implements OnInit {
     this.child=details.customer_child;
     this.rate=details.customer_room_rate;
     this.Status=details.customer_booked_status;
-    this.pickup=details.send_sms;
-    if(this.pickup=="success"){
-      this.pickup="off";
-    }else
-    { this.pickup="0"
-  }
+    this.pickup=details.customer_pickup_drop;
+    this.modification=details.modification;
+    this.sms=details.send_sms;
     console.log(this.Roomtype);
   }
+ 
+  // this.route.navigate(['/roomtypes']);
+  
 }

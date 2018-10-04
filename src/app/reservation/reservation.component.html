@@ -42,32 +42,34 @@
         <input class="" name="" id="" [(ngModel)]="room" style="border: 1px solid gray; height: 2.4em; max-width: 12.2em; ">
     </div>
 </div>
-<br><br><br>
+<br>
 <div class="row" >
   <div class="col-md-12">
 <table class="table table-bordered  fixtab">
   <thead style="background-color:#337ab7;color: white">
     <tr>
       <th style="width:50px">Seq</th>
+      <th style="width:160px"> Cofirmation No</th>
       <th style="width:140px"> Arrival</th>
       <th style="width:140px"> Departure</th>
-      <th style="width:160px"> Cofirmation No</th>
       <th style="width:140px"> Room Type</th>
-      <th style="width:140px"> Adult</th>
-      <th style="width:140px"> Child</th>
-      <th> Policy</th>
+      <th style="width:80px"> Adult</th>
+      <th style="width:80px"> Child</th>
+      <th style="width:110px"> Channels</th>
+      <th>Total Amount</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let detail of hello|filterdata: room;let i = index" (click)="selectMembersEdit(detail,i)"
     [ngClass]="{'backGroundColor':i==selectindex}">
       <td style="width:50px">{{i+1}}</td>
+      <td style="width:160px">{{detail.customer_confirmation_number}}</td>
       <td style="width:140px">{{detail.customer_arrival_date}} </td>
       <td style="width:140px">{{detail.customer_depature_date}} </td>
-      <td style="width:160px">{{detail.customer_confirmation_number}}</td>
       <td style="width:140px">{{detail.customer_room_type}} </td>
-      <td style="width:140px">{{detail.customer_adult}} </td>
-      <td style="width:140px">{{detail.customer_child}} </td>
+      <td style="width:80px">{{detail.customer_adult}} </td>
+      <td style="width:80px">{{detail.customer_child}} </td>
+      <td style="width:110px">{{detail.channel}} </td>
       <td> </td>
     </tr>
   </tbody>
@@ -76,7 +78,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="text-right">
+    <div class="text-center">
       <button type="button" class="bnt btn-success" style="width:150px" data-toggle="modal" data-target="#alert1">Ok</button>
     </div>
   </div>
@@ -207,18 +209,19 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="rate">
               </div>
             </div>
-            <br><br>
+            <br>
             <div class="row">
               <div class="col-md-3">
-                <button type="button" class="btn btn-lg"  style="border-radius: 50%;" >Pickup_Drop</button>
+                  <p><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenschange': pickup=='y','backgroundcolorgreenchange': pickup=='Y', 'backgroundcolorredchange': pickup==null}"> </span> Pickup_Drop </p>
               </div>
               <div class="col-md-3">
-                <button type="button" class="btn btn-lg"  style="border-radius: 50%;" >Modification</button>                
+                  <font><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenchange': modification=='yes', 'backgroundcolorredchange': modification==null}"> </span> Modification</font>
               </div>
               <div class="col-md-3">
-                <button type="button" class="btn btn-lg"  style="border-radius: 50%;" >SMS</button>
+                  <font><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenchange': sms=='success', 'backgroundcolorredschange': sms==null,'backgroundcolorredchange': sms=='failure'}"> </span> SMS</font>
               </div>
             </div>
+
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-danger" style="padding-left:5px;"data-dismiss="modal"><b>Close</b><span class="glyphicon glyphicon-remove" style="padding-left:5px;"></span></button>  

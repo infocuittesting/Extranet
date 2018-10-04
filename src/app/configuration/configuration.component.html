@@ -47,22 +47,25 @@
 <div class="row" >
   <div class="col-md-3"  *ngFor="let room of roomdetails ">
     <div class="card">
+        <img class="card-img-top hovercss" alt="Card image"
+        src="../../assets/images/Standard Room.jpg"
+       style="width: 45%;margin-left: 62px; margin-top: 10px;height: 45%;border-radius: 50%;">
       <div class="card-body">
-          <h6 class="card-title" style="text-align: center;margin-top: -10px;">{{room.room_type}}</h6>
-          <p class="card-text" style="text-align: center;margin-top: -12px;">Price :&nbsp;{{room.standard_rate}}</p>
+          <h6 style="text-align: center;">{{room.room_name|titlecase}}</h6>
+          <!-- <p class="card-text" style="text-align: center;margin-top: -12px;">Price :&nbsp;{{roomdetails.standard_rate}}</p> -->
 
       </div>
       <div class="card-footer">
         <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span> {{room.facilitie1}}</p>
-        <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span>{{room.facilitie2}}</p>
-        <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span>{{room.facilitie3}}</p>
+        </span> {{room.size_of_room|titlecase}}</p>
+        <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+        </span>{{room.bed_option|titlecase}}</p>
+        <p ><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+        </span>{{room.extrabed|titlecase}}</p>
       </div>
     </div>
   </div><br>
-    <div class="col-md-3">
+    <div class="col-md-3" (click)="Queryselectoptions()">
     <div class="card"  data-toggle="modal" data-target="#roomplan">
         <i class="fa fa-plus fa-7x text-center"
        style="font-size:70px;margin-top: 20px;"></i>
@@ -71,9 +74,12 @@
         <h6 style="text-align:center">Room Name</h6>
       </div>
       <div class="card-footer">
-      <p style="text-align:center">Room Configuration</p>
-      <p style="text-align:center"> Bar Facilities</p>
-      <p style="text-align:center">Room Facilities</p>
+      <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+      </span>Room Configuration</p>
+      <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+      </span> Bar Facilities</p>
+      <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+      </span>Room Facilities</p>
       </div>
     </div>
   </div>
@@ -117,8 +123,8 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.room_name">
               </div>
               <div class="col-md-3">
-                <select class="form-control" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.room_size_id">
-                <option *ngFor="let list of room" [ngValue] = "list.room_size_id"> {{list.room_size_id}}</option> 
+                <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="plan.room_size_id">
+                <option *ngFor="let list of roomsize" [ngValue] = "list.room_size_id"> {{list.size_of_room}}</option> 
               </select>
               </div>
               <div class="col-md-3">
@@ -145,16 +151,24 @@
             </div>
             <div class="row">
               <div class="col-md-3">
-                <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="plan.bedding_options_id">
+                <select class="form-control" name="bedding" style="height: 2.4em;" [(ngModel)]="plan.bedding_option_id">
+                  <option *ngFor="let list of bedding" [ngValue] = "list.bedding_option_id"> {{list.bed_option}}</option> 
+                </select>
               </div>
               <div class="col-md-3">
-                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.bed_size_id">
+                <select class="form-control" name="bedsize" style="height: 2.4em;" [(ngModel)]="plan.bed_size_id">
+                  <option *ngFor="let list of beddingsize" [ngValue] = "list.bed_size_id"> {{list.bed_size}}</option> 
+                </select>
               </div>
               <div class="col-md-3">
-                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.maximum_extrabed_id">
+                <select class="form-control" name="extrabed" style="height: 2.4em;" [(ngModel)]="plan.extrabed_id">
+                  <option *ngFor="let list of extrabed" [ngValue] = "list.extrabed_id"> {{list.extrabed}}</option> 
+                </select>
               </div>
               <div class="col-md-3">
-                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.room_amenities_id">
+                <select class="form-control" name="extrabed" style="height: 2.4em;" [(ngModel)]="plan.amenitie_id">
+                  <option *ngFor="let list of roomamenities" [ngValue] = "list.amenitie_id"> {{list.amenitie}}</option> 
+                </select>
               </div>
             </div>
             <div class="row">
@@ -179,7 +193,9 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.rate_plan_id">
               </div>
               <div class="col-md-3">
-                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.inculsions_id">
+                <select class="form-control" name="extrabed" style="height: 2.4em;" [(ngModel)]="plan.inclusion_id">
+                  <option *ngFor="let list of inclusion" [ngValue] = "list.inclusion_id"> {{list.inclusion}}</option> 
+                </select>
               </div>
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.important_information">
@@ -215,7 +231,7 @@
             </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" click="insertroom(plan)" data-dismiss="modal"><b>Save</b></button>
+                <button type="button" class="btn btn-success" (click)="insertroom(plan)" data-dismiss="modal"><b>Save</b></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Close</b></button>
   
             </div>

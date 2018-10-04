@@ -53,6 +53,7 @@ import { StatisticsService } from "../app/statistics/statistics.service";
 import { ReportsComponent } from './reports/reports.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { FilterdataPipe } from './filterdata.pipe';
+import { ReservationdetailsComponent } from './reservationdetails/reservationdetails.component';
 
 export const appRoutes: Routes = [
   { path: 'appcom', component: AppComponent },
@@ -66,6 +67,10 @@ export const appRoutes: Routes = [
     {
       path:'reservation',
       component:ReservationComponent
+    },
+    {
+      path:'reservationdetails',
+      component:ReservationdetailsComponent
     },
     {
       path: 'promotions',
@@ -117,7 +122,8 @@ let socialloginproviders = {
     ConfigurationComponent,
     ReportsComponent,
     ReservationComponent,
-    FilterdataPipe
+    FilterdataPipe,
+    ReservationdetailsComponent
   ],
   imports: [
     BrowserModule,

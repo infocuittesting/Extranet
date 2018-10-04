@@ -1,6 +1,6 @@
 .fixtab tbody {
     display:block;
-    height:270px;
+    height:300px;
     overflow:auto;
     
 }
@@ -10,13 +10,19 @@
     table-layout:fixed;
 }
 
-.backgroundcolor{
-    background-color: aqua;
+.backGroundColor{
+    background-color: lightgrey;
 }
 
 .backgroundcolorgreenchange{
     background-color: green;
 }
+.backgroundcolorgreenschange{
+    background-color: green;
+}
 .backgroundcolorredchange{
+    background-color: red;
+}
+.backgroundcolorredschange{
     background-color: red;
 }

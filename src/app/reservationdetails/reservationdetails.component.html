@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-md-3">
+    <font>Confirmation No</font>
+  </div>
+  <div class="col-md-3">
+    <font> Arrival </font>
+  </div>
+  <div class="col-md-3">
+   <font>Booking Status </font> 
+  </div>
+  <div class="col-md-3">
+    <font>Booked Date  </font>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Confirmation">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Arrival">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Status">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Booked">
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+  <font>Adults</font>
+</div>
+<div class="col-md-3">
+  <font> Departure </font>
+</div>
+<div class="col-md-3">
+ <font> Credit Card</font> 
+</div>
+<div class="col-md-3">
+  <font>Expiry Date </font>
+</div>
+
+</div>
+<div class="row">
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="adults">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Departure">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="creditcard">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Expdate">
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+  <font>Child</font>
+</div>
+<div class="col-md-3">
+  <font>Contry Code </font>
+</div>
+<div class="col-md-3">
+ <font> Mobile</font> 
+</div>
+<div class="col-md-3">
+  <font>Language</font>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="child">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="country">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Mobile">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Language">
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+  <font> Channel</font>
+</div>
+<div class="col-md-3">
+  <font> Number of Room</font>
+</div>
+<div class="col-md-3">
+  <font>Room Type</font>
+</div>
+<div class="col-md-3">
+  <font>Room Rate</font>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="channel">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="Roomno">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Roomtype">
+</div>
+<div class="col-md-3">
+  <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="rate">
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-3">
+    <p><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenschange': pickup=='y','backgroundcolorgreenchange': pickup=='Y', 'backgroundcolorredchange': pickup==null}"> </span> Pickup_Drop </p>
+</div>
+<div class="col-md-3">
+    <p><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenchange': modification=='yes', 'backgroundcolorredchange': modification==null}"> </span> Modification</p>
+</div>
+<div class="col-md-3">
+    <p><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenchange': sms=='success', 'backgroundcolorredschange': sms==null,'backgroundcolorredchange': sms=='failure'}"> </span> SMS</p>
+</div>
+</div>
