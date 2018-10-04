@@ -3,6 +3,7 @@
       <h6>Reservation</h6>
   </div>
 </div>
+<div *ngIf="showMore!=true">
 <div class="row">
   <div class="col-md-4">
     <font> Arrival</font>
@@ -61,7 +62,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let detail of hello|filterdata: room;let i = index" (click)="selectMembersEdit(detail,i)"
-    [ngClass]="{'backGroundColor':i==selectindex}">
+    [ngClass]="{'backGroundColor':i==selectindex}" (dblclick)="showMoreBut()">
       <td style="width:50px">{{i+1}}</td>
       <td style="width:160px">{{detail.customer_confirmation_number}}</td>
       <td style="width:140px">{{detail.customer_arrival_date}} </td>
@@ -76,27 +77,12 @@
 </table>
 </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="text-center">
-      <button type="button" class="bnt btn-success" style="width:150px" data-toggle="modal" data-target="#alert1">Ok</button>
-    </div>
-  </div>
 </div>
 
-
      <!-- Alert start-->
-     <div class="modal fade" id="alert1" role="dialog">
-        <div class="modal-dialog">
-        
-          <!-- Modal content-->
-          <div class="modal-content" style="width:180%;margin-left:-40%;">
-            <div class="modal-header">
-              <h4 style="margin-left:40%;"> Reservation</h4>
-              <button type="button" class="close" style="margin-right:5px;" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
+     <div *ngIf="showMore==true">
+
+              <div class="row" style="padding-left:37px;padding-bottom:5px;">
                 <div class="col-md-3">
                   <font>Confirmation No</font>
                 </div>
@@ -110,7 +96,7 @@
                   <font>Booked Date  </font>
                 </div>
               </div>
-            <div class="row">
+            <div class="row" style="padding-left:37px;padding-bottom:5px;">
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Confirmation">
               </div>
@@ -124,7 +110,7 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Booked">
               </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-left:37px;padding-bottom:5px;">
               <div class="col-md-3">
                 <font>Adults</font>
               </div>
@@ -139,7 +125,7 @@
               </div>
 
             </div>
-            <div class="row">
+            <div class="row" style="padding-left:37px;padding-bottom:5px;">
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="adults">
               </div>
@@ -153,7 +139,7 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Expdate">
               </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-left:37px;padding-bottom:5px;">
               <div class="col-md-3">
                 <font>Child</font>
               </div>
@@ -167,7 +153,7 @@
                 <font>Language</font>
               </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-left:37px;padding-bottom:5px;">
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="child">
               </div>
@@ -181,7 +167,7 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="Language">
               </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-left:37px;padding-bottom:5px;">
               <div class="col-md-3">
                 <font> Channel</font>
               </div>
@@ -195,7 +181,7 @@
                 <font>Room Rate</font>
               </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-left:37px;padding-bottom:5px;">
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="channel">
               </div>
@@ -209,8 +195,8 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="rate">
               </div>
             </div>
-            <br>
-            <div class="row">
+            
+            <div class="row" style="padding-left:37px;padding-top: 5px;">
               <div class="col-md-3">
                   <p><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenschange': pickup=='y','backgroundcolorgreenchange': pickup=='Y', 'backgroundcolorredchange': pickup==null}"> </span> Pickup_Drop </p>
               </div>
@@ -222,12 +208,12 @@
               </div>
             </div>
 
+            
+            <div class="text-center">
+               <button type="button" class="btn btn-danger" [ngClass]="{disabling:showMore!=false}" (click)="showlessBut()"><b>Close</b><span class="glyphicon glyphicon-remove" style="padding-left:5px;"></span></button>  
             </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-danger" style="padding-left:5px;"data-dismiss="modal"><b>Close</b><span class="glyphicon glyphicon-remove" style="padding-left:5px;"></span></button>  
-            </div>
-          </div>
+         
           
-        </div>
+        
       </div> 
       <!-- Alert End --> 

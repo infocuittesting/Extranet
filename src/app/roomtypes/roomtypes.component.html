@@ -307,50 +307,56 @@
                 </div>    
                       
                 <br> <br>
-                    <div class="row">
-                     <div class="col-sm-4">
-                       <font>Room To Sell</font>
+                <div class="row">
+                  <div class="col-sm-2">
+                    <font>Room To Sell</font>
+                  </div>
+                  <div class="col-sm-2">
+                         <font>Price</font>
+                       </div>
+                  <div class="col-sm-2">
+                    <font>Extra Adults</font>
+                  </div> 
+                  <div class="col-sm-2">
+                   <font>Room Type</font>
+                 </div> 
+                 <div class="col-sm-2">
+                   <font>Rate Plan</font>
+                 </div>     
+                 </div> 
+              <div class="row">
+                  <div class="col-sm-2">
+                     <div class="input-group">
+                         <input type="text" class="form-control" name="roomto_sell" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;" [(ngModel)]="roomtosell">
                      </div>
-                     <div class="col-sm-4">
-                            <font>Price(single/Double)</font>
-                          </div>
-                    </div> 
-                 <div class="row">
-                     <div class="col-sm-4">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="roomto_sell" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="roomtosell">
-                        </div>
 
-                     </div>
-                     <div class="col-sm-4">
-                            <div class="input-group">
-                                    <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
-                                </div>
-                          </div>
-                     <div class="col-sm-4">
-                         <button type="button" class="btn btn-info"
-                                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sund,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice)">Save</button>
-                         </div>      
-                    </div>  
+                  </div>
+                  <div class="col-sm-2">
+                         <div class="input-group">
+                                 <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;" [(ngModel)]="rangeprice">
+                             </div>
+                       </div>
+                  <div class="col-sm-2">
+                         <div class="input-group">
+                                 <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
+                             </div>
+                       </div>    
+                  <div class="col-sm-2">
+                         <div class="input-group">
+                                 <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
+                             </div>
+                       </div> 
+                  <div class="col-sm-2">
+                         <div class="input-group">
+                                 <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
+                             </div>
+                       </div>                                      
+                  <div class="col-sm-2">
+                      <button type="button" class="btn btn-info"
+                             style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sund,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice)">Save</button>
+                      </div>      
+                 </div>   
                     <br> 
-         <!-- <div class="row">
-           <div class="col-md-8">
-             <table class="table table-bordered">
-               <thead style="background-color:#337ab7;color: white">
-                 <tr>
-                 <th>Index</th>
-                 <th>Room Type</th>
-                </tr>
-               </thead>
-               <tbody>
-                 <tr>
-                   <td> <input type='checkbox' id='chk_"+i+"' /></td>
-                   <td>Standard Room</td>
-                 </tr>
-               </tbody>
-             </table>
-           </div>
-         </div>              -->
         </div>
 
         <!-- Restriction details -->
@@ -362,13 +368,10 @@
              <font>Minimum stay</font>
          </div>
          <div class="col-sm-3">
-             <font>Maximum stay</font>
+             <font>From Date</font>
          </div>
          <div class="col-sm-3">
-             <font>Close Date for Arrival</font>
-         </div>
-         <div class="col-sm-3">
-             <font>Close Date for Departure</font>
+             <font>To Date</font>
          </div> 
              
         </div>
@@ -376,47 +379,154 @@
         <div class="row">        
          <div class="col-sm-3">
                 <div class="input-group">
-                     <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="user.min_stay">
+                     <input type="text" class="form-control" name="" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"[(ngModel)]="user.min_stay">
                 </div>    
          </div>
          <div class="col-sm-3">
-                <div class="input-group">
-                        <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="user.max_stay">
-                </div>        
-         </div>
-         <div class="col-sm-3">
             <div class="input-group">
-                <input class="" placeholder="dd-mm-yyyy" type="date"  style="border: 1px solid gray;padding-left:15px;max-width: 10em; "
+                <input class="" placeholder="dd-mm-yyyy" type="date"   style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
                        name="dp" [(ngModel)]="user.close_arrival" >
               </div>
          </div>
          <div class="col-sm-3">
             <div class="input-group">
-                <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
+                <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
                        name="dp" [(ngModel)]="user.close_departure" >
               </div>
          </div>                  
         </div>
+        <div class="row">
+          <div class="col-sm-3">
+              <font>Maximum stay</font>
+          </div>
+          <div class="col-sm-3">
+              <font>From</font>
+          </div>
+          <div class="col-sm-3">
+              <font>To</font>
+          </div> 
+              
+         </div>
+        
+         <div class="row">        
+          <div class="col-sm-3">
+                 <div class="input-group">
+                      <input type="text" class="form-control" name="" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;" [(ngModel)]="user.min_stay">
+                 </div>    
+          </div>
+          <div class="col-sm-3">
+             <div class="input-group">
+                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                        name="dp" [(ngModel)]="user.close_arrival" >
+               </div>
+          </div>
+          <div class="col-sm-3">
+             <div class="input-group">
+                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                        name="dp" [(ngModel)]="user.close_departure" >
+               </div>
+          </div>                  
+         </div>
+         <div class="row">
+        
+          <div class="col-sm-3">
+              <font>Arrival</font>
+          </div>
+          <div class="col-sm-3">
+              <font>From</font>
+          </div>
+          <div class="col-sm-3">
+              <font>To</font>
+          </div> 
+              
+         </div>
+         <div class="row">        
+          <div class="col-sm-3">
+                 <div class="input-group">
+                      <input type="text" class="form-control" name="" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"[(ngModel)]="user.min_stay">
+                 </div>    
+          </div>
+          <div class="col-sm-3">
+             <div class="input-group">
+                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                        name="dp" [(ngModel)]="user.close_arrival" >
+               </div>
+          </div>
+          <div class="col-sm-3">
+             <div class="input-group">
+                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                        name="dp" [(ngModel)]="user.close_departure" >
+               </div>
+          </div>                  
+         </div>
+         <div class="row">
+        
+          <div class="col-sm-3">
+              <font>Departure</font>
+          </div>
+          <div class="col-sm-3">
+              <font>From Date</font>
+          </div>
+          <div class="col-sm-3">
+              <font>To Date</font>
+          </div>   
+         </div>
+       
+         <div class="row">        
+          <div class="col-sm-3">
+                 <div class="input-group">
+                      <input type="text" class="form-control" name="" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"[(ngModel)]="user.min_stay">
+                 </div>    
+          </div>
+          <div class="col-sm-3">
+             <div class="input-group">
+                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                        name="dp" [(ngModel)]="user.close_arrival" >
+               </div>
+          </div>
+          <div class="col-sm-3">
+             <div class="input-group">
+                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                        name="dp" [(ngModel)]="user.close_departure" >
+               </div>
+          </div>                  
+         </div>
+
 <div class="row">
     <div class="col-sm-3">
         <font>House close</font>
     </div> 
-    <div class="col-md-9">
+    <div class="col-sm-3">
+            <font>Date</font>
+        </div> 
+    <div class="col-sm-6">
     </div>
 </div>
         <div class="row">
+                <div class="col-sm-3">
+                        <div class="input-group">
+                             <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;border-radius: 5px;"[(ngModel)]="user.min_stay">
+                        </div>    
+                 </div>
             <div class="col-sm-3">
                 <div class="input-group">
-                    <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 10em;"
+                    <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;border-radius: 5px;"
                            name="dp" [(ngModel)]="user.house_close" >
                   </div>
              </div>
-          <div class="col-md-6"></div>
-          <div class="col-sm-3">
-                <button type="button" class="btn btn-info"
-                style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="restrcitdeatils(user)">Save</button>              
+          <div class="col-md-3"></div>
+          <div class="col-sm-3">              
           </div>  
-        </div>    
+        </div>  
+        <br>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-info"
+                style="height: 35px; padding-top: 2px;border-radius: 0px;"(click)="restrcitdeatils(user)">Save</button>
+        </div>
+        <div class="col-md-5"></div>
+    </div>  
          </div>
         </div>
          <!-- restriction End -->

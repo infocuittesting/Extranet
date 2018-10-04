@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { Route } from "@angular/router";
+import { Router,ActivatedRoute } from "@angular/router";
 import {ReservationService} from './reservation.service';
 import { NgbDateCustomParserFormatter} from "../customdateformat";
 import { NgbModule,NgbDateStruct } from '@ng-bootstrap/ng-bootstrap'; 
@@ -13,9 +12,22 @@ const now = new Date();
   styleUrls: ['./reservation.component.css'],
   providers:[ReservationService,NgbDateCustomParserFormatter]
 })
+
 export class ReservationComponent implements OnInit {
   public hello=[];
-  constructor(private ReservationService:ReservationService,private dateFormate:NgbDateCustomParserFormatter,private route:Router) { }
+  showMore=false;
+  constructor(private ReservationService:ReservationService,
+    private dateFormate:NgbDateCustomParserFormatter,
+    private router: Router,
+    private route: ActivatedRoute ) { }
+      //show more
+  showMoreBut(){
+    this.showMore=true;
+  }
+      //show more
+      showlessBut(){
+        this.showMore=false;
+      }
 
   NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   arriv: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
@@ -75,6 +87,6 @@ export class ReservationComponent implements OnInit {
     console.log(this.Roomtype);
   }
  
-  // this.route.navigate(['/roomtypes']);
+
   
 }

@@ -53,11 +53,12 @@ import { StatisticsService } from "../app/statistics/statistics.service";
 import { ReportsComponent } from './reports/reports.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { FilterdataPipe } from './filterdata.pipe';
-import { ReservationdetailsComponent } from './reservationdetails/reservationdetails.component';
+
 
 export const appRoutes: Routes = [
   { path: 'appcom', component: AppComponent },
   { path: 'login', component: LoginregComponent },
+  
   {
     path: 'menu', component: MenusComponent,
     children: [{
@@ -67,10 +68,6 @@ export const appRoutes: Routes = [
     {
       path:'reservation',
       component:ReservationComponent
-    },
-    {
-      path:'reservationdetails',
-      component:ReservationdetailsComponent
     },
     {
       path: 'promotions',
@@ -123,7 +120,7 @@ let socialloginproviders = {
     ReportsComponent,
     ReservationComponent,
     FilterdataPipe,
-    ReservationdetailsComponent
+    
   ],
   imports: [
     BrowserModule,
