@@ -121,6 +121,16 @@ monthreservation(params): Observable<object[]> {
       .map(this.extractData)
     //.catch(this.handleErrorObservable);
   } 
+  Historybooking(): Observable<object[]> {
+
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    //let body = { "userKey": dashbrddata };
+
+    return this.http.get('https://ivrinfocuit.herokuapp.com/HistoryBooking',  options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  } 
   private extractData(res: Response) {
     //alert('hai20')
     console.log('res========---====' + res);
