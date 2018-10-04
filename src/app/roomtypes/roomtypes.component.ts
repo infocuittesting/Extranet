@@ -440,6 +440,13 @@ public togdate;
     }
    return this.open
   }
+  preventSingleClick = false;
+  timer: any;
  
+  doubleClick () {
+    this.preventSingleClick = true;
+    clearTimeout(this.timer);
+    alert('Double Click Event')
 
+  }
 }

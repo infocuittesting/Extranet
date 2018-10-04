@@ -172,8 +172,8 @@
                             <td  *ngFor="let lt of countdates | slice:start:end; let i=index;"
                             style="border: 1px solid gray; height: 36px; box-shadow: 0 0px 1px 0px rgb(155, 155, 33)!important;
                             border-radius: 0%;"
-                            [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow' , 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}">
-                            <ui-switch labelOn="YES" labelOff="NO" [(ngModel)] = "lt.room_open"  (click)="toggleClicked(lt)" ></ui-switch>
+                            [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow' , 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}" (dblclick)="doubleClick( $event)">
+                            <!-- <ui-switch labelOn="OPEN" labelOff="CLOSE" [(ngModel)] = "lt.room_open"  (click)="toggleClicked(lt)" ></ui-switch> -->
                                 </td>
                     </tr>
                      <tr>

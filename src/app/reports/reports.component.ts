@@ -42,6 +42,7 @@ public charts = [];
     .subscribe((resp: any) => {
       if (resp.ServiceStatus == 'Success') {
         this.staticdetails=resp.Result;
+        console.log("statisctics details",this.staticdetails)
       //   this.getroomdetails= [
       //     {
       //       month:"June",          
@@ -78,14 +79,14 @@ this.chart = this.AmCharts.makeChart('chart10', {
   
 }],
 "marginTop": 25,
+
 "legend": {
   "horizontalGap": 10,
   "maxColumns": 1,
   "position": "right",
-  "marginRight": 80,
-  "autoMargins": false
+  "useGraphSettings": true,
+  "markerSize": 10
 },
-
 "dataProvider": this.staticdetails,
 "valueAxes": [{
     //"unit": "%",
@@ -98,7 +99,7 @@ this.chart = this.AmCharts.makeChart('chart10', {
     "fillAlphas": 0.9,
     "lineAlpha": 0.2,
     "labelText":'Standard',
-    "title": "2004",
+    "title": "Standard",
     "type": "column",
     "valueField": "standardRoomTotal"
 }, {
@@ -106,7 +107,7 @@ this.chart = this.AmCharts.makeChart('chart10', {
     "fillAlphas": 0.9,
     "lineAlpha": 0.2,
     "labelText":'Delux',
-    "title": "2005",
+    "title": "Delux",
     "type": "column",
     // "clustered":false,
     // "columnWidth":0.5,
@@ -116,7 +117,7 @@ this.chart = this.AmCharts.makeChart('chart10', {
   "fillAlphas": 0.9,
   "lineAlpha": 0.2,
   "labelText":'Delux Suite',
-  "title": "2005",
+  "title": "Delux Suite",
   "type": "column",
   // "clustered":false,
  // "columnWidth":0.5,
@@ -126,14 +127,24 @@ this.chart = this.AmCharts.makeChart('chart10', {
 "fillAlphas": 0.9,
 "lineAlpha": 0.2,
 "labelText":'Superior',
-"title": "2005",
+"title": "Superior",
 "type": "column",    
 // "clustered":false,
 //"columnWidth":0.5,
 "valueField": "superiorRoomTotal"
 }],
+"balloon": {
+  "fixedPosition": true,
+  
+},
+"chartCursor": {
+  "cursorAlpha": 0,
+  "oneBalloonOnly": true
+},
+
 "plotAreaFillAlphas": 0.1,
-"categoryField": "month",
+
+"categoryField": "year",
 "categoryAxis": {
     "gridPosition": "start"
 },
@@ -491,16 +502,16 @@ fetchrecord(start_date,end_date){
             }],
             "marginTop": 25,
             "legend": {
-              "horizontalGap": 10,
+              "horizontalGap": 9,
               "maxColumns": 1,
               "position": "right",
-              "marginRight": 80,
+              "marginRight": 60,
               "autoMargins": false
             },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
-            'labelRadius': 5,
+            'labelRadius': 3,
   
             'radius': '40%',
             'innerRadius': '60%',
