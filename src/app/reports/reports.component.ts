@@ -28,11 +28,13 @@ export class ReportsComponent implements OnInit {
   public getroomdetails=[] ;
   public cancelcount=[];
   public modifycount;
+  public futurebook=[];
   LineChart = [];
   public getyear=[];
   staticdetails = [];
 public showline = [];
 public charts = [];
+public futurebook_data=[];
   ngOnInit() {
     let statsParms={
       "business_id":this.session.retrieve("business_id")
@@ -216,115 +218,220 @@ this.charts.push( this.chart );
         });
          this.charts.push(this.chart)
       });
+      
+      this.ReportsService.futurebooking()
+      .subscribe((resp: any) => {   
+        this.futurebook = resp.Returnvalue;
+        // this.cancelcount = resp.cancelcount;
+        // this.modifycount = resp.Totalbookingcount;
+        console.log("future booking",this.futurebook);
+        // this.chartDatas=[];
+        
+        this.futurebook_data = [];
+        for(var i=0;i<this.futurebook.length;i++){
+          this.futurebook_data.push({
+            'date':this.futurebook[i].date,
+            'value':this.futurebook[i].value })
+      
+    
+        }
+        console.log("month,value",this.futurebook_data)
+        this.chart = this.AmCharts.makeChart("chart11", {
+          "type": "serial",
+    "theme": "light",
+    "marginRight":80,
+    "autoMarginOffset":20,
+    "marginTop": 25,
+    "titles": [{
+      "text": "Future Booking Reservation",
+      "bold": true,
+      "position": "top",
+      "align":"center",
+      
+    }],
+    "legend": {
+      "equalWidths": false,
+      "periodValueText": "Future Booking: [[value.sum]]",
+      "position": "top",
+      "valueAlign": "left",
+      "valueWidth": 25
+    },
+    "dataProvider": this.futurebook_data ,
+    "valueAxes": [{
+      "axisAlpha": 0,
+      "guides": [{
+          "fillAlpha": 0.1,
+          "fillColor": "#888888",
+          "lineAlpha": 0,
+          "toValue": 16,
+          "value": 10
+      }],
+      "position": "left",
+      "tickLength": 0
+  }],
+  "graphs": [{
+      "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
+      "bullet": "round",
+      "dashLength": 3,
+      "colorField":"color",
+      "valueField": "value"
+  }],
+  "trendLines": [{
+      "finalDate": "2012-01-11 12",
+      "finalValue": 19,
+      "initialDate": "2012-01-02 12",
+      "initialValue": 10,
+      "lineColor": "#CC0000"
+  }, {
+      "finalDate": "2012-01-22 12",
+      "finalValue": 10,
+      "initialDate": "2012-01-17 12",
+      "initialValue": 16,
+      "lineColor": "#CC0000"
+  }],
+  "chartScrollbar": {
+      "scrollbarHeight":2,
+      "offset":-1,
+      "backgroundAlpha":0.1,
+      "backgroundColor":"#888888",
+      "selectedBackgroundColor":"#67b7dc",
+      "selectedBackgroundAlpha":1
+  },
+  "chartCursor": {
+      "fullWidth":true,
+      "valueLineEabled":true,
+      "valueLineBalloonEnabled":true,
+      "valueLineAlpha":0.5,
+      "cursorAlpha":0
+  },
+  "categoryField": "date",
+  "categoryAxis": {
+      "parseDates": true,
+      "axisAlpha": 0,
+      "gridAlpha": 0.1,
+      "minorGridAlpha": 0.1,
+      "minorGridEnabled": true
+  },
+  "export": {
+      "enabled": true
+   }
+});
+this.charts.push( this.chart );    
+this.chart.addListener("dataUpdated", zoomChart);
+
+function zoomChart(){
+    this.chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
+}
+});
       this.ReportsService.yearreservation()
       .subscribe((resp: any) => {
         // if (resp.ServiceStatus == 'Success') {
           this.getyear = resp.Returnvalue;
           console.log("get year",this.getyear)
       });
-      console.log("its")
-      this.chart = this.AmCharts.makeChart('chartdiv', {
-        "type": "serial",
-        "theme": "light",
-        "marginRight": 80,
-        "dataProvider": [{
-            "lineColor": "#b7e021",
-            "date": "2012-01-01",
-            "duration": 408
-        }, {
-            "date": "2012-01-02",
-            "duration": 482
-        }, {
-            "date": "2012-01-03",
-            "duration": 562
-        }, {
-            "date": "2012-01-04",
-            "duration": 379
-        }, {
-            "lineColor": "#fbd51a",
-            "date": "2012-01-05",
-            "duration": 501
-        }, {
-            "date": "2012-01-06",
-            "duration": 443
-        }, {
-            "date": "2012-01-07",
-            "duration": 405
-        }, {
-            "date": "2012-01-08",
-            "duration": 309,
-            "lineColor": "#2498d2"
-        }, {
-            "date": "2012-01-09",
-            "duration": 287
-        }, {
-            "date": "2012-01-10",
-            "duration": 485
-        }, {
-            "date": "2012-01-11",
-            "duration": 890
-        }, {
-            "date": "2012-01-12",
-            "duration": 810
-        }],
-        "balloon": {
-            "cornerRadius": 6,
-            "horizontalPadding": 15,
-            "verticalPadding": 10
-        },
-        "valueAxes": [{
-            "duration": "mm",
-            "durationUnits": {
-                "hh": "h ",
-                "mm": "min"
-            },
-            "axisAlpha": 0
-        }],
-        "graphs": [{
-            "bullet": "square",
-            "bulletBorderAlpha": 1,
-            "bulletBorderThickness": 1,
-            "fillAlphas": 0.3,
-            "fillColorsField": "lineColor",
-            "legendValueText": "[[value]]",
-            "lineColorField": "lineColor",
-            "title": "duration",
-            "valueField": "duration"
-        }],
-        "chartScrollbar": {
+    //   console.log("its")
+    //   this.chart = this.AmCharts.makeChart('chartdiv', {
+    //     "type": "serial",
+    //     "theme": "light",
+    //     "marginRight": 80,
+    //     "dataProvider": [{
+    //         "lineColor": "#b7e021",
+    //         "date": "2012-01-01",
+    //         "duration": 408
+    //     }, {
+    //         "date": "2012-01-02",
+    //         "duration": 482
+    //     }, {
+    //         "date": "2012-01-03",
+    //         "duration": 562
+    //     }, {
+    //         "date": "2012-01-04",
+    //         "duration": 379
+    //     }, {
+    //         "lineColor": "#fbd51a",
+    //         "date": "2012-01-05",
+    //         "duration": 501
+    //     }, {
+    //         "date": "2012-01-06",
+    //         "duration": 443
+    //     }, {
+    //         "date": "2012-01-07",
+    //         "duration": 405
+    //     }, {
+    //         "date": "2012-01-08",
+    //         "duration": 309,
+    //         "lineColor": "#2498d2"
+    //     }, {
+    //         "date": "2012-01-09",
+    //         "duration": 287
+    //     }, {
+    //         "date": "2012-01-10",
+    //         "duration": 485
+    //     }, {
+    //         "date": "2012-01-11",
+    //         "duration": 890
+    //     }, {
+    //         "date": "2012-01-12",
+    //         "duration": 810
+    //     }],
+    //     "balloon": {
+    //         "cornerRadius": 6,
+    //         "horizontalPadding": 15,
+    //         "verticalPadding": 10
+    //     },
+    //     "valueAxes": [{
+    //         "duration": "mm",
+    //         "durationUnits": {
+    //             "hh": "h ",
+    //             "mm": "min"
+    //         },
+    //         "axisAlpha": 0
+    //     }],
+    //     "graphs": [{
+    //         "bullet": "square",
+    //         "bulletBorderAlpha": 1,
+    //         "bulletBorderThickness": 1,
+    //         "fillAlphas": 0.3,
+    //         "fillColorsField": "lineColor",
+    //         "legendValueText": "[[value]]",
+    //         "lineColorField": "lineColor",
+    //         "title": "duration",
+    //         "valueField": "duration"
+    //     }],
+    //     "chartScrollbar": {
     
-        },
-        "chartCursor": {
-            "categoryBalloonDateFormat": "YYYY MMM DD",
-            "cursorAlpha": 0,
-            "fullWidth": true
-        },
-        "dataDateFormat": "YYYY-MM-DD",
-        "categoryField": "date",
-        "categoryAxis": {
-            "dateFormats": [{
-                "period": "DD",
-                "format": "DD"
-            }, {
-                "period": "WW",
-                "format": "MMM DD"
-            }, {
-                "period": "MM",
-                "format": "MMM"
-            }, {
-                "period": "YYYY",
-                "format": "YYYY"
-            }],
-            "parseDates": true,
-            "autoGridCount": false,
-            "axisColor": "#555555",
-            "gridAlpha": 0,
-            "gridCount": 50
-        },
-        "export": {
-            "enabled": true
-        }
-    });
+    //     },
+    //     "chartCursor": {
+    //         "categoryBalloonDateFormat": "YYYY MMM DD",
+    //         "cursorAlpha": 0,
+    //         "fullWidth": true
+    //     },
+    //     "dataDateFormat": "YYYY-MM-DD",
+    //     "categoryField": "date",
+    //     "categoryAxis": {
+    //         "dateFormats": [{
+    //             "period": "DD",
+    //             "format": "DD"
+    //         }, {
+    //             "period": "WW",
+    //             "format": "MMM DD"
+    //         }, {
+    //             "period": "MM",
+    //             "format": "MMM"
+    //         }, {
+    //             "period": "YYYY",
+    //             "format": "YYYY"
+    //         }],
+    //         "parseDates": true,
+    //         "autoGridCount": false,
+    //         "axisColor": "#555555",
+    //         "gridAlpha": 0,
+    //         "gridCount": 50
+    //     },
+    //     "export": {
+    //         "enabled": true
+    //     }
+    // });
     
     
       
@@ -667,125 +774,7 @@ fetchrecord(start_date,end_date){
           });
           this.charts.push( this.chart );
       });
-      this.ReportsService.monthreservation(statsParms)
-      .subscribe((resp: any) => {   
-        this.monthdetails = resp.Returnvalue;
-        // this.cancelcount = resp.cancelcount;
-        // this.modifycount = resp.Totalbookingcount;
-        console.log("month is came",this.monthdetails);
-        // this.chartDatas=[];
-        this.month_name = [];
-        this.month_val = [];
-        this.showline = [];
-        for(var i=0;i<this.monthdetails.length;i++){
-          this.month_name.push(this.monthdetails[i].title)
-      this.month_val.push(this.monthdetails[i].value)
-        }
-        console.log("month,value",this.showline)
-        this.chart = this.AmCharts.makeChart("chart15", {
-          "type": "serial",
-    "theme": "light",
-    "marginRight": 80,
-    "dataProvider": [{
-        "lineColor": "#b7e021",
-        "date": "2012-01-01",
-        "duration": 408
-    }, {
-        "date": "2012-01-02",
-        "duration": 482
-    }, {
-        "date": "2012-01-03",
-        "duration": 562
-    }, {
-        "date": "2012-01-04",
-        "duration": 379
-    }, {
-        "lineColor": "#fbd51a",
-        "date": "2012-01-05",
-        "duration": 501
-    }, {
-        "date": "2012-01-06",
-        "duration": 443
-    }, {
-        "date": "2012-01-07",
-        "duration": 405
-    }, {
-        "date": "2012-01-08",
-        "duration": 309,
-        "lineColor": "#2498d2"
-    }, {
-        "date": "2012-01-09",
-        "duration": 287
-    }, {
-        "date": "2012-01-10",
-        "duration": 485
-    }, {
-        "date": "2012-01-11",
-        "duration": 890
-    }, {
-        "date": "2012-01-12",
-        "duration": 810
-    }],
-    "balloon": {
-        "cornerRadius": 6,
-        "horizontalPadding": 15,
-        "verticalPadding": 10
-    },
-    "valueAxes": [{
-        "duration": "mm",
-        "durationUnits": {
-            "hh": "h ",
-            "mm": "min"
-        },
-        "axisAlpha": 0
-    }],
-    "graphs": [{
-        "bullet": "square",
-        "bulletBorderAlpha": 1,
-        "bulletBorderThickness": 1,
-        "fillAlphas": 0.3,
-        "fillColorsField": "lineColor",
-        "legendValueText": "[[value]]",
-        "lineColorField": "lineColor",
-        "title": "duration",
-        "valueField": "duration"
-    }],
-    "chartScrollbar": {
 
-    },
-    "chartCursor": {
-        "categoryBalloonDateFormat": "YYYY MMM DD",
-        "cursorAlpha": 0,
-        "fullWidth": true
-    },
-    "dataDateFormat": "YYYY-MM-DD",
-    "categoryField": "date",
-    "categoryAxis": {
-        "dateFormats": [{
-            "period": "DD",
-            "format": "DD"
-        }, {
-            "period": "WW",
-            "format": "MMM DD"
-        }, {
-            "period": "MM",
-            "format": "MMM"
-        }, {
-            "period": "YYYY",
-            "format": "YYYY"
-        }],
-        "parseDates": true,
-        "autoGridCount": false,
-        "axisColor": "#555555",
-        "gridAlpha": 0,
-        "gridCount": 50
-    },
-    "export": {
-        "enabled": true
-    }
-});
-      
-});
 }
 // User count report in pdf file
 public usercount = [];
