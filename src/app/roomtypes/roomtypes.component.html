@@ -42,7 +42,7 @@
             </div>
       <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Grid">Grid</a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Daterange">Date Range</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Daterange">Setup Rate</a></li>
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Restriction">Restriction</a></li>
           </ul>
           <div class="tab-content clearfix">
@@ -172,8 +172,8 @@
                             <td  *ngFor="let lt of countdates | slice:start:end; let i=index;"
                             style="border: 1px solid gray; height: 36px; box-shadow: 0 0px 1px 0px rgb(155, 155, 33)!important;
                             border-radius: 0%;"
-                            [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow' , 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}">
-                            <ui-switch labelOn="YES" labelOff="NO" [(ngModel)] = "lt.room_open"  (click)="toggleClicked()" ></ui-switch>
+                            [ngClass]="{'backgroundcolorchange': lt.Room_Status=='yellow' , 'backgroundcolorgreenchange': lt.Room_Status=='Declared', 'backgroundcolorredchange': lt.Room_Status=='NotDeclared'}" (dblclick)="doubleClick( $event)">
+                            <!-- <ui-switch labelOn="OPEN" labelOff="CLOSE" [(ngModel)] = "lt.room_open"  (click)="toggleClicked(lt)" ></ui-switch> -->
                                 </td>
                     </tr>
                      <tr>
@@ -188,7 +188,7 @@
                                      <input type="text"  [(ngModel)]="lt.Available_Room_Count" 
                                     (change)="editsellroom($event,i,lt.Available_Room_Count)"
                                     style="width: 50px;height: 30px;text-align:center; margin-left: 5px;
-                                    border-radius: 40%;">
+                                    border-radius: 40%;" [disabled]=tog>
                                     <!-- <div *ngIf="roomno.dirty && !roomno.valid  && roomno.errors.pattern" ngClass="{ 'has-error' : !roomno.valid && submitAttempt }"></div> -->
 
                                 </td>
@@ -215,7 +215,7 @@
                                 style="border: 1px solid gray;">
                                     <input type="text" [(ngModel)]="lt.Price"
                                     (change)="editbasciprice($event,j,lt.Price)"
-                                    style="width: 60px;height: 36px;padding: 3px;">
+                                    style="width: 60px;height: 36px;padding: 3px;" [disabled]=tog>
                                 </td>
                     </tr>
 
@@ -312,7 +312,7 @@
                        <font>Room To Sell</font>
                      </div>
                      <div class="col-sm-4">
-                            <font>Price</font>
+                            <font>Price(single/Double)</font>
                           </div>
                     </div> 
                  <div class="row">
@@ -333,7 +333,7 @@
                          </div>      
                     </div>  
                     <br> 
-         <div class="row">
+         <!-- <div class="row">
            <div class="col-md-8">
              <table class="table table-bordered">
                <thead style="background-color:#337ab7;color: white">
@@ -350,7 +350,7 @@
                </tbody>
              </table>
            </div>
-         </div>             
+         </div>              -->
         </div>
 
         <!-- Restriction details -->

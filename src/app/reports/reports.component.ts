@@ -28,11 +28,15 @@ export class ReportsComponent implements OnInit {
   public getroomdetails=[] ;
   public cancelcount=[];
   public modifycount;
+  public futurebook=[];
+  public historybook=[];
+  public historybook_data = [];
   LineChart = [];
   public getyear=[];
   staticdetails = [];
-
+public showline = [];
 public charts = [];
+public futurebook_data=[];
   ngOnInit() {
     let statsParms={
       "business_id":this.session.retrieve("business_id")
@@ -42,6 +46,7 @@ public charts = [];
     .subscribe((resp: any) => {
       if (resp.ServiceStatus == 'Success') {
         this.staticdetails=resp.Result;
+        console.log("statisctics details",this.staticdetails)
       //   this.getroomdetails= [
       //     {
       //       month:"June",          
@@ -72,12 +77,20 @@ this.chart = this.AmCharts.makeChart('chart10', {
 "type": "serial",
 'titleField': ['Standard Room'],
 "titles": [{
-  "text": "Year Reservation",
+  "text": "Room Statistics",
   "bold": true,
   "align": "middle"
   
 }],
+"marginTop": 25,
 
+"legend": {
+  "horizontalGap": 10,
+  "maxColumns": 1,
+  "position": "right",
+  "useGraphSettings": true,
+  "markerSize": 10
+},
 "dataProvider": this.staticdetails,
 "valueAxes": [{
     //"unit": "%",
@@ -90,7 +103,7 @@ this.chart = this.AmCharts.makeChart('chart10', {
     "fillAlphas": 0.9,
     "lineAlpha": 0.2,
     "labelText":'Standard',
-    "title": "2004",
+    "title": "Standard",
     "type": "column",
     "valueField": "standardRoomTotal"
 }, {
@@ -98,7 +111,8 @@ this.chart = this.AmCharts.makeChart('chart10', {
     "fillAlphas": 0.9,
     "lineAlpha": 0.2,
     "labelText":'Delux',
-    "title": "2005",
+    
+    "title": "Delux",
     "type": "column",
     // "clustered":false,
     // "columnWidth":0.5,
@@ -108,7 +122,7 @@ this.chart = this.AmCharts.makeChart('chart10', {
   "fillAlphas": 0.9,
   "lineAlpha": 0.2,
   "labelText":'Delux Suite',
-  "title": "2005",
+  "title": "Delux Suite",
   "type": "column",
   // "clustered":false,
  // "columnWidth":0.5,
@@ -118,14 +132,24 @@ this.chart = this.AmCharts.makeChart('chart10', {
 "fillAlphas": 0.9,
 "lineAlpha": 0.2,
 "labelText":'Superior',
-"title": "2005",
+"title": "Superior",
 "type": "column",    
 // "clustered":false,
 //"columnWidth":0.5,
 "valueField": "superiorRoomTotal"
 }],
+"balloon": {
+  "fixedPosition": true,
+  
+},
+"chartCursor": {
+  "cursorAlpha": 0,
+  "oneBalloonOnly": true
+},
+
 "plotAreaFillAlphas": 0.1,
-"categoryField": "month",
+
+"categoryField": "year",
 "categoryAxis": {
     "gridPosition": "start"
 },
@@ -164,10 +188,19 @@ this.charts.push( this.chart );
           'theme': 'light',
           'hideCredits':true,
           "titles": [{
-            "text": "Year Reservation",
+            "text": "Year view Reservation",
             "bold": true,
+            "align":"center"
             
           }],
+          "marginTop": 25,
+          "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "marginRight": 80,
+            "autoMargins": false
+          },
           'dataProvider':this.chartDatas,
           'export': {
             "enabled": true,
@@ -178,7 +211,7 @@ this.charts.push( this.chart );
           'valueField': 'value',
           'labelRadius': 5,
   
-          'radius': '42%',
+          'radius': '40%',
           'innerRadius': '60%',
           'labelText': '[[title]]',
          
@@ -188,39 +221,330 @@ this.charts.push( this.chart );
         });
          this.charts.push(this.chart)
       });
+      
+      this.ReportsService.futurebooking()
+      .subscribe((resp: any) => {   
+        this.futurebook = resp.Returnvalue;
+        // this.cancelcount = resp.cancelcount;
+        // this.modifycount = resp.Totalbookingcount;
+        console.log("future booking",this.futurebook);
+        // this.chartDatas=[];
+        
+        this.futurebook_data = [];
+        for(var i=0;i<this.futurebook.length;i++){
+          this.futurebook_data.push({
+            'date':this.futurebook[i].date,
+            'value':this.futurebook[i].value })
+      
+    
+        }
+        console.log("month,value",this.futurebook_data)
+        this.chart = this.AmCharts.makeChart("chart11", {
+          "type": "serial",
+    "theme": "light",
+    'hideCredits':true,
+    "marginRight":80,
+    "autoMarginOffset":20,
+    "marginTop": 25,
+    "titles": [{
+      "text": "Future Booking Reservation",
+      "bold": true,
+      "position": "top",
+      "align":"center",
+      
+    }],
+    "legend": {
+      "equalWidths": false,
+      "periodValueText": "Future Booking: [[value.sum]]",
+      "position": "top",
+      "valueAlign": "left",
+      "valueWidth": 25
+    },
+    "dataProvider": this.futurebook_data ,
+    "valueAxes": [{
+      "axisAlpha": 0,
+      "guides": [{
+          "fillAlpha": 0.1,
+          "fillColor": "#888888",
+          "lineAlpha": 0,
+          "toValue": 16,
+          "value": 10
+      }],
+      "position": "left",
+      "tickLength": 0
+  }],
+  "graphs": [{
+      "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
+      "bullet": "round",
+      "dashLength": 3,
+      "colorField":"color",
+      "valueField": "value"
+  }],
+  "trendLines": [{
+      "finalDate": "2012-01-11 12",
+      "finalValue": 19,
+      "initialDate": "2012-01-02 12",
+      "initialValue": 10,
+      "lineColor": "#CC0000"
+  }, {
+      "finalDate": "2012-01-22 12",
+      "finalValue": 10,
+      "initialDate": "2012-01-17 12",
+      "initialValue": 16,
+      "lineColor": "#CC0000"
+  }],
+  "chartScrollbar": {
+      "scrollbarHeight":2,
+      "offset":-1,
+      "backgroundAlpha":0.1,
+      "backgroundColor":"#888888",
+      "selectedBackgroundColor":"#67b7dc",
+      "selectedBackgroundAlpha":1
+  },
+  "chartCursor": {
+      "fullWidth":true,
+      "valueLineEabled":true,
+      "valueLineBalloonEnabled":true,
+      "valueLineAlpha":0.5,
+      "cursorAlpha":0
+  },
+  "categoryField": "date",
+  "categoryAxis": {
+      "parseDates": true,
+      "axisAlpha": 0,
+      "gridAlpha": 0.1,
+      "minorGridAlpha": 0.1,
+      "minorGridEnabled": true
+  },
+  "export": {
+      "enabled": true
+   }
+});
+this.charts.push( this.chart );    
+this.chart.addListener("dataUpdated", zoomChart);
+
+function zoomChart(){
+    this.chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
+}
+
+});
+// dropdown lilst
       this.ReportsService.yearreservation()
       .subscribe((resp: any) => {
         // if (resp.ServiceStatus == 'Success') {
           this.getyear = resp.Returnvalue;
           console.log("get year",this.getyear)
       });
-      // this.LineChart = new Chart('linechart',{
-      //  type:'line',
-      //  data:{
-      //    labels:["jan","Feb","march","april","may","june","july","august","september","october","november","december"],
-      //    datasets:[{
-      //      label:"Number of items sold in months",
-      //      data:[],
-      //      fill:false,
-      //      lineTension:0.2,
-      //      borderColor:"red",
-      //      borderwidth:1
-      //    }],
-      //    options:{
-      //      title:{
-      //        text:"Line Chart",
-      //        display:true
-      //      },
-      //      scales:{
-      //        yAxes:[{
-      //          ticks:{
-      //            beginAtZero:true
-      //          }
-      //        }]
-      //      }
-      //    }
-      //   }
-      // })
+// historybooking
+      this.ReportsService.Historybooking()
+      .subscribe((resp: any) => {   
+        this.historybook = resp.Returnvalue;
+        // this.cancelcount = resp.cancelcount;
+        // this.modifycount = resp.Totalbookingcount;
+        console.log("future booking",this.historybook);
+        // this.chartDatas=[];
+        
+        this.historybook_data = [];
+        for(var i=0;i<this.historybook.length;i++){
+          this.historybook_data.push({
+            'date':this.historybook[i].date,
+            'value':this.historybook[i].value })
+      
+    
+        }
+        console.log("month,value",this.historybook_data)
+        this.chart = this.AmCharts.makeChart("chart9", {
+          "type": "serial",
+    "theme": "light",
+    "marginRight":80,
+    "autoMarginOffset":20,
+    "marginTop": 25,
+    "titles": [{
+      "text": "History Booking Reservation",
+      "bold": true,
+      "position": "top",
+      "align":"center",
+      
+    }],
+    "legend": {
+      "equalWidths": false,
+      "periodValueText": "History Booking: [[value.sum]]",
+      "position": "top",
+      "valueAlign": "left",
+      "valueWidth": 25
+    },
+    "dataProvider": this.historybook_data ,
+    "valueAxes": [{
+      "axisAlpha": 0,
+      "guides": [{
+          "fillAlpha": 0.1,
+          "fillColor": "#888888",
+          "lineAlpha": 0,
+          "toValue": 16,
+          "value": 10
+      }],
+      "position": "left",
+      "tickLength": 0
+  }],
+  "graphs": [{
+      "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
+      "bullet": "round",
+      "dashLength": 3,
+      "colorField":"color",
+      "valueField": "value"
+  }],
+  "trendLines": [{
+      "finalDate": "2012-01-11 12",
+      "finalValue": 19,
+      "initialDate": "2012-01-02 12",
+      "initialValue": 10,
+      "lineColor": "#CC0000"
+  }, {
+      "finalDate": "2012-01-22 12",
+      "finalValue": 10,
+      "initialDate": "2012-01-17 12",
+      "initialValue": 16,
+      "lineColor": "#CC0000"
+  }],
+  "chartScrollbar": {
+      "scrollbarHeight":2,
+      "offset":-1,
+      "backgroundAlpha":0.1,
+      "backgroundColor":"#888888",
+      "selectedBackgroundColor":"#67b7dc",
+      "selectedBackgroundAlpha":1
+  },
+  "chartCursor": {
+      "fullWidth":true,
+      "valueLineEabled":true,
+      "valueLineBalloonEnabled":true,
+      "valueLineAlpha":0.5,
+      "cursorAlpha":0
+  },
+  "categoryField": "date",
+  "categoryAxis": {
+      "parseDates": true,
+      "axisAlpha": 0,
+      "gridAlpha": 0.1,
+      "minorGridAlpha": 0.1,
+      "minorGridEnabled": true
+  },
+  "export": {
+      "enabled": true
+   }
+});
+this.charts.push( this.chart );    
+this.chart.addListener("dataUpdated", zoomChart);
+
+function zoomChart(){
+    this.chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
+}
+});
+    //   console.log("its")
+    //   this.chart = this.AmCharts.makeChart('chartdiv', {
+    //     "type": "serial",
+    //     "theme": "light",
+    //     "marginRight": 80,
+    //     "dataProvider": [{
+    //         "lineColor": "#b7e021",
+    //         "date": "2012-01-01",
+    //         "duration": 408
+    //     }, {
+    //         "date": "2012-01-02",
+    //         "duration": 482
+    //     }, {
+    //         "date": "2012-01-03",
+    //         "duration": 562
+    //     }, {
+    //         "date": "2012-01-04",
+    //         "duration": 379
+    //     }, {
+    //         "lineColor": "#fbd51a",
+    //         "date": "2012-01-05",
+    //         "duration": 501
+    //     }, {
+    //         "date": "2012-01-06",
+    //         "duration": 443
+    //     }, {
+    //         "date": "2012-01-07",
+    //         "duration": 405
+    //     }, {
+    //         "date": "2012-01-08",
+    //         "duration": 309,
+    //         "lineColor": "#2498d2"
+    //     }, {
+    //         "date": "2012-01-09",
+    //         "duration": 287
+    //     }, {
+    //         "date": "2012-01-10",
+    //         "duration": 485
+    //     }, {
+    //         "date": "2012-01-11",
+    //         "duration": 890
+    //     }, {
+    //         "date": "2012-01-12",
+    //         "duration": 810
+    //     }],
+    //     "balloon": {
+    //         "cornerRadius": 6,
+    //         "horizontalPadding": 15,
+    //         "verticalPadding": 10
+    //     },
+    //     "valueAxes": [{
+    //         "duration": "mm",
+    //         "durationUnits": {
+    //             "hh": "h ",
+    //             "mm": "min"
+    //         },
+    //         "axisAlpha": 0
+    //     }],
+    //     "graphs": [{
+    //         "bullet": "square",
+    //         "bulletBorderAlpha": 1,
+    //         "bulletBorderThickness": 1,
+    //         "fillAlphas": 0.3,
+    //         "fillColorsField": "lineColor",
+    //         "legendValueText": "[[value]]",
+    //         "lineColorField": "lineColor",
+    //         "title": "duration",
+    //         "valueField": "duration"
+    //     }],
+    //     "chartScrollbar": {
+    
+    //     },
+    //     "chartCursor": {
+    //         "categoryBalloonDateFormat": "YYYY MMM DD",
+    //         "cursorAlpha": 0,
+    //         "fullWidth": true
+    //     },
+    //     "dataDateFormat": "YYYY-MM-DD",
+    //     "categoryField": "date",
+    //     "categoryAxis": {
+    //         "dateFormats": [{
+    //             "period": "DD",
+    //             "format": "DD"
+    //         }, {
+    //             "period": "WW",
+    //             "format": "MMM DD"
+    //         }, {
+    //             "period": "MM",
+    //             "format": "MMM"
+    //         }, {
+    //             "period": "YYYY",
+    //             "format": "YYYY"
+    //         }],
+    //         "parseDates": true,
+    //         "autoGridCount": false,
+    //         "axisColor": "#555555",
+    //         "gridAlpha": 0,
+    //         "gridCount": 50
+    //     },
+    //     "export": {
+    //         "enabled": true
+    //     }
+    // });
+    
+    
       
 }
 fetchrecord(start_date,end_date){
@@ -251,8 +575,17 @@ fetchrecord(start_date,end_date){
           'theme': 'light',
           'hideCredits':true,
           "titles": [{
-            "text": "Booking Reservation"
+            "text": "Booking details",
+            "align":"center"
           }],
+          "marginTop": 25,
+          "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "marginRight": 80,
+            "autoMargins": false
+          },
           'dataProvider':this.chartDatas,
           'titleField': 'title',
           'valueField': 'value',
@@ -288,14 +621,23 @@ fetchrecord(start_date,end_date){
           'theme': 'light',
           'hideCredits':true,
           "titles": [{
-            "text": "Channels"
+            "text": "Channels reservation",
+            "align":"center"
           }],
+          "marginTop": 25,
+          "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "marginRight": 80,
+            "autoMargins": false
+          },
           'dataProvider':this.chartDatas,
           'titleField': 'title',
           'valueField': 'value',
           'labelRadius': 5,
 
-          'radius': '42%',
+          'radius': '40%',
           'innerRadius': '0%',
           'labelText': '[[title]]',
           'export': {
@@ -325,15 +667,25 @@ fetchrecord(start_date,end_date){
             'type': 'pie',
             'theme': 'light',
             'hideCredits':true,
+            "marginTop": 25,
             "titles": [{
-              "text": "Occupancy"
+              "text": "Room types",
+              "align":"center"
             }],
+           
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '0%',
             'labelText': '[[title]]',
             'export': {
@@ -364,14 +716,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Booking vs Confirmation"
+              "text": "Booking vs Confirmation",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 5,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 65,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '60%',
             'labelText': '[[title]]',
             'export': {
@@ -403,21 +764,34 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Language"
+              "text": "Language",
+              "align":"center"
             }],
+            "marginTop": 25,
+         
+            "legend": {
+              "horizontalGap": 20,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
-            'innerRadius': '60%',
+            'radius': '40%',
+            'innerRadius': '0%',
             'labelText': '[[title]]',
             'export': {
               "enabled": true,
               "menu":  [ ],
              
-            }
+            },
+            "responsive": {
+              "enabled": true
+            },
           });
           this.charts.push( this.chart );
       });
@@ -441,14 +815,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Booking vs Delivery"
+              "text": "Booking vs Delivery",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '0%',
             'labelText': '[[title]]',
             'export': {
@@ -479,14 +862,23 @@ fetchrecord(start_date,end_date){
             'theme': 'light',
             'hideCredits':true,
             "titles": [{
-              "text": "Countries"
+              "text": "Countries",
+              "align":"center"
             }],
+            "marginTop": 25,
+            "legend": {
+              "horizontalGap": 10,
+              "maxColumns": 1,
+              "position": "right",
+              "marginRight": 80,
+              "autoMargins": false
+            },
             'dataProvider':this.chartDatas,
             'titleField': 'title',
             'valueField': 'value',
             'labelRadius': 5,
   
-            'radius': '42%',
+            'radius': '40%',
             'innerRadius': '0%',
             'labelText': '[[title]]',
             'export': {
@@ -498,6 +890,7 @@ fetchrecord(start_date,end_date){
           });
           this.charts.push( this.chart );
       });
+
 }
 // User count report in pdf file
 public usercount = [];
@@ -656,49 +1049,49 @@ selectdropdown(roomtype){
   let statsParms = {
      "year":roomtype.toString()
   }
-  this.ReportsService.monthreservation(statsParms)
-  .subscribe((resp: any) => {   
-    this.monthdetails = resp.Returnvalue;
-    // this.cancelcount = resp.cancelcount;
-    // this.modifycount = resp.Totalbookingcount;
-    console.log("month is came",this.monthdetails);
-    // this.chartDatas=[];
-    this.month_name = [];
-    this.month_val = [];
-    for(var i=0;i<this.monthdetails.length;i++){
-      this.month_name.push(this.monthdetails[i].title)
-      this.month_val.push(this.monthdetails[i].value)
-    }
-    console.log("month,value",this.month_name,this.month_val)
-    this.chart = new Chart('chart9',{
-    type:'line',
-    data:{
-      labels:this.month_name,
-      datasets:[{
-        label:"Number of reservation booked in months",
-        data:this.month_val,
-        fill:false,
-        lineTension:1.0,
-        borderColor:"green",
-        borderwidth:2
-      }],
-      options:{
-        title:{
-          text:"Line Chart",
-          display:true
-        },
-        scales:{
-          yAxes:[{
-            ticks:{
-              beginAtZero:true
-            }
-          }]
-        }
-      }
-     }
-   })
-  //  this.charts.push( this.chart );
-  });
+  // this.ReportsService.monthreservation(statsParms)
+  // .subscribe((resp: any) => {   
+  //   this.monthdetails = resp.Returnvalue;
+  //   // this.cancelcount = resp.cancelcount;
+  //   // this.modifycount = resp.Totalbookingcount;
+  //   console.log("month is came",this.monthdetails);
+  //   // this.chartDatas=[];
+  //   this.month_name = [];
+  //   this.month_val = [];
+  //   for(var i=0;i<this.monthdetails.length;i++){
+  //     this.month_name.push(this.monthdetails[i].title)
+  //     this.month_val.push(this.monthdetails[i].value)
+  //   }
+  //   console.log("month,value",this.month_name,this.month_val)
+  //   this.chart = new Chart('chart9',{
+  //   type:'line',
+  //   data:{
+  //     labels:this.month_name,
+  //     datasets:[{
+  //       label:"Number of reservation booked in months",
+  //       data:this.month_val,
+  //       fill:false,
+  //       lineTension:1.0,
+  //       borderColor:"green",
+  //       borderwidth:2
+  //     }],
+  //     options:{
+  //       title:{
+  //         text:"Line Chart",
+  //         display:true
+  //       },
+  //       scales:{
+  //         yAxes:[{
+  //           ticks:{
+  //             beginAtZero:true
+  //           }
+  //         }]
+  //       }
+  //     }
+  //    }
+  //  })
+  // //  this.charts.push( this.chart );
+  // });
 }
 // generate pdf
  x:Number;
