@@ -387,17 +387,22 @@ this.setper = false
 
     });
   }
-  restrcitdeatils(user){
-    console.log("restrictdetails",user)
+  restrcitdeatils(min_stay,min_date,max_stay,max_date,close_arrival_from,close_arrival_to,close_departure_from,close_departure_to,house_close){
+    console.log("restrictdetails",min_stay,min_date,max_stay,max_stay,close_arrival_from,close_arrival_to,close_departure_from,close_departure_to,house_close)
     let body = {
        
-        "business_id": this.session.retrieve("business_id"),
-          // "room_type": this.labelforroom,
-          "min_stay":Number(user.min_stay),
-          "max_stay":Number(user.max_stay),
-          "close_arrival":user.close_arrival,
-          "close_departure":user.close_departure,
-          "house_close":user.house_close
+      
+        "business_id":this.session.retrieve("business_id").toString(),
+        "min_stay":min_stay,
+        "min_date":min_date,
+        "max_stay":max_stay,
+        "max_date":max_date,
+        "close_arrival_from":close_arrival_from,
+        "close_arrival_to":close_arrival_to,
+        "close_departure_from":close_departure_from,
+        "close_departure_to":close_departure_to,
+        "house_close":house_close
+      
       
     }
     console.log("params details",body)
