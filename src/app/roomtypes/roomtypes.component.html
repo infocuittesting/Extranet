@@ -368,11 +368,9 @@
              <font>Minimum stay</font>
          </div>
          <div class="col-sm-3">
-             <font>From Date</font>
+             <font>Date</font>
          </div>
-         <div class="col-sm-3">
-             <font>To Date</font>
-         </div> 
+
              
         </div>
        <div *ngFor = "let user of selectrestr">
@@ -388,23 +386,16 @@
                        name="dp" [(ngModel)]="user.close_arrival" >
               </div>
          </div>
-         <div class="col-sm-3">
-            <div class="input-group">
-                <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
-                       name="dp" [(ngModel)]="user.close_departure" >
-              </div>
-         </div>                  
+                
         </div>
         <div class="row">
           <div class="col-sm-3">
               <font>Maximum stay</font>
           </div>
           <div class="col-sm-3">
-              <font>From</font>
+              <font>Date</font>
           </div>
-          <div class="col-sm-3">
-              <font>To</font>
-          </div> 
+
               
          </div>
         
@@ -419,19 +410,11 @@
                  <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
                         name="dp" [(ngModel)]="user.close_arrival" >
                </div>
-          </div>
-          <div class="col-sm-3">
-             <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
-                        name="dp" [(ngModel)]="user.close_departure" >
-               </div>
-          </div>                  
+          </div>                 
          </div>
          <div class="row">
         
-          <div class="col-sm-3">
-              <font>Arrival</font>
-          </div>
+            <div class="col-sm-3"></div>
           <div class="col-sm-3">
               <font>From</font>
           </div>
@@ -441,11 +424,9 @@
               
          </div>
          <div class="row">        
-          <div class="col-sm-3">
-                 <div class="input-group">
-                      <input type="text" class="form-control" name="" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"[(ngModel)]="user.min_stay">
-                 </div>    
-          </div>
+            <div class="col-sm-3">
+                <font>Arrival</font>
+            </div>
           <div class="col-sm-3">
              <div class="input-group">
                  <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
@@ -462,7 +443,7 @@
          <div class="row">
         
           <div class="col-sm-3">
-              <font>Departure</font>
+             
           </div>
           <div class="col-sm-3">
               <font>From Date</font>
@@ -474,9 +455,7 @@
        
          <div class="row">        
           <div class="col-sm-3">
-                 <div class="input-group">
-                      <input type="text" class="form-control" name="" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"[(ngModel)]="user.min_stay">
-                 </div>    
+            <font>Departure</font>  
           </div>
           <div class="col-sm-3">
              <div class="input-group">
@@ -494,7 +473,7 @@
 
 <div class="row">
     <div class="col-sm-3">
-        <font>House close</font>
+    
     </div> 
     <div class="col-sm-3">
             <font>Date</font>
@@ -504,9 +483,7 @@
 </div>
         <div class="row">
                 <div class="col-sm-3">
-                        <div class="input-group">
-                             <input type="text" class="form-control" name="" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;border-radius: 5px;"[(ngModel)]="user.min_stay">
-                        </div>    
+                    <font>House close</font>   
                  </div>
             <div class="col-sm-3">
                 <div class="input-group">
