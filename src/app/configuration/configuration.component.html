@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-md-12">
     <ul class="nav nav-tabs">
-      <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Grid">Room Plan</a></li>
+      <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Grid">Room Type</a></li>
       <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Daterange">Rate Plan</a></li>
     </ul>
   </div>
@@ -100,7 +100,7 @@
           <!-- Modal content-->
           <div class="modal-content" style="width:158%;margin-left:-35%;">
             <div class="modal-header">
-              <h4 style="margin-left:40%;"> Room Plan</h4>
+              <h4 style="margin-left:40%;"> Room Type</h4>
               <button type="button" class="close" style="margin-right:5px;" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -112,10 +112,10 @@
                   <font> Room Size </font>
                 </div>
                 <div class="col-md-3">
-                 <font>Max Adults </font> 
+                 <font>Min Adults </font> 
                 </div>
                 <div class="col-md-3">
-                  <font>Max Child </font>
+                  <font>Default Child </font>
                 </div>
               </div>
             <div class="row">
@@ -175,7 +175,7 @@
               <div class="col-md-3">
                 <font>Photos</font>
               </div>
-              <div class="col-md-3">
+              <!-- <div class="col-md-3">
                 <font>Rate Plan </font>
               </div>
               <div class="col-md-3">
@@ -183,13 +183,13 @@
               </div>
               <div class="col-md-3">
                 <font>Important Information</font>
-              </div>
+              </div> -->
             </div>
             <div class="row">
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.upload_photos">
               </div>
-              <div class="col-md-3">
+              <!-- <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.rate_plan_id">
               </div>
               <div class="col-md-3">
@@ -199,10 +199,10 @@
               </div>
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.important_information">
-              </div>
+              </div> -->
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <!-- <div class="col-md-3">
                 <font> Advance Booking</font>
               </div>
               <div class="col-md-3">
@@ -210,13 +210,13 @@
               </div>
               <div class="col-md-3">
                 <font>Cancellation</font>
-              </div>
+              </div> -->
               <div class="col-md-3">
                 <font>Smoking</font>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <!-- <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;"  [(ngModel)]="plan.advance_booking_window">
               </div>
               <div class="col-md-3">
@@ -224,7 +224,7 @@
               </div>
               <div class="col-md-3">
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.cancellation_policy">
-              </div>
+              </div> -->
               <div class="col-md-3">
                 <input type="checkbox" name="" id="" style=" width:30px; height:30px;margin-top: 5px;margin-left: 10px;" [(ngModel)]="plan.smoking">
               </div>
