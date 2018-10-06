@@ -42,7 +42,21 @@ export class RoomtypesComponent implements OnInit {
   restricefromMin: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
   setper = true;
   selectrestr = [];
+  public rateplan=[];
+  public roomtypes=[];
   ngOnInit() {
+    this.roomTypeService.selectrateplan()
+.subscribe((resp: any) => {
+  this.rateplan = resp.Result;
+  // this.todate4=this.selectrestr.house_close;
+  console.log("Rate plannnnnnnnnnnnnnnn",this.rateplan)
+});
+this.roomTypeService.selectroomtype()
+.subscribe((resp: any) => {
+  this.roomtypes = resp.Result;
+  // this.todate4=this.selectrestr.house_close;
+  console.log("room plannnnnnnnnnnnnnnn",this.roomtypes)
+});
    this.roomTypeService.selectrestriction()
 .subscribe((resp: any) => {
   this.selectrestr = resp.Result;
@@ -304,9 +318,11 @@ this.setper = false
   public to:any;
   public price:number;
   public sell:number;
-  daterangedetails(getdate,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice){
-    console.log("daterange details",getdate,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice)
+  public extra_price:number;
+  daterangedetails(getdate,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice,extra_adult_rate,room_id,rate_plan_id){
+    console.log("daterange details",getdate,todate,sun,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice,extra_adult_rate,room_id,rate_plan_id)
     // days checkbox input
+  this.extra_price = extra_adult_rate
   this.price = rangeprice;
   this.sell = roomtosell;
     if(sun == true)
@@ -360,22 +376,25 @@ this.setper = false
     this.from = this.rangefrom.year+'-'+this.rangefrom.month+'-'+this.rangefrom.day
     this.to = this.todate2.year+'-'+this.todate2.month+'-'+this.todate2.day
     let params = {
-      "business_id":this.session.retrieve("business_id"),
-      "st_date":this.from.toString(),
-      "ed_date":this.to.toString(),
-
-      "room_type":this.labelforroom,
-      "days":{
-        "sun":this.sunday,
-        "mon":this.monday,
-        "tue":this.tuesday,
-        "wed":this.wednesday,
-        "thu":this.thursday,
-        "fri":this.friday,
-        "sat":this.saturday
-      },
-      "room_to_sell":Number(this.sell),
-      "price":Number(this.price)
+      
+        "business_id": this.session.retrieve("business_id").toString(),
+        "st_date": this.from.toString(),
+        "ed_date": this.to.toString() ,
+        "days":{
+          "sun": this.sunday,
+          "mon":this.monday,
+          "tue":this.tuesday,
+          "wed":this.wednesday,
+          "thu":this.thursday,
+          "fri":this.friday,
+          "sat":this.saturday
+        },
+        "available_count": this.sell ,
+        "room_rate":this.price,
+        "extra_adult_rate":this.extra_price,
+        "room_id":room_id,
+        "rate_plan_id":rate_plan_id
+      
     }
     console.log("input********************",params)
     this.roomTypeService.daterangecount(params)

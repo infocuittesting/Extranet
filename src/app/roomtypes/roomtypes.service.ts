@@ -80,6 +80,26 @@ daterangecount(params): Observable<object[]> {
       .map(this.extractData)
     //.catch(this.handleErrorObservable);
   }
+  selectrateplan(): Observable<object[]> {
+    console.log("service is cam")
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    let body = { "business_id":this.session.retrieve("business_id") };
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/select_rateplanid',body, options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
+  selectroomtype(): Observable<object[]> {
+    console.log("service is cam")
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+  
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/select_room_types', options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
   private extractData(res: Response) {
     //alert('hai20')
     console.log('res========---====' + res);

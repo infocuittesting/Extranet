@@ -3,7 +3,7 @@
          <h6>Rates and Availability</h6>
         </div>
  </div>       
-<div class="row" *ngIf="roomdetailsflg!=true">
+<!-- <div class="row" *ngIf="roomdetailsflg!=true">
 
         <div class="col-sm-3" style="margin-top: 5%;margin-left: -2px;" *ngFor="let roomtype of getroomTypedetails">
                 <div class="card" (click)="standardRoom(roomtype);" [ngClass]="{'changeborderclr': basicFlag}">
@@ -28,18 +28,18 @@
 
 
 
-    </div>
+    </div> -->
 
-    <div  *ngIf="roomdetailsflg==true">
+    <!-- <div  *ngIf="roomdetailsflg==true"> -->
    
-        <div class="row">
+        <!-- <div class="row">
                 <div class="col-sm-12 dropcss" style="margin-bottom: 20px;margin-top: -10px;">
                        <label style="margin-left: 60em;">Back
                            <span style="    border: 1px solid gray;padding: 3px 6px;
                            background-color: white;cursor: pointer;">
                            <i class="fa fa-reply hovercss" (click)="cleartemp();roomdetailsflg=false" aria-hidden="true"></i></span></label>
                 </div>
-            </div>
+            </div> -->
       <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Grid">Grid</a></li>
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Daterange">Setup Rate</a></li>
@@ -338,22 +338,26 @@
                        </div>
                   <div class="col-sm-2">
                          <div class="input-group">
-                                 <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
+                                 <input type="text" class="form-control" name="extra_adult" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="extra_adult_rate">
                              </div>
                        </div>    
                   <div class="col-sm-2">
                          <div class="input-group">
-                                 <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
+                            <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="room_id">
+                                <option *ngFor="let list of roomtypes" [ngValue] = "list.room_id"> {{list.room_name}}</option> 
+                              </select>
                              </div>
                        </div> 
                   <div class="col-sm-2">
                          <div class="input-group">
-                                 <input type="text" class="form-control" name="room_price" id="" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;"[(ngModel)]="rangeprice">
+                            <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="rate_plan_id">
+                                <option *ngFor="let list of rateplan" [ngValue] = "list.rate_plan_id"> {{list.rate_plan}}</option> 
+                              </select>
                              </div>
                        </div>                                      
                   <div class="col-sm-2">
                       <button type="button" class="btn btn-info"
-                             style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sund,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice)">Save</button>
+                             style="width: 52%;height: 35px; padding-top: 2px;border-radius: 0px;"(click)="daterangedetails(rangefrom,todate,sund,mon,tue,wed,thur,fri,sat,roomtosell,rangeprice,extra_adult_rate,room_id,rate_plan_id  )">Save</button>
                       </div>      
                  </div>   
                     <br> 
@@ -509,7 +513,7 @@
          <!-- restriction End -->
    </div>
     
-     </div>
+     <!-- </div> -->
 
 
     <!-- modal for edit sell room  -->
