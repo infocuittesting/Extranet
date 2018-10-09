@@ -9,6 +9,7 @@ import $ from 'jquery';
 import { subscribeOn } from 'rxjs/operator/subscribeOn';
 import { viewClassName } from '@angular/compiler';
 
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -38,7 +39,10 @@ export class ConfigurationComponent implements OnInit {
   amenitiestemp:any =[];
   amentiesss = [];
   roomamentites = []
-  
+  public roomtypes = [];
+  public cancelpolicy = [];
+  public rateplan=[];
+  public pakages=[];
           //show more
           showlessBut(){
             this.showMore=false;
@@ -68,8 +72,31 @@ this.extrabeds=flags.extrabed;
 this.amenitie=flags.amenitie;
 this.photo=flags.upload_photos;
 this.smoke=flags.smoking;
+
+
   }
+  
   ngOnInit() {
+    this.configurationService.packages()
+    .subscribe((resp:any)=>{
+       this.pakages=resp.Result;
+       console.log(this.pakages)
+    });
+    this.configurationService.selectrateplan()
+    .subscribe((resp:any)=>{
+       this.rateplan=resp.Result;
+       console.log(this.rateplan)
+    });
+    this.configurationService.selectroomtype()
+.subscribe((resp:any)=>{
+   this.roomtypes=resp.Result;
+   console.log(this.roomtypes)
+});
+this.configurationService.cancellationpolicy()
+.subscribe((resp:any)=>{
+   this.cancelpolicy=resp.Result;
+   console.log(this.cancelpolicy)
+});
     this.configurationService.getRoomDetails()
 .subscribe((resp:any)=>{
    this.roomdetails=resp.Result;
@@ -77,8 +104,8 @@ this.smoke=flags.smoking;
    
    for (let amenitiestemp of this.roomdetails ){
     // this.amenitiestemp = amenitiestemp[amenitiestemp.length-1]
-     this.amentiesss = amenitiestemp.amenitie.split("|");
-     this.amentiesss = this.amentiesss.slice(0,3);
+    //  this.amentiesss = amenitiestemp.amenitie.split("|");
+    //  this.amentiesss = this.amentiesss.slice(0,3);
 
      console.log("this is amenties**************",this.amentiesss)
      this.i=this.i+1;
@@ -139,6 +166,55 @@ Queryselectoptions(){
   this.inclusion=resp.Result;
   console.log("5) Inclusion",this.inclusion);
   });
+}
+public checkedList = [];
+public roomcheckedList = [];
+onCheckboxChange(option, event) {
+  if(event.target.checked) {
+    this.checkedList.push(option.packages_id);
+    console.log("checkedlist",this.checkedList)
+  } else {
+    for(var i=0 ; i < this.pakages.length; i++) {
+      if(this.checkedList[i] == option.packages_id){
+        this.checkedList.splice(i,1);
+      }
+    }
+  }
+  console.log(this.checkedList);
+  }
+  onroomCheckboxChange(option, event) {
+    if(event.target.checked) {
+      this.roomcheckedList.push(option.room_id);
+      console.log("checkedlist",this.roomcheckedList)
+    } else {
+      for(var i=0 ; i < this.roomtypes.length; i++) {
+        if(this.roomcheckedList[i] == option.room_id){
+          this.roomcheckedList.splice(i,1);
+        }
+      }
+    }
+    console.log(this.roomcheckedList);
+    }
+  
+insertrateplan(rate_plan_id,policy_id,fromdate,todate){
+console.log("rateplan screen",rate_plan_id,policy_id,fromdate,todate)
+let body = {   
+	"business_id":  this.session.retrieve("business_id").toString(),
+	"rate_plan":rate_plan_id,
+	"cancellation_policy_id":policy_id,
+	"room_types_id":this.roomcheckedList,
+	"packages_id":this.checkedList,
+	"start_date":fromdate,
+	"end_date":todate
+}
+console.log("body value",body)
+this.configurationService.create_rate_plan(body)
+.subscribe((resp:any)=>{
+  if (resp.ServiceStatus == 'Success') {
+    alert("resp.ServiceStatus "+resp.ServiceStatus);
+  }
+  console.log("RETURN VALUE FOR INSERT ROOM",resp.ServiceStatus);
+});
 }
 
 }

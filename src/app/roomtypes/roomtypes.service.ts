@@ -100,6 +100,7 @@ daterangecount(params): Observable<object[]> {
       .map(this.extractData)
     //.catch(this.handleErrorObservable);
   }
+  
   private extractData(res: Response) {
     //alert('hai20')
     console.log('res========---====' + res);

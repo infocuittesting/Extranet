@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
+import { SessionStorageService } from "ngx-webstorage";
 @Injectable()
 export class ConfigurationService {
 
     constructor(
-        private http: Http
+        private http: Http,public session: SessionStorageService
     ) { }
 
     // registration details
@@ -154,8 +154,56 @@ export class ConfigurationService {
     ------------------------------------------------------------------*/
 
 
-
-
+    selectroomtype(): Observable<object[]> {
+        console.log("service is cam")
+        const headers = new Headers({ 'Content-Type': 'application/json' })
+        const options = new RequestOptions({ headers: headers });
+      
+    
+        return this.http.post('https://ivrinfocuit.herokuapp.com/select_room_types', options)
+          .map(this.extractData)
+        //.catch(this.handleErrorObservable);
+      }
+      cancellationpolicy(): Observable<object[]> {
+        console.log("service is cam")
+        const headers = new Headers({ 'Content-Type': 'application/json' })
+        const options = new RequestOptions({ headers: headers });
+      
+    
+        return this.http.post('https://ivrinfocuit.herokuapp.com/select_cancellation_policy', options)
+          .map(this.extractData)
+        //.catch(this.handleErrorObservable);
+      }
+      selectrateplan(): Observable<object[]> {
+        console.log("service is cam")
+        const headers = new Headers({ 'Content-Type': 'application/json' })
+        const options = new RequestOptions({ headers: headers });
+        let body = { "business_id":this.session.retrieve("business_id") };
+    
+        return this.http.post('https://ivrinfocuit.herokuapp.com/select_rateplanid',body, options)
+          .map(this.extractData)
+        //.catch(this.handleErrorObservable);
+      }
+      packages(): Observable<object[]> {
+        console.log("service is cam")
+        const headers = new Headers({ 'Content-Type': 'application/json' })
+        const options = new RequestOptions({ headers: headers });
+      
+    
+        return this.http.post('https://ivrinfocuit.herokuapp.com/select_packages', options)
+          .map(this.extractData)
+        //.catch(this.handleErrorObservable);
+      }
+      create_rate_plan(body): Observable<object[]> {
+        console.log("service is cam")
+        const headers = new Headers({ 'Content-Type': 'application/json' })
+        const options = new RequestOptions({ headers: headers });
+        console.log(body)
+    
+        return this.http.post('https://ivrinfocuit.herokuapp.com/select_packages',body, options)
+          .map(this.extractData)
+        //.catch(this.handleErrorObservable);
+      }
     private extractData(res: Response) {
         const body = res.json();
         return body;

@@ -193,19 +193,25 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    <select name="" id="" style="width: 11.0em; height: 2.4em;">
-      <option value=""></option>
-    </select>
+      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="rate_plan_id">
+    <!-- <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="rate_plan_id">
+      <option *ngFor="let list of rateplan" [ngValue] = "list.rate_plan_id"> {{list.rate_plan}}</option> 
+>
+    </select> -->
   </div>
   <div class="col-md-4">
-      <select name="" id="" style="width: 11.0em; height: 2.4em;">
-        <option value=""></option>
+    <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="policy_id">
+      <option *ngFor="let list of cancelpolicy" [ngValue] = "list.policy_id"> {{list.policy_name}}</option> 
       </select>
     </div>
    <div class="col-md-4">
-    <select name="" id="" style="width: 11.0em; height: 2.4em;">
-      <option value=""></option>
-    </select>
+    <!-- <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="room_id">
+      <option *ngFor="let list of roomtypes" [ngValue] = "list.room_id"> {{list.room_name}}</option> 
+    </select> -->
+    <div class="checkbox" *ngFor="let list of roomtypes">
+        <label>
+          <input  type="checkbox" value="{{list.room_id}}" (change)="onroomCheckboxChange(list,$event)">{{list.room_name}}</label>
+      </div>
   </div>
 </div>
 <div class="row">
@@ -213,29 +219,48 @@
       <font>Food Details</font>
     </div>
     <div class="col-md-4">
-        <font>From Plan</font>
+        <font>From date</font>
       </div>
      <div class="col-md-4">
-      <font>To Plan</font>
+      <font>To date</font>
     </div>   
   </div>
   <div class="row">
       <div class="col-md-4">
-        <input type="checkbox" name="" id=""style=" width:30px; height:30px;margin-top: 5px;margin-left: 10px;">
-      </div>
+          <div class="checkbox" *ngFor="let list of pakages">
+              <label>
+                <input  type="checkbox" value="{{list.packages_id}}" (change)="onCheckboxChange(list,$event)">{{list.package}}</label>
+            </div>
+          <!-- <div class="form-group">
+              <label for="options">Options:</label>
+              <div *ngFor="let option of pakages">
+                  <label>
+                      <input type="checkbox"
+                             name="options"
+                             value="{{option.packages_id}}"
+                             [(ngModel)]="option.checked"/>
+                      {{option.package}}
+                  </label>
+              </div>
+              </div> -->
+        <!-- <li *ngFor='let box of pakages; let i = index'>
+          <input type="checkbox" [id]="box" [(ngModel)]="pakages[i]">{{box.package}}
+          
+      </li>       -->
+    </div>
       <div class="col-md-4">
-          <input type="date" name="" id="" style="width: 11.0em; height: 2.4em;">
+          <input type="date" name="" id="" style="width: 11.0em; height: 2.4em;"[(ngModel)]="fromdate">
 
         </div>
        <div class="col-md-4">
-        <input type="date" name="" id="" style="width: 11.0em; height: 2.4em;" >
+        <input type="date" name="" id="" style="width: 11.0em; height: 2.4em;"[(ngModel)]="todate" >
       </div>
     </div>
     <br>
     <div class="row">
         <div class="col-md-5"></div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-success"(click)="insertrateplan(rate_plan_id,policy_id,fromdate,todate)">Save</button>
         </div>
         <div class="col-md-5"></div>
     </div>
