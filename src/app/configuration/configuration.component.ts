@@ -48,8 +48,7 @@ export class ConfigurationComponent implements OnInit {
     // this.amenitiestemp = amenitiestemp[amenitiestemp.length-1]
      this.amentiesss = amenitiestemp.amenitie.split("|");
      this.amentiesss = this.amentiesss.slice(0,3);
-     this.roomdetails["collegeId"] = {};
-   
+
     //  this.amenitiestemp.push(this.amentiesss)
     //  this.roomdetails1.push(this.amentiesss)
      console.log("this is amenties**************",this.amentiesss)
