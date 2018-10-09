@@ -60,20 +60,21 @@ export class ConfigurationComponent implements OnInit {
     amenitie;
     photo;
     smoke;
+    minprice;
   viewdata(flags){
+    this.Queryselectoptions();
     this.showMore=true;
 this.room=flags.room_name;
 this.rmsize=flags.room_size_id;
 this.maxadult=flags.max_adults;
 this.maxchild=flags.max_child
-this.beding=flags.bed_option;
-this.bedsize=flags.bed_size;
-this.extrabeds=flags.extrabed;
-this.amenitie=flags.amenitie;
+this.beding=flags.bedding_option_id;
+this.bedsize=flags.bed_size_id;
+this.extrabeds=flags.extrabed_id;
+this.amenitie=flags.amenitie_id;
 this.photo=flags.upload_photos;
 this.smoke=flags.smoking;
-
-
+this.minprice= flags.min_price;
   }
   
   ngOnInit() {
@@ -116,7 +117,15 @@ this.configurationService.cancellationpolicy()
 console.log("get room details response",JSON.stringify(this.roomdetails));
 });
 }
-  
+//update
+configupdate;
+updateconfig(room,rmsize,maxadult,maxchild,beding,bedsize,extrabeds,amenitie,photo,minprice,smoke){
+  this.configurationService.updateservice(room,rmsize,maxadult,maxchild,beding,bedsize,extrabeds,amenitie,photo,minprice,smoke)
+  .subscribe((resp: any) => {
+  this.configupdate=resp.ReturnCode;
+  this.showlessBut();
+  })
+}
   insertroom(param) {
     param.business_id = this.session.retrieve("business_id");
     console.log("$$$$$$$$$$$$$", JSON.stringify(param));
