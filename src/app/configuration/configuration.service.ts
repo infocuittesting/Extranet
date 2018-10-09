@@ -52,9 +52,10 @@ export class ConfigurationService {
             "prepayment_policy":insertDet.prepayment_policy,
             "cancellation_policy":insertDet.cancellation_policy,
             "inculsions_id":insertDet.inclusion_id,
-            "important_information":insertDet.important_information
+            "important_information":insertDet.important_information,
+            "min_price":insertDet.min_price
         }
-
+        console.log("body value",body)
         return this.http.post('https://ivrinfocuit.herokuapp.com/insert_configuration', body, options)
             .map(this.extractData);
 

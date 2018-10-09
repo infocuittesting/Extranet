@@ -61,7 +61,11 @@
         <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
         </span>{{room.bed_option|titlecase}}</p>
         <p ><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span>{{room.extrabed|titlecase}}</p>
+        </span>{{room.extrabed|titlecase}}</p> 
+        <!-- <div *ngFor="let amen of roomdetails1 "> -->
+        <p ><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+        </span>{{room.room_type_amentie}</p>
+      <!--  </div> -->
       </div>
     </div>
   </div><br>
@@ -190,7 +194,7 @@
                 <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.upload_photos">
               </div>
               <div class="col-md-3">
-                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.rate_plan_id">
+                <input type="text" name="" id="" style=" height: 2.4em;" [(ngModel)]="plan.min_price">
               </div>
               <!-- <div class="col-md-3">
                 <select class="form-control" name="extrabed" style="height: 2.4em;" [(ngModel)]="plan.inclusion_id">
