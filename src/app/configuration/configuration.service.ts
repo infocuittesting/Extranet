@@ -10,6 +10,35 @@ export class ConfigurationService {
         private http: Http
     ) { }
 
+//update services
+updateservice(room,rmsize,maxadult,maxchild,beding,bedsize,extrabeds,amenitie,photo,minprice,smoke): Observable<object[]>{
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    let body={
+        "room_id":0,
+	"room_name":room,
+	"max_adults":maxadult,
+	"max_child":maxchild,
+	"room_size_id":rmsize,
+	"bedding_options_id":beding,
+	"maximum_extrabed_id":extrabeds,
+	"bed_size_id":bedsize,
+	"upload_photos":photo,
+	"room_amenities_id":amenitie,
+	"smoking":smoke,
+	"rate_plan_id":0,
+	"advance_booking_window":"",
+	"prepayment_policy":"",
+	"cancellation_policy":"",
+	"inculsions_id":0,
+	"important_information":"",
+	"min_price":minprice
+    }
+    console.log(JSON.stringify(body));
+    return this.http.post('https://ivrinfocuit.herokuapp.com/update_configuration', body, options)
+    .map(this.extractData);
+}
+
     // registration details
     configurationDetails(regdata: any): Observable<object[]> {
 
@@ -21,7 +50,7 @@ export class ConfigurationService {
             'hotelname': regdata.hotelname
         };
 
-        return this.http.post('http://localhost:3333/springMVC/commonService', body, options)
+        return this.http.post('https://ivrinfocuit.herokuapp.com/springMVC/commonService', body, options)
             .map(this.extractData);
 
     }

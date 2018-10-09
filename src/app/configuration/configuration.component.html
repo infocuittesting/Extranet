@@ -109,7 +109,9 @@
       <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="room">
     </div>
     <div class="col-md-3">
-      <input type="text" class="form-control" name="roomsizeid" style="width: 11.0em;height: 2.4em;border:1px solid #A0A0A0;" [(ngModel)]="rmsize">
+        <select class="form-control" name="roomsizeids" style="width: 11.0em;height: 2.4em;border:1px solid #A0A0A0;" [(ngModel)]="rmsize">
+            <option *ngFor="let list of roomsize" [ngValue] = "list.room_size_id"> {{list.size_of_room}}</option> 
+          </select>
     </div>
     <div class="col-md-3">
       <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="maxadult">
@@ -117,8 +119,8 @@
     <div class="col-md-3">
       <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="maxchild">
     </div>
+    <div class="row">
   </div>
-  <div class="row">
     <div class="col-md-3">
       <font>Bedding</font>
     </div>
@@ -134,18 +136,26 @@
   
   </div>
   <div class="row">
-    <div class="col-md-3">
-      <input type="text"class="form-control" name="bedding" style="width: 11.0em; height: 2.4em;border:1px solid #A0A0A0; " [(ngModel)]="beding">
-    </div>
-    <div class="col-md-3">
-      <input type="text" class="form-control" name="bedsize" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="bedsize">
-    </div>
-    <div class="col-md-3">
-      <input type="text" class="form-control" name="extrabed" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="extrabeds">
-    </div>
-    <div class="col-md-3">
-      <input type="text" class="form-control" name="extrabed" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="amenitie">
-    </div>
+      <div class="col-md-3">
+          <select class="form-control" name="confbedding" style="width: 11.0em; height: 2.4em;border:1px solid #A0A0A0; " [(ngModel)]="beding">
+            <option *ngFor="let list1 of bedding" [ngValue] = "list1.bedding_option_id"> {{list1.bed_option}}</option> 
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-control" name="bedsize" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="bedsize">
+            <option *ngFor="let list of beddingsize" [ngValue] = "list.bed_size_id"> {{list.bed_size}}</option> 
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-control" name="extrabed" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="extrabeds">
+            <option *ngFor="let list of extrabed" [ngValue] = "list.extrabed_id"> {{list.extrabed}}</option> 
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-control" name="extrabed" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="amenitie">
+            <option *ngFor="let list of roomamenities" [ngValue] = "list.amenitie_id"> {{list.amenitie}}</option> 
+          </select>
+        </div>
   </div>
   <div class="row">
     <div class="col-md-3">
@@ -163,7 +173,7 @@
       <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="photo">
     </div>
     <div class="col-md-3">
-      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="min_price">
+      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="minprice">
     </div>
     <div class="col-md-3">
       <input type="checkbox" name="" id="" style=" width:30px; height:30px;margin-top: 5px;margin-left: 10px;" [(ngModel)]="smoke">
@@ -173,7 +183,7 @@
   <div class="row">
       <div class="col-md-5"></div>
     <div class="col-md-2">
-    <button type="button" class="btn btn-success" (click)="showlessBut()" ><b>Save</b></button>
+    <button type="button" class="btn btn-success" (click)="updateconfig(room,rmsize,maxadult,maxchild,beding,bedsize,extrabeds,amenitie,photo,minprice,smoke)" ><b>Save</b></button>
    </div>
    <div class="col-md-5"></div>
   </div>
