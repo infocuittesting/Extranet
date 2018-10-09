@@ -7,6 +7,7 @@ import { ConfigurationService } from "./configuration.service";
 
 import $ from 'jquery';
 import { subscribeOn } from 'rxjs/operator/subscribeOn';
+import { viewClassName } from '@angular/compiler';
 
 declare var jquery:any;
 declare var $ :any;
@@ -38,6 +39,36 @@ export class ConfigurationComponent implements OnInit {
   amentiesss = [];
   roomamentites = []
   
+          //show more
+          showlessBut(){
+            this.showMore=false;
+          }
+    
+
+  //show record 
+    room;
+    rmsize;
+    maxadult;
+    maxchild;
+    beding;
+    bedsize;
+    extrabeds;
+    amenitie;
+    photo;
+    smoke;
+  viewdata(flags){
+    this.showMore=true;
+this.room=flags.room_name;
+this.rmsize=flags.room_size_id;
+this.maxadult=flags.max_adults;
+this.maxchild=flags.max_child
+this.beding=flags.bed_option;
+this.bedsize=flags.bed_size;
+this.extrabeds=flags.extrabed;
+this.amenitie=flags.amenitie;
+this.photo=flags.upload_photos;
+this.smoke=flags.smoking;
+  }
   ngOnInit() {
     this.configurationService.getRoomDetails()
 .subscribe((resp:any)=>{
@@ -49,23 +80,12 @@ export class ConfigurationComponent implements OnInit {
      this.amentiesss = amenitiestemp.amenitie.split("|");
      this.amentiesss = this.amentiesss.slice(0,3);
 
-    //  this.amenitiestemp.push(this.amentiesss)
-    //  this.roomdetails1.push(this.amentiesss)
      console.log("this is amenties**************",this.amentiesss)
      this.i=this.i+1;
    }
-  //  console.log("roomdetails1111",this.roomdetails1)
+ 
    console.log("new value", this.roomdetails)
-  //  this.amenitiestemp = this.roomdetails.amenitie;
 
-  //  console.log("this is amenties",this.amentiesss )
-  //  this.amentiesarr = this.amentiesss.amenitie.split("|");
-  //  for(var i=0;i<this.roomdetails.length;i++)
-  //  {
-    // this.amentiesarr = this.roomdetails.amenitie.split("|");
-  //  }
-   
-  //  console.log("AMENTIESSSSSSSSSSS",this.amenitiestemp);
 console.log("get room details response",JSON.stringify(this.roomdetails));
 });
 }
