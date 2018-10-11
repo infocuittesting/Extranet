@@ -43,6 +43,10 @@ export class ConfigurationComponent implements OnInit {
   public cancelpolicy = [];
   public rateplan=[];
   public pakages=[];
+  public roomdetils_length:any;
+  public room_amentie = [];
+  public room_amentie_name:any;
+  public amentite_details = [];
           //show more
           showlessBut(){
             this.showMore=false;
@@ -102,19 +106,44 @@ this.configurationService.cancellationpolicy()
 .subscribe((resp:any)=>{
    this.roomdetails=resp.Result;
    console.log(this.roomdetails)
-   
-   for (let amenitiestemp of this.roomdetails ){
-    // this.amenitiestemp = amenitiestemp[amenitiestemp.length-1]
-    //  this.amentiesss = amenitiestemp.amenitie.split("|");
+   this.roomdetils_length = this.roomdetails.length
+   console.log(this.roomdetils_length)
+   for (var i = 0; i < this.roomdetails.length; i++)
+   {
+    this.amentiesss = this.roomdetails[i]['amenitie']
+    this.amentiesss = this.amentiesss.slice(0,3)
+    this.room_amentie_name = this.roomdetails[i]['room_name']
+    //  console.log(this.roomdetails)
+    //  this.amentiesss = this.amenitiestemp.amenitie.slice(0,3);
     //  this.amentiesss = this.amentiesss.slice(0,3);
-
-     console.log("this is amenties**************",this.amentiesss)
-     this.i=this.i+1;
+    //  console.log(this.amentiesss)
+    //  console.log(this.room_amentie_name)
+     this.amentite_details.push({
+       "room_name":this.room_amentie_name,
+       "amentie_name1":this.amentiesss[0],
+       "amentie_name2":this.amentiesss[1],
+       "amentie_name3":this.amentiesss[2]
+     })
+    
    }
- 
-   console.log("new value", this.roomdetails)
+   console.log("thisamen*************",this.amentite_details)
+  //  console.log("'djahdhasdia",this.amentite_details)
+    //  this.roomdetails.push({
+    //    "amenitie":this.amentiesss
+    //  })
+    //  console.log("this.amen",this.roomdetails)
+//    for (let amenitiestemp of this.roomdetails ){
+//     // this.amenitiestemp = amenitiestemp[amenitiestemp.length-1]
+//      this.amentiesss = amenitiestemp.amenitie.split(",");
+//      this.amentiesss = this.amentiesss.slice(0,3);
 
-console.log("get room details response",JSON.stringify(this.roomdetails));
+//      console.log("this is amenties**************",this.amentiesss)
+//      this.i=this.i+1;
+//    }
+ 
+//    console.log("new value", this.roomdetails)
+
+// console.log("get room details response",JSON.stringify(this.roomdetails));
 });
 }
 //update
@@ -194,7 +223,7 @@ onCheckboxChange(option, event) {
   onroomCheckboxChange(option, event) {
     if(event.target.checked) {
       this.roomcheckedList.push(option.room_id);
-      console.log("checkedlist",this.roomcheckedList)
+      console.log("onroomCheckboxChange",this.roomcheckedList)
     } else {
       for(var i=0 ; i < this.roomtypes.length; i++) {
         if(this.roomcheckedList[i] == option.room_id){
@@ -217,12 +246,15 @@ let body = {
 	"end_date":todate
 }
 console.log("body value",body)
-this.configurationService.create_rate_plan(body)
-.subscribe((resp:any)=>{
+this.configurationService.create_rate_planss(body)
+.subscribe((resp: any) => {
   if (resp.ServiceStatus == 'Success') {
     alert("resp.ServiceStatus "+resp.ServiceStatus);
   }
-  console.log("RETURN VALUE FOR INSERT ROOM",resp.ServiceStatus);
+  else{
+    alert("failure ");
+  }
+
 });
 }
 

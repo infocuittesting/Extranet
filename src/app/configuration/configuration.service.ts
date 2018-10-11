@@ -223,18 +223,21 @@ updateservice(room,rmsize,maxadult,maxchild,beding,bedsize,extrabeds,amenitie,ph
           .map(this.extractData)
         //.catch(this.handleErrorObservable);
       }
-      create_rate_plan(body): Observable<object[]> {
+      create_rate_planss(params): Observable<object[]> {
         console.log("service is cam")
         const headers = new Headers({ 'Content-Type': 'application/json' })
         const options = new RequestOptions({ headers: headers });
-        console.log(body)
+        console.log("service came",params)
     
-        return this.http.post('https://ivrinfocuit.herokuapp.com/select_packages',body, options)
+        return this.http.post('https://ivrinfocuit.herokuapp.com/create_rate_plan',params, options)
           .map(this.extractData)
         //.catch(this.handleErrorObservable);
       }
-    private extractData(res: Response) {
-        const body = res.json();
+      private extractData(res: Response) {
+        //alert('hai20')
+        console.log('res========---====' + res);
+        let body = res.json();
+        console.log(JSON.stringify(body));
         return body;
+      }
     }
-}
