@@ -51,7 +51,7 @@ let dasParms={
           this.getroomdetails=resp.Available_Rooms;
          for(var i=0;i<this.getroomdetails.length;i++){
            this.chartDatas.push({
-              'title':this.getroomdetails[i].room_type,
+              'title':this.getroomdetails[i].room_name,
               'value':this.getroomdetails[i].available_count
            })
          }

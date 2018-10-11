@@ -12,14 +12,15 @@
             <div class="card-body" >
                    <div class="row" style="margin-top: -18px;">
                         <div class="col-sm-6" style="padding-top: 10px;margin-left: -10px;padding-left: 6px;">
-                            <h2 style="font-size: 39px;font-weight:700;">{{roomcount.available_count}}</h2>
+                            <h2 style="font-size: 30px;font-weight:500;">{{roomcount.available_count}}/{{roomcount.booked_count}}</h2>
+                            <!-- <h4 style="font-size: 39px;font-weight:700;">{{roomcount.booked_count}}</h4> -->
                         </div>
                         <div class="col-sm-6 " style="margin-left: -8px;">
                                <i class="fa fa-hotel"></i>
                             </div>
                    </div>
                    <div class="row roomcss" style="margin-top: 5px;margin-bottom:5px;">
-                                <label style="font-weight: 600;">{{roomcount.room_type}}</label>
+                                <label style="font-weight: 600;">{{roomcount.room_name|titlecase}}</label>
                    </div>
             </div>
             <div class="card-footer" style="background-color: rgba(0,0,0,0.1) !important;
