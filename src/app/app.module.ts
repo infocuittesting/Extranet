@@ -19,7 +19,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenusComponent } from './menus/menus.component';
 // jquerys
 import { PromotionsComponent } from './promotions/promotions.component';
-import { StatisticsComponent } from './statistics/statistics.component';
 //custom date format
 import { NgbDateCustomParserFormatter } from "./customdateformat";
 
@@ -49,7 +48,6 @@ import { LoginregService } from '../app/loginreg/loginreg.service';
 import { RoomTypeService } from "../app/roomtypes/roomtypes.service";
 import { PrmotionsService } from "../app/promotions/promotions.service";
 import { CancellationpaymentService } from "../app/cancellationpayment/cancellationpayment.service";
-import { StatisticsService } from "../app/statistics/statistics.service";
 import { ReportsComponent } from './reports/reports.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { FilterdataPipe } from './filterdata.pipe';
@@ -72,10 +70,6 @@ export const appRoutes: Routes = [
     {
       path: 'promotions',
       component: PromotionsComponent
-    },
-    {
-      path: 'statistics',
-      component: StatisticsComponent
     },
     {
       path: 'cancellationpaymentComponent',
@@ -113,7 +107,6 @@ let socialloginproviders = {
     DashboardComponent,
     MenusComponent,
     PromotionsComponent,
-    StatisticsComponent,
     CancellationpaymentComponent,
     RoomtypesComponent,
     ConfigurationComponent,
@@ -139,7 +132,7 @@ let socialloginproviders = {
 
   ],
   providers: [CommonService, LoginregService,RoomTypeService,PrmotionsService,DatePipe, 
-    CancellationpaymentService,StatisticsService,
+    CancellationpaymentService,
     {provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter}],
   bootstrap: [AppComponent]
 })

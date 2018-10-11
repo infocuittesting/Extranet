@@ -20,7 +20,6 @@ export class MenusComponent implements OnInit {
   public ratesavailarrowflag = false;
   public promotionsarrowflag = false;
   public policyarrowflag = false;
-  public staticsarrowflag = false;
   public configurationsarrowflag = false;
   public reportsarrowflag =false;
   
@@ -36,7 +35,6 @@ export class MenusComponent implements OnInit {
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = false;
     this.policyarrowflag = false;
-    this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
     this.reportsarrowflag =false;
   }
@@ -47,7 +45,6 @@ export class MenusComponent implements OnInit {
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = false;
     this.policyarrowflag = false;
-    this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
     this.reportsarrowflag =false;
   }
@@ -58,7 +55,6 @@ export class MenusComponent implements OnInit {
     this.ratesavailarrowflag = true;
     this.promotionsarrowflag = false;
     this.policyarrowflag = false;
-    this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
     this.reportsarrowflag =false;
   }
@@ -68,18 +64,6 @@ export class MenusComponent implements OnInit {
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = true;
     this.policyarrowflag = false;
-    this.staticsarrowflag = false;
-    this.configurationsarrowflag = false;
-    this.reportsarrowflag =false;
-  }
-
-  statisticstab() {
-    this.router.navigate(['statistics'], { relativeTo: this.route });
-    this.dasharrowflag = false;
-    this.ratesavailarrowflag = false;
-    this.promotionsarrowflag = false;
-    this.policyarrowflag = false;
-    this.staticsarrowflag = true;
     this.configurationsarrowflag = false;
     this.reportsarrowflag =false;
   }
@@ -90,7 +74,6 @@ export class MenusComponent implements OnInit {
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = false;
     this.policyarrowflag = true;
-    this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
     this.reportsarrowflag =false;
   }
@@ -102,7 +85,6 @@ export class MenusComponent implements OnInit {
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = false;
     this.policyarrowflag = false;
-    this.staticsarrowflag = false;
     this.configurationsarrowflag = true;
     this.reportsarrowflag =false;
   }
@@ -114,7 +96,6 @@ export class MenusComponent implements OnInit {
     this.ratesavailarrowflag = false;
     this.promotionsarrowflag = false;
     this.policyarrowflag = false;
-    this.staticsarrowflag = false;
     this.configurationsarrowflag = false;
     this.reportsarrowflag =true;
   }

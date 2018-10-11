@@ -3,43 +3,6 @@
          <h6>Rates and Availability</h6>
         </div>
  </div>       
-<!-- <div class="row" *ngIf="roomdetailsflg!=true">
-
-        <div class="col-sm-3" style="margin-top: 5%;margin-left: -2px;" *ngFor="let roomtype of getroomTypedetails">
-                <div class="card" (click)="standardRoom(roomtype);" [ngClass]="{'changeborderclr': basicFlag}">
-                    <img class="card-img-top hovercss" alt="Card image"
-                     src={{roomtype.srcfile}}
-                    style="width: 45%;margin-left: 62px; margin-top: 7px;height: 33%;border-radius: 50%;">
-                    <div class="card-body">
-                      <h6 class="card-title" style="text-align: center;margin-top: -10px;">{{roomtype.room_type}}</h6>
-                      <p class="card-text" style="text-align: center;margin-top: -12px;">Price :&nbsp;{{roomtype.standard_rate}}</p>
-                    </div>
-
-                    <div class="card-footer" style="margin-top: -18px;">
-                            <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                            </span> {{roomtype.facilitie1}}</p>
-                            <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                            </span>{{roomtype.facilitie2}}</p>
-                            <p style="margin-bottom: 15px;margin-top: -14px;"><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                            </span>{{roomtype.facilitie3}}</p>
-                          </div>
-                  </div>
-            </div>
-
-
-
-    </div> -->
-
-    <!-- <div  *ngIf="roomdetailsflg==true"> -->
-   
-        <!-- <div class="row">
-                <div class="col-sm-12 dropcss" style="margin-bottom: 20px;margin-top: -10px;">
-                       <label style="margin-left: 60em;">Back
-                           <span style="    border: 1px solid gray;padding: 3px 6px;
-                           background-color: white;cursor: pointer;">
-                           <i class="fa fa-reply hovercss" (click)="cleartemp();roomdetailsflg=false" aria-hidden="true"></i></span></label>
-                </div>
-            </div> -->
       <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Grid">Grid</a></li>
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Daterange">Setup Rate</a></li>
@@ -113,14 +76,14 @@
 
 
         <div class="row" style="margin-top: 15PX;" [hidden]="!showlabelname">
-                <div class="col-sm-12" style="padding-left:810px;">
+                <div class="col-sm-12" style="padding-left:770px;">
                         <a >Price shown on calender are in <b>$</b></a>
                 </div>
             </div>
 
 
         <div class="row" style="margin-top: 20px;" [hidden]="!showlabelname">
-                <div class="col-sm-12" style="padding-left: 997px;">
+                <div class="col-sm-12" style="padding-left: 957px;">
                     <button (click)="preveviousColumns()" [disabled]="!prevflag" [ngClass]="{disabling:!prevflag}"
                     style="background-color:white;color: black;"><i class="fa fa-caret-left" aria-hidden="true"></i></button>
                     <button (click)="nextColumns()"  [disabled]="!nextflag" [ngClass]="{disabling:!nextflag}"
@@ -229,6 +192,38 @@
 
     </div>
     </div>
+    <table>
+        <thead>
+            <tr class="tabborder">
+                <th class="tabborder">Standat Room</th>
+                <td style="font-weight:700" class="tabborder" *ngFor="let date of RateandAvailability" > {{date.month}} <br>{{date.date}} <br>{{date.day}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="rows">
+                <th class="tabborder">Room Status</th>
+                <td class="tabborder" *ngFor="let status of RateandAvailability" [ngClass]="{'backgroundcolorgreenchange': status.room_status=='yes', 'backgroundcolorredchange': status.room_status=='no'}"></td>
+            </tr>
+            <tr class="rows">
+                <th class="tabborder">Room To sell</th>
+                <td class="tabborder" style="padding: 5px;" *ngFor="let roomtosell of RateandAvailability">
+                    <input class="text-center" type="text" style="width:30px;" [(ngModel)]="roomtosell.room_to_sell">
+                </td>
+            </tr>
+            <tr class="rows">
+                <th class="tabborder">Standard Rate</th>
+                <td class="tabborder" *ngFor="let rate of RateandAvailability" [ngClass]="{'backgroundcolorgreenchange': rate.standard_rate=='yes', 'backgroundcolorredchange': rate.standard_rate=='no'}"></td>
+            </tr>
+            <tr class="rows">
+                <th class="tabborder">Rate with Breakfast</th>
+                <td class="tabborder" *ngFor="let nrrate of RateandAvailability" [ngClass]="{'backgroundcolorgreenchange': nrrate.NR_rate_with_breakfast=='yes', 'backgroundcolorredchange': nrrate.NR_rate_with_breakfast=='no'}"></td>
+            </tr>
+            <tr class="rows">
+                <th class="tabborder">Summer Rate</th>
+                <td class="tabborder" *ngFor="let summer of RateandAvailability" [ngClass]="{'backgroundcolorgreenchange': summer.Summer_special=='yes', 'backgroundcolorredchange': summer.Summer_special=='no'}"></td>
+            </tr>
+        </tbody>
+    </table>
 
     <div class="row" [hidden]="!showlabelname" style="margin-bottom: 20px;">
       <div class="col-sm-10" ></div>
@@ -369,7 +364,7 @@
         <div class="row">
         
          <div class="col-sm-3">
-             <font>Minimum stay</font>
+            <font>Minimum stay</font>
          </div>
          <div class="col-sm-3">
              <font>Date</font>
@@ -380,13 +375,14 @@
        <div>
         <div class="row">        
          <div class="col-sm-3">
+                
                 <div class="input-group">
-                     <input type="text" class="form-control" name="mini_stay" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"[(ngModel)]="min_stay">
+                     <input type="text" class="form-control" name="mini_stay" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width:3em;height: 36px;"[(ngModel)]="min_stay">
                 </div>    
          </div>
          <div class="col-sm-3">
             <div class="input-group">
-                <input class="" placeholder="dd-mm-yyyy" type="date"   style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                <input class="" placeholder="dd-mm-yyyy" type="date"   style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
                        name="dp" [(ngModel)]="min_date" >
               </div>
          </div>
@@ -406,12 +402,12 @@
          <div class="row">        
           <div class="col-sm-3">
                  <div class="input-group">
-                      <input type="text" class="form-control" name="maximum" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;" [(ngModel)]="max_stay">
+                      <input type="text" class="form-control" name="maximum" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width:3em;height: 36px;" [(ngModel)]="max_stay">
                  </div>    
           </div>
           <div class="col-sm-3">
              <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
                         name="maximu" [(ngModel)]="max_date" >
                </div>
           </div>                 
@@ -433,13 +429,13 @@
             </div>
           <div class="col-sm-3">
              <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
                         name="close_arrival_from" [(ngModel)]="close_arrival_from" >
                </div>
           </div>
           <div class="col-sm-3">
              <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
                         name="close_arrival" [(ngModel)]="close_arrival_to" >
                </div>
           </div>                  
@@ -463,13 +459,13 @@
           </div>
           <div class="col-sm-3">
              <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
                         name="close_from" [(ngModel)]="close_departure_from" >
                </div>
           </div>
           <div class="col-sm-3">
              <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;"
+                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
                         name="close_departure" [(ngModel)]="close_departure_to" >
                </div>
           </div>                  
@@ -491,7 +487,7 @@
                  </div>
             <div class="col-sm-3">
                 <div class="input-group">
-                    <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 34px;border-radius: 5px;"
+                    <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;border-radius: 5px;"
                            name="houseclose" [(ngModel)]="house_close" >
                   </div>
              </div>

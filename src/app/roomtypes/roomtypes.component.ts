@@ -44,7 +44,82 @@ export class RoomtypesComponent implements OnInit {
   selectrestr = [];
   public rateplan=[];
   public roomtypes=[];
-  ngOnInit() {
+
+  RateandAvailability = [
+    {
+    "month":"jan",
+    "day":"mon",
+    "date":"1",
+    "room_status":"no",
+    "room_to_sell":"5",
+    "standard_rate":"yes",
+    "NR_rate_with_breakfast":"no",
+    "Summer_special":"no",
+    },
+    {
+    "month":"Jan",
+    "day":"tue",
+    "date":"2",
+    "room_status":"yes",
+    "room_to_sell":"5",
+    "standard_rate":"yes",
+    "NR_rate_with_breakfast":"no",
+    "Summer_special":"no",
+    },
+    {
+    "month":"jan",
+    "day":"wed",
+    "date":"3",
+    "room_status":"yes",
+    "room_to_sell":"10",
+    "standard_rate":"yes",
+    "NR_rate_with_breakfast":"no",
+    "Summer_special":"no",
+    },
+    {
+    "month":"jan",
+    "day":"thu",
+    "date":"4",
+    "room_status":"yes",
+    "room_to_sell":"10",
+    "standard_rate":"yes",
+    "NR_rate_with_breakfast":"no",
+    "Summer_special":"no",
+    },
+    {
+    "month":"jan",
+    "day":"fri",
+    "date":"5",
+    "room_status":"yes",
+    "room_to_sell":"10",
+    "standard_rate":"yes",
+    "NR_rate_with_breakfast":"no",
+    "Summer_special":"no",
+    },
+    {
+    "month":"jan",
+    "day":"sat",
+    "date":"6",
+    "room_status":"yes",
+    "room_to_sell":"8",
+    "standard_rate":"yes",
+    "NR_rate_with_breakfast":"no",
+    "Summer_special":"no",
+    },
+    {
+    "month":"jan",
+    "day":"sun",
+    "date":"7",
+    "room_status":"yes",
+    "room_to_sell":"5",
+    "standard_rate":"yes",
+    "NR_rate_with_breakfast":"no",
+    "Summer_special":"no",
+    }
+  ]
+
+
+  ngOnInit() {  
     this.roomTypeService.selectrateplan()
 .subscribe((resp: any) => {
   this.rateplan = resp.Result;

@@ -162,7 +162,7 @@
       <font>Photos</font>
     </div>
     <div class="col-md-3">
-      <font>Min Price field</font>
+      <font>Min Price</font>
     </div>
     <div class="col-md-3">
       <font>Smoking</font>
@@ -196,74 +196,76 @@
   </div>
   <div class="col-md-4">
       <font>Cancellation Policy</font>
-    </div>
-   <div class="col-md-4">
-    <font>Room Types</font>
-  </div>   
+    </div>  
 </div>
 <div class="row">
   <div class="col-md-4">
-      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="rate_plan_id">
+      <input type="text" name="" id="" style="width: 13.0em; height: 2.4em;" [(ngModel)]="rate_plan_id">
     <!-- <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="rate_plan_id">
       <option *ngFor="let list of rateplan" [ngValue] = "list.rate_plan_id"> {{list.rate_plan}}</option> 
 >
     </select> -->
   </div>
   <div class="col-md-4">
-    <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="policy_id">
+    <select class="form-control" name="roomsizeid" style="width: 13.0em;height: 2.4em;" [(ngModel)]="policy_id">
       <option *ngFor="let list of cancelpolicy" [ngValue] = "list.policy_id"> {{list.policy_name}}</option> 
       </select>
     </div>
-   <div class="col-md-4">
-    <!-- <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="room_id">
-      <option *ngFor="let list of roomtypes" [ngValue] = "list.room_id"> {{list.room_name}}</option> 
-    </select> -->
-    <div class="checkbox" *ngFor="let list of roomtypes">
-        <label>
-          <input  type="checkbox" value="{{list.room_id}}" (change)="onroomCheckboxChange(list,$event)">{{list.room_name}}</label>
-      </div>
+</div>
+<br>
+<div class="row" style="padding-bottom:5px;">
+  <div class="col-md-4">
+    <font>Room Types</font>
   </div>
 </div>
 <div class="row">
+  <table>
+    <tbody>
+      <tr style="margin-left:15px;">
+        <td *ngFor="let list of roomtypes">
+          <input type="checkbox" value="{{list.room_id}}" style="width: 1rem;height: 1rem;" (change)="onroomCheckboxChange(list,$event)"><label  style="margin-left:10px;">{{list.room_name}}</label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<div class="row" style="padding-bottom:5px;">
     <div class="col-md-4">
-      <font>Food Details</font>
-    </div>
-    <div class="col-md-4">
-        <font>From date</font>
-      </div>
-     <div class="col-md-4">
-      <font>To date</font>
-    </div>   
+      <font>Packages</font>
+    </div> 
   </div>
   <div class="row">
-      <div class="col-md-4">
-          <div class="checkbox" *ngFor="let list of pakages">
+          <table>
+              <tbody>
+                <tr style="margin-left:15px;">
+                  <td *ngFor="let list of pakages">
+                    <input type="checkbox" value="{{list.packages_id}}" style="width: 1rem;height: 1rem;" (change)="onroomCheckboxChange(list,$event)"><label  style="margin-left:10px;">{{list.package}}</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <!-- <div class="checkbox" *ngFor="let list of pakages">
               <label>
                 <input  type="checkbox" value="{{list.packages_id}}" (change)="onCheckboxChange(list,$event)">{{list.package}}</label>
-            </div>
-          <!-- <div class="form-group">
-              <label for="options">Options:</label>
-              <div *ngFor="let option of pakages">
-                  <label>
-                      <input type="checkbox"
-                             name="options"
-                             value="{{option.packages_id}}"
-                             [(ngModel)]="option.checked"/>
-                      {{option.package}}
-                  </label>
-              </div>
-              </div> -->
-        <!-- <li *ngFor='let box of pakages; let i = index'>
-          <input type="checkbox" [id]="box" [(ngModel)]="pakages[i]">{{box.package}}
-          
-      </li>       -->
+            </div> -->
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <font>From date</font>
+          </div>
+         <div class="col-md-4">
+          <font>To date</font>
+        </div>  
+    </div>
+  <div class="row">
       <div class="col-md-4">
-          <input type="date" name="" id="" style="width: 11.0em; height: 2.4em;"[(ngModel)]="fromdate">
+          <input type="date" name="" id="" style="width: 13.0em; height: 2.4em;"[(ngModel)]="fromdate">
 
         </div>
        <div class="col-md-4">
-        <input type="date" name="" id="" style="width: 11.0em; height: 2.4em;"[(ngModel)]="todate" >
+        <input type="date" name="" id="" style="width: 13.0em; height: 2.4em;"[(ngModel)]="todate" >
       </div>
     </div>
     <br>
@@ -362,7 +364,7 @@
                 <font>Photos</font>
               </div>
               <div class="col-md-3">
-                <font>Min Price field</font>
+                <font>Min Price</font>
               </div>
               <div class="col-md-3">
                 <font>Smoking</font>
