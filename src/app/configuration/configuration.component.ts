@@ -118,6 +118,9 @@ this.configurationService.cancellationpolicy()
     //  this.amentiesss = this.amentiesss.slice(0,3);
     //  console.log(this.amentiesss)
     //  console.log(this.room_amentie_name)
+    this.roomdetails[i]["amentie_name1"] = this.amentiesss[0],
+    this.roomdetails[i]["amentie_name2"] = this.amentiesss[1],
+    this.roomdetails[i]["amentie_name3"] = this.amentiesss[2],
      this.amentite_details.push({
        "room_name":this.room_amentie_name,
        "amentie_name1":this.amentiesss[0],
@@ -126,7 +129,8 @@ this.configurationService.cancellationpolicy()
      })
     
    }
-   console.log("thisamen*************",this.amentite_details)
+  //  console.log("thisamen*************",this.amentite_details)
+   console.log("thisamen*************",this.roomdetails)
   //  console.log("'djahdhasdia",this.amentite_details)
     //  this.roomdetails.push({
     //    "amenitie":this.amentiesss

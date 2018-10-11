@@ -45,30 +45,30 @@
 <div class="tab-content clearfix">
 <div id="Grid" class="tab-pane container active" style="margin-top:10px;">
 <div class="row" *ngIf="showMore!=true" >
-  <div class="col-md-3" *ngFor="let amen of amentite_details">
+  <div class="col-md-3"  *ngFor="let room of roomdetails ">
     <div class="card" (click)="viewdata(room)">
         <img class="card-img-top hovercss" alt="Card image"
         src="../../assets/images/Standard Room.jpg"
        style="width: 45%;margin-left: 62px; margin-top: 10px;height: 45%;border-radius: 50%;">
       <div class="card-body">
-          <h6 style="text-align: center;">{{amen.room_name|titlecase}}</h6>
+          <h6 style="text-align: center;">{{room.room_name|titlecase}}</h6>
           <!-- <p class="card-text" style="text-align: center;margin-top: -12px;">Price :&nbsp;{{roomdetails.standard_rate}}</p> -->
 
       </div>
       <div class="card-footer">
-        <!-- <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+        <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
         </span> {{room.size_of_room|titlecase}}</p>
         <p><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
         </span>{{room.bed_option|titlecase}}</p>
         <p ><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span>{{room.extrabed|titlecase}}</p>  -->
+        </span>{{room.extrabed|titlecase}}</p> 
         <!-- <div *ngFor="let amen of amentite_details"> -->
         <p ><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span>{{amen.amentie_name1}}</p>
+        </span>{{room.amentie_name1}}</p>
         <p ><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span>{{amen.amentie_name2}}</p>
+        </span>{{room.amentie_name2}}</p>
         <p ><span><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-        </span>{{amen.amentie_name3}}</p>
+        </span>{{room.amentie_name3}}</p>
       <!-- </div> -->
       </div>
     </div>
