@@ -44,6 +44,60 @@ export class RoomtypesComponent implements OnInit {
   selectrestr = [];
   public rateplan=[];
   public roomtypes=[];
+  enrate:boolean=true;
+
+  mini = false;
+  max = false;
+  openarrival = false;
+  opendeparture = false;
+  closearrival = false;
+  closedeparture = false;
+  houseclose = false;
+  
+
+  showhiderestriction(param){
+    if(param == "Minimum Stay"){
+      this.mini = false;
+    }else{
+      this.mini = true;
+    }
+    if(param == "Maximum Stay"){
+      this.max = true;
+    }
+    else{
+      this.max = false;
+    }
+    if(param == "Open For Arrival"){
+      this.openarrival = true;
+    }
+    else{
+      this.openarrival = false;
+    }
+    if(param == "Open For Departure"){
+      this.opendeparture = true;
+    }
+    else{
+      this.opendeparture = false;
+    }
+    if(param == "Close For Arrival"){
+      this.closearrival = true;
+    }
+    else{
+      this.closearrival = false;
+    }
+    if(param == "Close For Departure"){
+      this.closedeparture = true;
+    }
+    else{
+      this.closedeparture = false;
+    }
+    if(param == "House Close"){
+      this.houseclose = true;
+    }
+    else{
+      this.houseclose = false;
+    }
+  }
 
   RateandAvailability = [
     {
@@ -117,7 +171,9 @@ export class RoomtypesComponent implements OnInit {
     "Summer_special":"no",
     }
   ]
-
+  onChangeObj(event){
+    this.enrate = false
+  }
 
   ngOnInit() {  
     this.roomTypeService.selectrateplan()

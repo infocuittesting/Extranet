@@ -201,10 +201,6 @@
         </thead>
         <tbody>
             <tr class="rows">
-                <th class="tabborder">Room Status</th>
-                <td class="tabborder" *ngFor="let status of RateandAvailability" [ngClass]="{'backgroundcolorgreenchange': status.room_status=='yes', 'backgroundcolorredchange': status.room_status=='no'}"></td>
-            </tr>
-            <tr class="rows">
                 <th class="tabborder">Room To sell</th>
                 <td class="tabborder" style="padding: 5px;" *ngFor="let roomtosell of RateandAvailability">
                     <input class="text-center" type="text" style="width:30px;" [(ngModel)]="roomtosell.room_to_sell">
@@ -338,14 +334,14 @@
                        </div>    
                   <div class="col-sm-2">
                          <div class="input-group">
-                            <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="room_id">
+                            <select class="form-control" name="roomsizeid" style="height: 2.4em;border: 1px solid gray;" [(ngModel)]="room_id" (ngModelChange)="onChangeObj($event)">
                                 <option *ngFor="let list of roomtypes" [ngValue] = "list.room_id"> {{list.room_name}}</option> 
                               </select>
                              </div>
                        </div> 
                   <div class="col-sm-2">
                          <div class="input-group">
-                            <select class="form-control" name="roomsizeid" style="height: 2.4em;" [(ngModel)]="rate_plan_id">
+                            <select class="form-control" name="roomsizeid" style="height: 2.4em;border: 1px solid gray;" [(ngModel)]="rate_plan_id" [disabled]=enrate>
                                 <option *ngFor="let list of rateplan" [ngValue] = "list.rate_plan_id"> {{list.rate_plan}}</option> 
                               </select>
                              </div>
@@ -362,23 +358,37 @@
         <div id="Restriction" class="tab-pane container fade" style="margin-top:10px;">
         <br>
         <div class="row">
-        
+            <div class="col-md-4">
+                    <div class="input-group">
+                            <select class="form-control" name="mini_stay" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;height: 36px;max-width:16em" [(ngModel)]="dropdownvalue" (change)="showhiderestriction(dropdownvalue)">
+                                <option value="Minimum Stay">Minimum Stay</option>
+                                <option value="Maximum Stay">Maximum Stay</option>
+                                <option value="Open For Arrival">Open For Arrival </option>
+                                <option value="Open For Departure">Open For Departure </option>
+                                <option value="Close For Arrival">Close For Arrival </option>
+                                <option value="Close For Departure">Close For Departure </option>
+                                <option value="House Close">House Close </option>
+                                </select>
+                       </div>   
+            </div>
+        </div>
+        <br>
+        <div *ngIf="mini!=true">
+        <div class="row">        
          <div class="col-sm-3">
             <font>Minimum stay</font>
          </div>
          <div class="col-sm-3">
-             <font>Date</font>
-         </div>
-
-             
-        </div>
-       <div>
-        <div class="row">        
-         <div class="col-sm-3">
                 
                 <div class="input-group">
-                     <input type="text" class="form-control" name="mini_stay" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width:3em;height: 36px;"[(ngModel)]="min_stay">
+                     <input type="text" class="form-control" name="mini_stay" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width:11.9em;height: 36px;"[(ngModel)]="min_stay">
                 </div>    
+         </div>             
+        </div>
+       <br>
+        <div class="row">        
+         <div class="col-sm-3">
+             <font>Date</font>
          </div>
          <div class="col-sm-3">
             <div class="input-group">
@@ -388,51 +398,52 @@
          </div>
                 
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-              <font>Maximum stay</font>
-          </div>
-          <div class="col-sm-3">
-              <font>Date</font>
-          </div>
+    </div>
 
-              
-         </div>
-        
-         <div class="row">        
-          <div class="col-sm-3">
-                 <div class="input-group">
-                      <input type="text" class="form-control" name="maximum" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width:3em;height: 36px;" [(ngModel)]="max_stay">
-                 </div>    
-          </div>
-          <div class="col-sm-3">
-             <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
-                        name="maximu" [(ngModel)]="max_date" >
-               </div>
-          </div>                 
-         </div>
+    <div *ngIf="max==true">
+            <div class="row">
+                    <div class="col-sm-3">
+                        <font>Maximum stay</font>
+                    </div>
+                    <div class="col-sm-3">
+                          <div class="input-group">
+                               <input type="text" class="form-control" name="maximum" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width:11.9em;height: 36px;" [(ngModel)]="max_stay">
+                          </div>    
+                   </div>              
+                   </div>
+                  <br>
+                   <div class="row"> 
+                    <div class="col-sm-3">
+                        <font>Date</font>
+                    </div>           
+          
+                    <div class="col-sm-3">
+                       <div class="input-group">
+                           <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
+                                  name="maximu" [(ngModel)]="max_date" >
+                         </div>
+                    </div>                 
+                   </div>
+    </div>
+
+    <div *ngIf="openarrival==true">
          <div class="row">
-        
-            <div class="col-sm-3"></div>
           <div class="col-sm-3">
               <font>From</font>
           </div>
           <div class="col-sm-3">
-              <font>To</font>
-          </div> 
-              
+                <div class="input-group">
+                    <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
+                           name="close_arrival_from" [(ngModel)]="close_arrival_from" >
+                  </div>
+             </div>
          </div>
+         <br>
+
          <div class="row">        
-            <div class="col-sm-3">
-                <font>Close Date for Arrival</font>
-            </div>
-          <div class="col-sm-3">
-             <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
-                        name="close_arrival_from" [(ngModel)]="close_arrival_from" >
-               </div>
-          </div>
+                <div class="col-sm-3">
+                        <font>To</font>
+                    </div> 
           <div class="col-sm-3">
              <div class="input-group">
                  <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
@@ -440,29 +451,25 @@
                </div>
           </div>                  
          </div>
+         </div>
+
+         <div *ngIf="opendeparture==true"> 
          <div class="row">
-        
-          <div class="col-sm-3">
-             
-          </div>
           <div class="col-sm-3">
               <font>From Date</font>
           </div>
           <div class="col-sm-3">
-              <font>To Date</font>
-          </div>   
+                <div class="input-group">
+                    <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
+                           name="close_from" [(ngModel)]="close_departure_from" >
+                  </div>
+             </div>
          </div>
-       
+       <br>
          <div class="row">        
-          <div class="col-sm-3">
-            <font>Close Date for Departure</font>  
-          </div>
-          <div class="col-sm-3">
-             <div class="input-group">
-                 <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
-                        name="close_from" [(ngModel)]="close_departure_from" >
-               </div>
-          </div>
+                <div class="col-sm-3">
+                        <font>To Date</font>
+                    </div> 
           <div class="col-sm-3">
              <div class="input-group">
                  <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
@@ -470,31 +477,74 @@
                </div>
           </div>                  
          </div>
+        </div>
 
-<div class="row">
-    <div class="col-sm-3">
-    
-    </div> 
+        <div *ngIf="closearrival==true">
+                <div class="row">
+                 <div class="col-sm-3">
+                     <font>From</font>
+                 </div>
+                 <div class="col-sm-3">
+                       <div class="input-group">
+                           <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
+                                  name="close_arrival_from" [(ngModel)]="close_arrival_from" >
+                         </div>
+                    </div>
+                </div>
+                <br>
+       
+                <div class="row">        
+                       <div class="col-sm-3">
+                               <font>To</font>
+                           </div> 
+                 <div class="col-sm-3">
+                    <div class="input-group">
+                        <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
+                               name="close_arrival" [(ngModel)]="close_arrival_to" >
+                      </div>
+                 </div>                  
+                </div>
+        </div>
+       
+        <div *ngIf="closedeparture==true"> 
+                <div class="row">
+                 <div class="col-sm-3">
+                     <font>From Date</font>
+                 </div>
+                 <div class="col-sm-3">
+                       <div class="input-group">
+                           <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
+                                  name="close_from" [(ngModel)]="close_departure_from" >
+                         </div>
+                    </div>
+                </div>
+              <br>
+                <div class="row">        
+                       <div class="col-sm-3">
+                               <font>To Date</font>
+                           </div> 
+                 <div class="col-sm-3">
+                    <div class="input-group">
+                        <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
+                               name="close_departure" [(ngModel)]="close_departure_to" >
+                      </div>
+                 </div>                  
+                </div>
+        </div>
+
+        <div *ngIf="houseclose==true">
+         <div class="row">
     <div class="col-sm-3">
             <font>Date</font>
-        </div> 
-    <div class="col-sm-6">
-    </div>
-</div>
-        <div class="row">
-                <div class="col-sm-3">
-                    <font>House close</font>   
-                 </div>
-            <div class="col-sm-3">
+        </div>
+        <div class="col-sm-3">
                 <div class="input-group">
                     <input class="" placeholder="dd-mm-yyyy" type="date" style="border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;border-radius: 5px;"
                            name="houseclose" [(ngModel)]="house_close" >
                   </div>
-             </div>
-          <div class="col-md-3"></div>
-          <div class="col-sm-3">              
-          </div>  
+             </div> 
         </div>  
+        </div>
         <br>
         <div class="row">
             <div class="col-md-5"></div>
@@ -505,7 +555,7 @@
         <div class="col-md-5"></div>
     </div>  
          </div>
-        </div>
+        
          <!-- restriction End -->
    </div>
     
