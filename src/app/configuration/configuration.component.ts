@@ -80,8 +80,13 @@ this.photo=flags.upload_photos;
 this.smoke=flags.smoking;
 this.minprice= flags.min_price;
   }
-  
+  public view_rateplan_details = [];
   ngOnInit() {
+    this.configurationService.view_rateplan()
+    .subscribe((resp:any)=>{
+       this.view_rateplan_details=resp.Result;
+       console.log(this.view_rateplan_details)
+    });
     this.configurationService.packages()
     .subscribe((resp:any)=>{
        this.pakages=resp.Result;

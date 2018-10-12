@@ -22,14 +22,15 @@
       <div class="col-md-3">
           <div class="form-group">
             <b>Enddate</b>
-            <input type="date" class="form-control" id="Startdate" name="endtdate" style="height: 32px;" [(ngModel)]="end_date">
+            <input type="date" class="form-control" id="Startdate" name="endtdate" style="height: 32px;" [(ngModel)]="end_date" (ngModelChange)="fetchrecord($event,start_date,end_date)">
           </div>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <button type="button" class="btn btn-success" style="width:100%;margin-top: 21px;height: 34px;" (click)="fetchrecord(start_date,end_date)">Getdetails</button>
-        </div>
+        </div> -->
         <div class="col-md-3">
-            <button type="button" class="btn btn-success" style="width:100%;margin-top: 21px;height: 34px;" (click)="exportChart()">Download PDF</button>
+            <button class="btn" style="width:100%;margin-top: 21px;height: 40px;" (click)="exportChart()"><i class="fa fa-download"></i> Download</button>
+            <!-- <button type="button" class="btn btn-success" style="width:100%;margin-top: 21px;height: 34px;" (click)="exportChart()">Download PDF</button> -->
           </div>
        </div> 
      
@@ -39,7 +40,7 @@
           <div class="col-md-6">
             <!-- Countries -->
               <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
-                  <div><b style="margin-left: 10px;">Countries</b></div>
+                  <!-- <div><b style="margin-left: 10px;">Countries</b></div> -->
                       <div id="chart8" style="width: 113%; height:230px;"></div>
               </div>
           </div>
@@ -48,7 +49,7 @@
 
      <div class="col-md-6">
         <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
-            <div><b style="margin-left: 10px;">Year Reservation</b></div>
+            <!-- <div><b style="margin-left: 10px;">Year Reservation</b></div> -->
                 <div id="chart1" style="width: 113%; height:230px;"></div>
         </div>
 
@@ -58,14 +59,14 @@
   <div class="row" style="margin-top: 8px;">
       <div class="col-md-6">
           <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
-              <div><b style="margin-left: 10px;">Language</b></div>
+              <!-- <div><b style="margin-left: 10px;">Language</b></div> -->
                   <div id="chart6" style="width: 113%; height:230px;"></div>
       </div> 
       </div>
     <!-- <div id="chartdiv2" style="width: 113%; height:230px;"></div> -->
     <div class="col-md-6">
         <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
-            <div><b style="margin-left: 10px;">Booking vs Confirmation</b></div>
+            <!-- <div><b style="margin-left: 10px;">Booking vs Confirmation</b></div> -->
                 <div id="chart5" style="width: 113%; height:230px;"></div>
     </div>
     </div>
@@ -73,7 +74,7 @@
   <div class="row" style="margin-top: 8px;">
       <div class="col-md-6">
           <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
-              <div><b style="margin-left: 10px;">Occupancy</b></div>
+              <!-- <div><b style="margin-left: 10px;">Occupancy</b></div> -->
                   <div id="chart4" style="width: 113%; height:230px;"></div>
                   <!-- <div class="col-md-2">
                     <button type="button" class="btn btn-danger"style="margin-left: 166px;"  (click) = "download()">DownloadPDF</button>
@@ -82,7 +83,7 @@
       </div>
       <div class="col-md-6">
           <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
-              <div><b style="margin-left: 10px;">Booking vs Delivery</b></div>
+              <!-- <div><b style="margin-left: 10px;">Booking vs Delivery</b></div> -->
                   <div id="chart7" style="width: 113%; height:230px;"></div>
       </div>
       </div>
@@ -90,9 +91,9 @@
     <div class="row" style="margin-top: 8px;">
       <div class="col-md-6">
           <div class="card" style="width: 531px; height: 303px; margin-left: -13px;">
-              <div>
+              <!-- <div>
                  <b style="margin-left: 10px;">Users</b> </div>
-              
+               -->
         <div id="chart2" style="width: 113%;height:230px;margin-left: -18px;"></div>
         <!-- <div class="col-md-3"></div>
         <div class="col-md-2">
@@ -102,7 +103,7 @@
     </div>
     <div class="col-md-6">
         <div class="card" style="width: 525px; height: 303px;margin-left: -8px; ">
-            <div><b style="margin-left: 10px;">Channels</b></div>
+            <!-- <div><b style="margin-left: 10px;">Channels</b></div> -->
       <div id="chart3" style="width: 113%;height:230px;margin-left: -18px;"></div>
       <!-- <div class="col-md-3"></div>
       <div class="col-md-2">
@@ -114,7 +115,7 @@
 <div class="row" style="margin-top: 8px;">
   <div class="col-md-12">
   <div class="card">
-      <h4 style="text-align: center;">History Booking</h4>
+      <!-- <h4 style="text-align: center;">History Booking</h4> -->
 
       <div id="chart9"  style="width:100%;height:450px;"></div>   
 
