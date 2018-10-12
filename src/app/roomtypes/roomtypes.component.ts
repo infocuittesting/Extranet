@@ -262,29 +262,30 @@ this.setper = false
   todate1:any;
   todate4:any;
   getperioddays(getdate) {
-  //  if (getdate.period !=null){
-  //    this.setper = false
-  //  }
-  //  else{
-  //    this.setper = true
-  //  }
-    if(getdate.period==null){
-    this.parms={
-      "business_id":this.session.retrieve("business_id"),
-      "from_date":this.fromdate.year+'-'+this.fromdate.month+'-'+this.fromdate.day,
-      "to_date":this.todate3.year+'-'+this.todate3.month+'-'+this.todate3.day,
-      "room_type":this.labelforroom,
-      "room_name":this.roomName,
+ this.parms = {
+  
+    "business_id": this.session.retrieve("business_id"),
+    "from_date": this.fromdate.year+'-'+this.fromdate.month+'-'+this.fromdate.day,
+    "to_date": this.todate3.year+'-'+this.todate3.month+'-'+this.todate3.day
+
+ }
+    // if(getdate.period==null){
+    // this.parms={
+    //   "business_id":this.session.retrieve("business_id"),
+    //   "from_date":this.fromdate.year+'-'+this.fromdate.month+'-'+this.fromdate.day,
+    //   "to_date":this.todate3.year+'-'+this.todate3.month+'-'+this.todate3.day,
+    //   "room_type":this.labelforroom,
+    //   "room_name":this.roomName,
       
-      }
-    }else{
-      this.parms={
-        "business_id":this.session.retrieve("business_id"),
-       "date_range":getdate.period,
-        "room_type":this.labelforroom,
-        "room_name":this.roomName
-        }
-    }
+    //   }
+    // }else{
+    //   this.parms={
+    //     "business_id":this.session.retrieve("business_id"),
+    //    "date_range":getdate.period,
+    //     "room_type":this.labelforroom,
+    //     "room_name":this.roomName
+    //     }
+    // }
       console.log("getdatedaetails#####################",this.parms)
       this.roomTypeService.getdateDetails(this.parms)
       .subscribe((resp: any) => {
@@ -293,7 +294,7 @@ this.setper = false
         }
 
       });
-
+  
     this.showlabelname = true;
 
   }
