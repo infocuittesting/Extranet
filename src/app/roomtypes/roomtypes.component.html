@@ -334,7 +334,7 @@
                        </div>    
                   <div class="col-sm-2">
                          <div class="input-group">
-                            <select class="form-control" name="roomsizeid" style="height: 2.4em;border: 1px solid gray;" [(ngModel)]="room_id" (ngModelChange)="onChangeObj($event)">
+                            <select class="form-control" name="roomsizeid" style="height: 2.4em;border: 1px solid gray;" [(ngModel)]="room_id" (ngModelChange)="onChangeObj($event,room_id)">
                                 <option *ngFor="let list of roomtypes" [ngValue] = "list.room_id"> {{list.room_name}}</option> 
                               </select>
                              </div>
@@ -434,7 +434,7 @@
           <div class="col-sm-3">
                 <div class="input-group">
                     <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
-                           name="close_arrival_from" [(ngModel)]="close_arrival_from" >
+                           name="open_arrival_from" [(ngModel)]="open_arrival_from" >
                   </div>
              </div>
          </div>
@@ -447,7 +447,7 @@
           <div class="col-sm-3">
              <div class="input-group">
                  <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
-                        name="close_arrival" [(ngModel)]="close_arrival_to" >
+                        name="open_arrival_to" [(ngModel)]="open_arrival_to" >
                </div>
           </div>                  
          </div>
@@ -461,7 +461,7 @@
           <div class="col-sm-3">
                 <div class="input-group">
                     <input class="" placeholder="dd-mm-yyyy" type="date"  style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
-                           name="close_from" [(ngModel)]="close_departure_from" >
+                           name="open_departure_from" [(ngModel)]="open_departure_from" >
                   </div>
              </div>
          </div>
@@ -473,7 +473,7 @@
           <div class="col-sm-3">
              <div class="input-group">
                  <input class="" placeholder="dd-mm-yyyy" type="date" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;max-width: 13.2em;height: 36px;"
-                        name="close_departure" [(ngModel)]="close_departure_to" >
+                        name="open_departure_to" [(ngModel)]="open_departure_to" >
                </div>
           </div>                  
          </div>
@@ -550,7 +550,7 @@
             <div class="col-md-5"></div>
             <div class="col-md-2">
                 <button type="button" class="btn btn-info"
-                style="height: 35px; padding-top: 2px;border-radius: 0px;"(click)="restrcitdeatils(min_stay,min_date,max_stay,max_date,close_arrival_from,close_arrival_to,close_departure_from,close_departure_to,house_close)">Save</button>
+                style="height: 35px; padding-top: 2px;border-radius: 0px;"(click)="restrcitdeatils(min_stay,min_date,max_stay,max_date,close_arrival_from,close_arrival_to,close_departure_from,close_departure_to,house_close,open_arrival_from,open_departure_from,open_arrival_to,open_departure_to)">Save</button>
         </div>
         <div class="col-md-5"></div>
     </div>  

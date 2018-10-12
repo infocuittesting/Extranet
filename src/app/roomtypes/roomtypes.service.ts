@@ -64,7 +64,7 @@ daterangecount(params): Observable<object[]> {
     const headers = new Headers({ 'Content-Type': 'application/json' })
     const options = new RequestOptions({ headers: headers });
     //let body = { "userKey": dashbrddata };
-
+    console.log("paramsss HHHHHHHHHHHHHHHHHHHH",params)
     return this.http.post('https://ivrinfocuit.herokuapp.com/restriction', params, options)
       .map(this.extractData)
     //.catch(this.handleErrorObservable);
@@ -80,13 +80,13 @@ daterangecount(params): Observable<object[]> {
       .map(this.extractData)
     //.catch(this.handleErrorObservable);
   }
-  selectrateplan(): Observable<object[]> {
+  selectrateplan(body): Observable<object[]> {
     console.log("service is cam")
     const headers = new Headers({ 'Content-Type': 'application/json' })
     const options = new RequestOptions({ headers: headers });
-    let body = { "business_id":this.session.retrieve("business_id") };
+   
 
-    return this.http.post('https://ivrinfocuit.herokuapp.com/select_rateplanid',body, options)
+    return this.http.post('https://ivrinfocuit.herokuapp.com/select_plan',body, options)
       .map(this.extractData)
     //.catch(this.handleErrorObservable);
   }

@@ -589,8 +589,8 @@ this.chart = this.AmCharts.makeChart( "chart20", {
     
       
 }
-fetchrecord(start_date,end_date){
-  console.log("its coming to chart")
+fetchrecord(event,start_date,end_date){
+  console.log("its coming to chart",event,start_date,end_date)
   let statsParms = {
     
       "arrival_from":start_date,
