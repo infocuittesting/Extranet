@@ -171,17 +171,21 @@ export class RoomtypesComponent implements OnInit {
     "Summer_special":"no",
     }
   ]
-  onChangeObj(event){
+  onChangeObj(event,room_id){
     this.enrate = false
+    let body = { "business_id":this.session.retrieve("business_id"),
+    "room_id":room_id };
+    console.log("rommmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",body)
+    this.roomTypeService.selectrateplan(body)
+    .subscribe((resp: any) => {
+      this.rateplan = resp.Result;
+      // this.todate4=this.selectrestr.house_close;
+      console.log("Rate plannnnnnnnnnnnnnnn",this.rateplan)
+    });
   }
 
   ngOnInit() {  
-    this.roomTypeService.selectrateplan()
-.subscribe((resp: any) => {
-  this.rateplan = resp.Result;
-  // this.todate4=this.selectrestr.house_close;
-  console.log("Rate plannnnnnnnnnnnnnnn",this.rateplan)
-});
+   
 this.roomTypeService.selectroomtype()
 .subscribe((resp: any) => {
   this.roomtypes = resp.Result;
@@ -537,24 +541,30 @@ this.setper = false
 
     });
   }
-  restrcitdeatils(min_stay,min_date,max_stay,max_date,close_arrival_from,close_arrival_to,close_departure_from,close_departure_to,house_close){
+  restrcitdeatils(min_stay,min_date,max_stay,max_date,close_arrival_from,close_arrival_to,close_departure_from,close_departure_to,house_close,open_arrival_from,open_departure_from,open_arrival_to,open_departure_to){
     console.log("restrictdetails",min_stay,min_date,max_stay,max_stay,close_arrival_from,close_arrival_to,close_departure_from,close_departure_to,house_close)
     let body = {
        
       
-        "business_id":this.session.retrieve("business_id").toString(),
-        "min_stay":min_stay,
-        "min_date":min_date,
-        "max_stay":max_stay,
-        "max_date":max_date,
-        "close_arrival_from":close_arrival_from,
-        "close_arrival_to":close_arrival_to,
-        "close_departure_from":close_departure_from,
-        "close_departure_to":close_departure_to,
-        "house_close":house_close
+        // "business_id":this.session.retrieve("business_id").toString(),
+        "business_id": this.session.retrieve("business_id").toString(),
+        "min_stay": min_stay != null ? min_stay.toString() : "",
+        "max_stay": max_stay !=null ? max_stay.toString():"",
+        "close_arrival":close_arrival_from !=null  ? close_arrival_from :"",
+        "close_departure":close_departure_from !=null ? close_departure_from:"",
+        "house_close":house_close !=null ? house_close:"",
+        "min_stay_date":min_date !=null ? min_date:"",
+        "max_stay_date":max_date !=null ? max_date:"",
+        "close_arrival_to":close_arrival_to !=null ? close_arrival_to:"",
+        "close_departure_to":close_departure_to !=null ? close_departure_to:"",
+        "open_arrival":open_arrival_from !=null ? open_arrival_from:"",
+        "open_departure":open_departure_from !=null ? open_departure_from:"",
+        "open_arrival_to":open_arrival_to !=null ? open_arrival_to:"",
+        "open_departure_to":open_departure_to !=null ? open_departure_to:""
       
       
     }
+  
     console.log("params details",body)
     this.roomTypeService.restriction(body)
     
@@ -562,8 +572,9 @@ this.setper = false
       if (resp.ServiceStatus == 'Success') {
         alert("resp.ServiceStatus "+resp.ServiceStatus);
       }
-
+     
     });
+  
   }
   public toggleValue:any;
 public open:any;
