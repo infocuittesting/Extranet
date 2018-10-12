@@ -81,8 +81,101 @@
 
      <!-- Alert start-->
      <div *ngIf="showMore==true">
-
-              <div class="row" style="padding-left:37px;padding-bottom:5px;">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="row" style="border:1px solid lightgrey;margin:10px ">
+            <div class="col-md-4" style="border-right: 1px solid lightgrey;">
+              <p>Arrival</p>
+              <h6 style="margin-top:-15px;">{{Arrival}}</h6>  
+              <br>        
+              <p>Departure</p>
+              <h6 style="margin-top:-15px;">{{Departure}}</h6>
+              <br>
+              <p>Stay Length</p>
+              <h6 style="margin-top:-15px;"> </h6>
+              <br>
+              <p>Total Adult</p>
+              <label style="margin-top:-15px;">{{adults}}</label>
+              <br>
+              <p>Total Child</p>
+              <label style="margin-top:-15px;">{{child}}</label>
+              <br>
+              <p>Total Price</p>
+              <label style="margin-top:-15px;">{{rate}} </label>
+            </div>
+            <div class="col-md-8">
+              <p>Guest Name:</p>
+              <h6 style="margin-top:-15px;"> </h6>  
+              <br>    
+              <p>Preferred Language</p>
+              <h6 style="margin-top:-15px;"> </h6>
+              <br>
+              <p>Channel</p>
+              <h6 style="margin-top:-15px;">{{channel}}</h6>
+              <br>
+              <p>Confirmation Number</p>
+              <label style="margin-top:-15px;">{{Confirmation}}</label>
+              <br>
+              <p>Booked On</p>
+              <label style="margin-top:-15px;">{{Booked}}</label>
+              <br>
+              <p>No Of Rooms</p>
+              <label style="margin-top:-15px;">{{Roomno}} </label>
+            </div>
+          </div>
+          <div  class=" card" style="border:1px solid lightgrey;margin:10px ">
+            <div class="card-header  bg-light">
+              <h5>{{Roomtype}}</h5>
+              <p><span><i class="fa fa-sign-in"></i>{{Arrival}}</span> <span><i class="fa fa-sign-out"></i>{{Departure}}</span></p>
+            </div>
+            <div class="row">
+            <div class="col-md-4">
+                <p>Guest Name</p>
+                <br>
+                <p>Max Guest</p>
+                <label style="margin-top:-15px;">{{adults+child}}</label>
+                <br>
+                <p>Meal Options</p>
+                <label></label>
+                <img src="../../assets/images/Deluxe Suite.jpg" alt="" width="300px" height="250px">
+                <br>
+              </div>
+              <div class="col-md-8">
+                <br>
+                <br>
+                <br><br><br><br>
+                  <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <th>Firstname</th>
+                          <th>Lastname</th>
+                          <th>Email</th>
+                        </tr>
+                        <tr>
+                          <td>John</td>
+                          <td>Doe</td>
+                          <td>john@example.com</td>
+                        </tr>
+                        <tr>
+                          <td>Mary</td>
+                          <td>Moe</td>
+                          <td>mary@example.com</td>
+                        </tr>
+                        <tr>
+                          <td>July</td>
+                          <td>Dooley</td>
+                          <td>july@example.com</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+            <br>
+          </div>
+        
+        </div>
+      </div>
+              <!-- <div class="row" style="padding-left:37px;padding-bottom:5px;">
                 <div class="col-md-3">
                   <font>Confirmation No</font>
                 </div>
@@ -206,7 +299,7 @@
               <div class="col-md-3">
                   <font><span class="badge" style="width:25px;height: 12px;" [ngClass]="{'backgroundcolorgreenchange': sms=='success', 'backgroundcolorredschange': sms==null,'backgroundcolorredchange': sms=='failure'}"> </span> SMS</font>
               </div>
-            </div>
+            </div> -->
 
             
             <div class="text-center">
