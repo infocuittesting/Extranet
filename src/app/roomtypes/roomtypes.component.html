@@ -359,6 +359,11 @@
         <br>
         <div class="row">
             <div class="col-md-4">
+                Rate Restriction
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                     <div class="input-group">
                             <select class="form-control" name="mini_stay" id="" style="border-radius: 5px;border: 1px solid gray;padding-left:15px;height: 36px;max-width:16em" [(ngModel)]="dropdownvalue" (change)="showhiderestriction(dropdownvalue)">
                                 <option value="Minimum Stay">Minimum Stay</option>
@@ -373,7 +378,9 @@
             </div>
         </div>
         <br>
-        <div *ngIf="mini!=true">
+        <div style="border:1px solid lightgrey">
+            <br>
+        <div *ngIf="mini!=true" >
         <div class="row">        
          <div class="col-sm-3">
             <font>Minimum stay</font>
@@ -546,6 +553,9 @@
         </div>  
         </div>
         <br>
+    </div>
+        <br>
+
         <div class="row">
             <div class="col-md-5"></div>
             <div class="col-md-2">
