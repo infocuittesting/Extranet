@@ -16,11 +16,12 @@ export class LoginregService {
 
          const headers = new Headers({'Content-Type':'application/json'})
          const options = new RequestOptions({ headers: headers });
-         let body={"user_name":regdata.username,"user_password":regdata.password,
-        "user_conf_password":regdata.password,"user_mobile":regdata.mobileNo,
-        "hotel_name":regdata.hotelname,"user_email":regdata.email};
+         let body={"group_id":regdata.groupid,"business_id":regdata.businessid,
+         "user_name":regdata.username,"user_password":regdata.password,
+        "conf_password":regdata.password,"mobile":regdata.mobileNo,
+       "user_email":regdata.email};
 
-         return this.http.post('https://ivrinfocuit.herokuapp.com/SignupExtranet',body,options)
+         return this.http.post('https://ivrinfocuit.herokuapp.com/user_signup',body,options)
             .map(this.extractData)
             //.catch(this.handleErrorObservable);
      }
@@ -33,9 +34,9 @@ export class LoginregService {
         headers.append('Content-Type', 'application/json');
 
         const options = new RequestOptions({ headers: headers });
-        let body={"user_email":logindata.username,"user_password":logindata.password};
+        let body={"business_id":logindata.businessid,"user_email":logindata.username,"user_password":logindata.password};
 
-        return this.http.post('https://ivrinfocuit.herokuapp.com/LoginExtranet',body,options)
+        return this.http.post('https://ivrinfocuit.herokuapp.com/User_login',body,options)
            .map(this.extractData)
            //.catch(this.handleErrorObservable);
     }

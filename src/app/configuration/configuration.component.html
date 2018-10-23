@@ -45,7 +45,7 @@
 <div class="tab-content clearfix">
 <div id="Grid" class="tab-pane container active" style="margin-top:10px;">
 <div class="row" *ngIf="showMore!=true" >
-  <div class="col-md-3"  *ngFor="let room of roomdetails ">
+  <div class="col-md-3"  *ngFor="let room of roomdetails " style="margin-bottom:5px;">
     <div class="card" (click)="viewdata(room)">
         <img class="card-img-top hovercss" alt="Card image"
         src="../../assets/images/Standard Room.jpg"
@@ -73,6 +73,7 @@
       </div>
     </div>
   </div>
+  <br>
   <br>
     <div class="col-md-3" (click)="Queryselectoptions()">
     <div class="card"  data-toggle="modal" data-target="#roomplan">
@@ -111,21 +112,24 @@
     </div>
   <div class="row">
     <div class="col-md-3">
-      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="room">
+      <div class="contact-form-textfield">
+      <input type="text" name="" id="" class="form-control" disabled [(ngModel)]="room">
+    </div>
     </div>
     <div class="col-md-3">
-        <select class="form-control" name="roomsizeids" style="width: 11.0em;height: 2.4em;border:1px solid #A0A0A0;" [(ngModel)]="rmsize">
+        <select class="form-control" name="roomsizeids" style="height: 2.4em;border:1px solid #A0A0A0;" [(ngModel)]="rmsize">
             <option *ngFor="let list of roomsize" [ngValue] = "list.room_size_id"> {{list.size_of_room}}</option> 
           </select>
     </div>
     <div class="col-md-3">
-      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="maxadult">
+      <input type="text" name="" id="" class="form-control" style="width: 100%;" [(ngModel)]="maxadult">
     </div>
     <div class="col-md-3">
-      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="maxchild">
+      <input type="text" name="" id="" class="form-control" style="width: 100%;" [(ngModel)]="maxchild">
     </div>
-    <div class="row">
   </div>
+    <div class="row">
+  
     <div class="col-md-3">
       <font>Bedding</font>
     </div>
@@ -142,22 +146,22 @@
   </div>
   <div class="row">
       <div class="col-md-3">
-          <select class="form-control" name="confbedding" style="width: 11.0em; height: 2.4em;border:1px solid #A0A0A0; " [(ngModel)]="beding">
+          <select class="form-control" name="confbedding" style=" height: 2.4em;border:1px solid #A0A0A0; " [(ngModel)]="beding">
             <option *ngFor="let list1 of bedding" [ngValue] = "list1.bedding_option_id"> {{list1.bed_option}}</option> 
           </select>
         </div>
         <div class="col-md-3">
-          <select class="form-control" name="bedsize" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="bedsize">
+          <select class="form-control" name="bedsize" style=" height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="bedsize">
             <option *ngFor="let list of beddingsize" [ngValue] = "list.bed_size_id"> {{list.bed_size}}</option> 
           </select>
         </div>
         <div class="col-md-3">
-          <select class="form-control" name="extrabed" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="extrabeds">
+          <select class="form-control" name="extrabed" style=" height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="extrabeds">
             <option *ngFor="let list of extrabed" [ngValue] = "list.extrabed_id"> {{list.extrabed}}</option> 
           </select>
         </div>
         <div class="col-md-3">
-          <select class="form-control" name="extrabed" style="width: 11.0em; height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="amenitie">
+          <select class="form-control" name="extrabed" style=" height: 2.4em; border:1px solid #A0A0A0;" [(ngModel)]="amenitie">
             <option *ngFor="let list of roomamenities" [ngValue] = "list.amenitie_id"> {{list.amenitie}}</option> 
           </select>
         </div>
@@ -175,10 +179,10 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="photo">
+      <input type="text" name="" id="" style="width: 230px; height: 2.4em;" class="form-control" [(ngModel)]="photo">
     </div>
     <div class="col-md-3">
-      <input type="text" name="" id="" style="width: 11.0em; height: 2.4em;" [(ngModel)]="minprice">
+      <input type="text" name="" id="" style="width: 230px; height: 2.4em;" class="form-control" [(ngModel)]="minprice">
     </div>
     <div class="col-md-3">
       <input type="checkbox" name="" id="" style=" width:30px; height:30px;margin-top: 5px;margin-left: 10px;" [(ngModel)]="smoke">
@@ -240,13 +244,34 @@
     </div>
 </div>
 <br>
+<div class="row">
+    <div class="col-md-4">
+        <font><b><h6>From Date</h6></b></font>
+      </div>
+     <div class="col-md-4">
+      <font><b><h6>To Date</h6></b></font>
+    </div>  
+</div>
+<div class="row">
+  <div class="col-md-4">
+      <input type="date" name="" id="" style="width: 13.0em; height: 2.4em;"[(ngModel)]="fromdate">
+
+    </div>
+   <div class="col-md-4">
+    <input type="date" name="" id="" style="width: 13.0em; height: 2.4em;"[(ngModel)]="todate" >
+  </div>
+</div>
+<br>
 <div class="row" style="padding-bottom:5px;">
   <div class="col-md-4">
     <font><b><h6>Room Types</h6></b></font>
   </div>
 </div>
 <div class="row">
-  <table>
+  <div class="col-md-3" *ngFor="let list of roomtypes">
+      <input type="checkbox" value="{{list.room_id}}" style="width: 1rem;height: 1rem;" (change)="onroomCheckboxChange(list,$event)"><label  style="margin-left:10px;">{{list.room_name}}</label>
+  </div>
+  <!-- <table>
     <tbody>
       <tr style="margin-left:15px;">
         <td *ngFor="let list of roomtypes">
@@ -254,7 +279,7 @@
         </td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 </div>
 <br>
 <div class="row" style="padding-bottom:5px;">
@@ -262,8 +287,12 @@
       <font><b><h6>Packages</h6></b></font>
     </div> 
   </div>
-  <div class="row">
-          <table>
+  <div class="row"  >
+    <div class="col-md-3" *ngFor="let list of pakages"> 
+        <input type="checkbox" value="{{list.packages_id}}" style="width: 1rem;height: 1rem;" (change)="onCheckboxChange(list,$event)"><label  style="margin-left:10px;">{{list.package}}</label>
+    </div>
+
+          <!-- <table>
               <tbody>
                 <tr style="margin-left:15px;">
                   <td *ngFor="let list of pakages">
@@ -271,30 +300,14 @@
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
           <!-- <div class="checkbox" *ngFor="let list of pakages">
               <label>
                 <input  type="checkbox" value="{{list.packages_id}}" (change)="onCheckboxChange(list,$event)">{{list.package}}</label>
             </div> -->
     </div>
     <br>
-    <div class="row">
-        <div class="col-md-4">
-            <font><b><h6>From Date</h6></b></font>
-          </div>
-         <div class="col-md-4">
-          <font><b><h6>To Date</h6></b></font>
-        </div>  
-    </div>
-  <div class="row">
-      <div class="col-md-4">
-          <input type="date" name="" id="" style="width: 13.0em; height: 2.4em;"[(ngModel)]="fromdate">
-
-        </div>
-       <div class="col-md-4">
-        <input type="date" name="" id="" style="width: 13.0em; height: 2.4em;"[(ngModel)]="todate" >
-      </div>
-    </div>
+    
     <br>
     <div class="row">
         <div class="col-md-5"></div>
@@ -313,11 +326,12 @@
         <div class="modal-dialog">
         
           <!-- Modal content-->
-          <div class="modal-content" style="width:165%;margin-left:-35%;">
+          <div class="modal-content" style="width:167%;margin-left:-35%;">
             <div class="modal-header">
               <h4 style="margin-left:40%;"> Room Type</h4>
               <button type="button" class="close" style="margin-right:5px;" data-dismiss="modal">&times;</button>
             </div>
+            <div class="card" style="width: 817px; margin-left: 6px;">
             <div class="modal-body">
               <div class="row">
                 <div class="col-md-3">
@@ -409,6 +423,7 @@
               </div>
             </div>
             </div>
+          </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" (click)="insertroom(plan)" data-dismiss="modal"><b>Save</b></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Close</b></button>

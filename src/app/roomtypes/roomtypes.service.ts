@@ -24,16 +24,17 @@ export class RoomTypeService {
   }
 
   //get date details
-  getdateDetails(dateparms: any): Observable<object[]> {
+  // getdateDetails(dateparms: any): Observable<object[]> {
 
-    const headers = new Headers({ 'Content-Type': 'application/json' })
-    const options = new RequestOptions({ headers: headers });
-    //let body = { "userKey": dashbrddata };
+  //   const headers = new Headers({ 'Content-Type': 'application/json' })
+  //   const options = new RequestOptions({ headers: headers });
+  //   let body = { "userKey": dashbrddata };
 
-    return this.http.post('https://ivrinfocuit.herokuapp.com/RatesandAvailability', dateparms, options)
-      .map(this.extractData)
-    //.catch(this.handleErrorObservable);
-  }
+  //   return this.http.post('https://ivrinfocuit.herokuapp.com/RatesandAvailability', dateparms, options)
+  //     .map(this.extractData)
+  //   .catch(this.handleErrorObservable);
+  // }
+  
 
 
   //insert sell room count and rates
@@ -81,7 +82,7 @@ daterangecount(params): Observable<object[]> {
     //.catch(this.handleErrorObservable);
   }
   selectrateplan(body): Observable<object[]> {
-    console.log("service is cam")
+    console.log("service is camghghfdhfhd")
     const headers = new Headers({ 'Content-Type': 'application/json' })
     const options = new RequestOptions({ headers: headers });
    
@@ -100,12 +101,55 @@ daterangecount(params): Observable<object[]> {
       .map(this.extractData)
     //.catch(this.handleErrorObservable);
   }
+
+  getsavebutton(body_send_values: any): Observable<object[]> {
+    console.log("service came")
+
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    
+    //console.log("json banuuuuuu",body_send_values)
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/update_room_open',body_send_values, options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
+ 
+
+  getgrid(dateparms: any): Observable<object[]> {
+    console.log("service is cam")
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/RatesandAvailability',dateparms, options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
+
+//default
+  getgriddef(): Observable<object[]> {
+    console.log("service is cam")
+    const headers = new Headers({ 'Content-Type': 'application/json' })
+    const options = new RequestOptions({ headers: headers });
+    let body={
+      
+        "business_id": "8991897773",
+        "from_date": "2019-01-01",
+        "to_date": "2019-01-05"
+      
+    }
+
+    return this.http.post('https://ivrinfocuit.herokuapp.com/RatesandAvailability',body, options)
+      .map(this.extractData)
+    //.catch(this.handleErrorObservable);
+  }
   
-  private extractData(res: Response) {
+  private extractData(res: Response) { 
     //alert('hai20')
     console.log('res========---====' + res);
     let body = res.json();
-    console.log(JSON.stringify(body));
+    console.log(JSON.stringify("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",body));
     return body;
   }
 }

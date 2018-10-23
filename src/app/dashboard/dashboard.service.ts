@@ -1,4 +1,3 @@
-/* tslint:disable */
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs';
@@ -10,6 +9,19 @@ export class DashboardService {
   constructor(
     private http: Http
   ) { }
+
+  dashBoardNotification():Observable<object[]>{
+
+    return this.http.get('https://ivrinfocuit.herokuapp.com/Dashboard_report')
+    .map(this.extractData)
+  }
+
+  
+  dashBoardChat():Observable<object[]>{
+
+    return this.http.get('https://ivrinfocuit.herokuapp.com/lastchannelrecord')
+    .map(this.extractData)
+  }
 
   //registration details
   dashboardDetails(dashbrddata: any): Observable<object[]> {
@@ -32,3 +44,4 @@ export class DashboardService {
     return body;
   }
 }
+

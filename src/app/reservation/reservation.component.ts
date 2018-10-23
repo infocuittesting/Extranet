@@ -29,11 +29,19 @@ export class ReservationComponent implements OnInit {
         this.showMore=false;
       }
 
-  NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
-  arriv: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
-  depart: NgbDateStruct = {day: now.getDate() , month:now.getMonth() + 1, year:  now.getFullYear()};
+  NgbDateStruct = { year:  now.getFullYear(),month:now.getMonth() + 1,day: now.getDate() ,};
+  arriv: NgbDateStruct = { year:  now.getFullYear(),month:now.getMonth() + 1,day: now.getDate()};
+  depart: NgbDateStruct = {year:  now.getFullYear(),month:now.getMonth() + 1,day: now.getDate()};
   ngOnInit() {
-   
+   this.cleartab();
+  //   this.ReservationService.reservationdetails()
+  //   .subscribe((resp: any) => {
+  //  this.hello=resp.result;
+  //  console.log("hello",this.hello)
+  //   });
+  }
+  cleartab(){
+    
     this.ReservationService.reservationdetails()
     .subscribe((resp: any) => {
    this.hello=resp.result;

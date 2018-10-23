@@ -1,6 +1,8 @@
+<form #ClearAll="ngForm">
 <div class="row">
+  
   <div class="col-md-12">
-      <h6>Reservation</h6>
+      <!-- <h6>Reservation</h6> -->
   </div>
 </div>
 <div *ngIf="showMore!=true">
@@ -9,44 +11,65 @@
     <font> Arrival</font>
   </div>
   <div class="col-md-4">
-    <font> Departure</font>
+    <font style="margin-left: -87px;"> Departure</font>
   </div>
   <div class="col-md-4">
-    <font> Search</font>
+    <font style="margin-left: -174px;"> Search</font>
   </div>
 
 </div>  
 <div class="row">
-    <div class="col-md-4">
-        <div class="input-group">
-      <input placeholder="DD-MM-YYYY"  class="" style="border: 1px solid gray;padding-left:15px;max-width: 10em; " name="" id="" [(ngModel)]="arriv"  ngbDatepicker #g="ngbDatepicker" >
+    <div class="col-md-3">
+        <!-- <div class="input-group">
+      <input placeholder="DD-MM-YYYY"  class="" style="border: 1px solid gray;padding-left:15px;max-width: 10em; " name="arrivdate" id="arrivdate" [(ngModel)]="arrivdate" #name="ngModel" ngbDatepicker #g="ngbDatepicker" >
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" (click)="g.toggle()" type="button"
         style="border-radius: 0px;">
           <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
         </button>
       </div>
-      </div>
+      </div> -->
+    <div class="input-group">
+      <input type="date"  placeholder="YYYY-MM-DD" class="" style="border: 1px solid gray;padding-left:15px;max-width: 12em; " class="form-control" id="date" name="date" [(ngModel)]="date" ngbDatepicker #g="ngbDatepicker">
+      <!-- <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="g.toggle()" type="button"
+        style="border-radius: 0px;">
+          <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+        </button>
+      </div> -->
     </div>
-    <div class="col-md-4">
+    </div>
+    <div class="col-md-3">
         <div class="input-group">
-        <input placeholder="DD-MM-YYYY" class="" style="border: 1px solid gray;padding-left:15px;max-width: 10em; " name="" id="" [(ngModel)]="depart" ngbDatepicker #d="ngbDatepicker" >
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"
+            <input type="date"  placeholder="YYYY-MM-DD" class="" style="border: 1px solid gray;padding-left:15px;max-width: 12em; " class="form-control" id="dep_date" name="dep_date" [(ngModel)]="dep_date" ngbDatepicker #g="ngbDatepicker">
+            <!-- <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="g.toggle()" type="button"
+              style="border-radius: 0px;">
+                <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+              </button>
+            </div> -->
+          </div>
+        <!-- <div class="input-group">
+        <input type="date" placeholder="YYYY-MM-DD" class="" style="border: 1px solid gray;padding-left:15px;max-width: 10em; " name="depart" id="depart" [(ngModel)]="depart" ngbDatepicker #d="ngbDatepicker" > -->
+        <!-- <div class="input-group-append">
+            <button class="btn btn-outline-secondary"  type="button"
             style="border-radius: 0px;">
               <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
             </button>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
     </div>
-    <div class="col-md-4">
-        <input class="" name="" id="" [(ngModel)]="room" style="border: 1px solid gray; height: 2.4em; max-width: 12.2em; ">
+    <div class="col-md-3">
+        <input type="number" class="form-control" name="conf_num" id="conf_num" [(ngModel)]="conf_num" style="border: 1px solid gray; height: 2.4em; max-width: 12.2em; ">
+    </div>
+    <div class="col-mg-3">
+        <button type="button" class="btn btn-warning" (click)="cleartab();ClearAll.reset()">Clear</button>
     </div>
 </div>
 <br>
 <div class="row" >
   <div class="col-md-12">
-<table class="table table-bordered  fixtab">
+<table class="table table-bordered  fixtab" style="margin-top: -14px;">
   <thead style="background-color:#337ab7;color: white">
     <tr>
       <th style="width:50px">Seq</th>
@@ -61,7 +84,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let detail of hello|filterdata: room;let i = index" (click)="selectMembersEdit(detail,i)"
+    <tr *ngFor="let detail of hello |filterdata: date :'customer_arrival_date'|filterdata: conf_num :'customer_confirmation_number'|filterdata: dep_date :'customer_depature_date';let i = index" (click)="selectMembersEdit(detail,i)"
     [ngClass]="{'backGroundColor':i==selectindex}" (dblclick)="showMoreBut()">
       <td style="width:50px">{{i+1}}</td>
       <td style="width:160px">{{detail.customer_confirmation_number}}</td>
@@ -77,8 +100,9 @@
 </table>
 </div>
 </div>
-</div>
 
+</div>
+</form>
      <!-- Alert start-->
      <div *ngIf="showMore==true">
       <div class="panel panel-primary">

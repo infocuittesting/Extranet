@@ -31,8 +31,29 @@ export class DashboardComponent implements OnInit {
   value: any = null;
   getroomdetails=[];
   public chartDatas=[];
-  ngOnInit() {
+  public notification = [];
+  public chat = [];
+  
 
+  ngOnInit() {
+    
+    this.dashboardservice.dashBoardNotification()
+      .subscribe((resp:any) =>{
+        if(resp.Return_code == "Success"){
+          this.notification = resp.Return_value;
+          console.log("1) Notification service -", this.notification);
+        } 
+      });    
+
+     
+
+      this.dashboardservice.dashBoardChat()
+      .subscribe((resp:any) =>{
+        if(resp.Return_code == "Success"){
+          this.chat = resp.Return_value;
+          console.log("3) Chat service -", this.chat);
+        }
+      });
     //get dashboard datas
     //  this.value = this.session.get("business_id");
 

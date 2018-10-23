@@ -3,17 +3,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import * as $ from 'jquery';
 import { SessionStorageService } from 'ngx-webstorage';
+import { MenusService } from './menus.service';
 
 // declare var $:any;
 /* tslint:disable */
 @Component({
   selector: 'app-menus',
   templateUrl: './menus.component.html',
-  styleUrls: ['./menus.component.css']
+  styleUrls: ['./menus.component.css'],
+  providers:[MenusService]
 })
 export class MenusComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute ,public session: SessionStorageService) { }
+  constructor(private menuservice:MenusService,private router: Router, private route: ActivatedRoute ,public session: SessionStorageService) { }
 
   public dasharrowflag = true;
   public reservationarrowflag = false;
@@ -22,10 +24,18 @@ export class MenusComponent implements OnInit {
   public policyarrowflag = false;
   public configurationsarrowflag = false;
   public reportsarrowflag =false;
-  
+  public toolbar:any;
 
   ngOnInit() {
     this.router.navigate(['dashboard'], { relativeTo: this.route });
+
+    this.menuservice.dashBoardToolbar()
+    .subscribe((resp:any) =>{
+      if(resp.Return_code == "Success"){
+        this.toolbar = resp.Return_value;
+        console.log("2) Toolbar service -", this.toolbar);
+      }
+    });
   }
 
   dashboardtab() {
@@ -104,6 +114,7 @@ export class MenusComponent implements OnInit {
 
   signout() {
     this.session.clear;
+    this.session.store("Session","loggedout");
     this.router.navigate(['/login']);
   }
 

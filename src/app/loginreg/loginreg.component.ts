@@ -1,4 +1,3 @@
-
 /* tslint:disable */
 import { Component, OnInit, EventEmitter, Output, Inject, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -37,16 +36,16 @@ export class LoginregComponent implements OnInit {
   regesdet = [];
   message:string;
   registerdetails(regisdet) {
-    if (regisdet.username != null && regisdet.password != null
-      && regisdet.hotelname != null && regisdet.mobileNo != null && regisdet.email != null) {
+    if ( regisdet.groupid != null && regisdet.businessid != null && regisdet.username != null && regisdet.password != null
+      && regisdet.confpassword != null && regisdet.mobileNo != null && regisdet.email != null) {
       this.regFillMantatory = false;
       this.loginregservice.registerDetails(regisdet)
         .subscribe((resp: any) => {
-          if (resp.ServiceStatus == 'Success') {
+          if (resp.ServiceStatus == "Success") {
             this.regesdet = resp;
-          this.session.store("business_id", resp.business_id);
-          $('#myModal').modal('show');
-          this.message=resp.business_id;
+          this.session.store("business_id", resp.businessid);
+          // $('#myModal').modal('show');
+          // this.message=resp.business_id;
             this.register = false
             this.login = [];
             this.regis = [];
@@ -67,14 +66,18 @@ export class LoginregComponent implements OnInit {
 
     //  this.route.navigate(['menu']);
 
-    if (logindet.username != null && logindet.password != null) {
+    if (logindet.businessid != null && logindet.username != null && logindet.password != null) {
       this.loginFieldErrorFlag = false;
       this.loginregservice.loginDetails(logindet)
         .subscribe((Response: any) => {
           this.logidetailsdata = Response;
           if (Response.ServiceStatus == 'Success') {
-            this.session.store("business_id",Response.Business_id);
-            this.route.navigate(['menu']);
+            this.session.store("business_id",logindet.businessid);
+
+            if(this.session.retrieve("Session") != "loggedout"){
+              this.route.navigate(['menu']);
+            }
+            
             this.login = [];
             this.regis = [];
           }else if(Response.ServiceStatus == 'Failure'){
@@ -94,6 +97,17 @@ export class LoginregComponent implements OnInit {
    this.emailvali=true;
   }else {
     this.emailvali=false;
+  }
+  }
+
+
+  //business validation
+  businessvali=false;
+  businessvalidate(contactbusiness){
+ if(contactbusiness.errors!=null){
+   this.businessvali=true;
+  }else {
+    this.businessvali=false;
   }
   }
 }
